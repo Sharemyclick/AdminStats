@@ -9,6 +9,7 @@
 class AdvertiserSql
 {
 private $bdd;
+private $error;
 
 public function AdvertiserSql(){
 	// On se connecte à la base de données.
@@ -46,7 +47,8 @@ $req->execute(array(
 } else {
     $errors = $req->errorInfo();
     $req->closeCursor();
-    return($errors[2]);
+    $this->error = $errors[2];
+    return false;
 }
 
 

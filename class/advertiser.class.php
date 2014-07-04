@@ -1,6 +1,6 @@
 <?php
 
-include 'advertiser.class.php';
+include 'advertisersql.class.php';
 class Advertiser
 {
   private $id_advertiser;
@@ -176,13 +176,12 @@ class Advertiser
  
   public function createAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
-   $result = $advertiserSql->insertAdvertiser();
+   $result = $advertiserSql->insertAdvertiser($advertiser);
   if(result==false)
-  {return($errors[2]);}
+  {return($advertiserSql->error);}
   else{
-	  return $this->insertAdvertiser($advertisers);
-          echo 'advertiser had been created';
-  }
+         return 'advertiser had been created';
+  } 
   
   
 }
