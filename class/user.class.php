@@ -146,6 +146,9 @@ class user{
     /*
   METHODS
   */
+  public function checkUserMail(){
+      
+  }
     
 }
 
