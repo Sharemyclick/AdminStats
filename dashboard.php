@@ -42,7 +42,7 @@ if(!isset($_SESSION['login'])) {
 </head>
 
 <body>
-Hello buddy
+
 <div class="mainwrapper">
 	
 	<?php include ('./menu/menu-left.php');?>
