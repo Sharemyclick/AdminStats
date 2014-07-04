@@ -63,7 +63,7 @@ class Category
    // set category_mother
   public function setCategoryMother($category_mother)
   {
-   $this->category_mother = $mother_mother;
+   $this->category_mother = $mother_category;
   } 
   
     // set categories list
