@@ -16,12 +16,12 @@ class Affiliate_Company
   public function getIdAffiliateCompany()
   {
     return $this->id_affiliate_company;
-	
+  }
 	   // get company_name
   public function getCompanyName()
   {
     return $this->company_name;
-	
+  }
 	   // get address
   public function getAddress()
   {
@@ -32,12 +32,12 @@ class Affiliate_Company
   public function getIdCountry()
   {
     return $this->id_country;
-	
+  }	
 	   // get websites
   public function getWebsites()
   {
     return $this->websites;
-	
+  }	
 	   // get id_hq 
   public function getIdHq()
   {
@@ -95,6 +95,4 @@ class Affiliate_Company
     /*
   METHODS
   */
-  
-  
-  
+}
