@@ -219,14 +219,14 @@ if(isset($_POST['submit_advertiser'])){
                         
                         <p>
                             <label>SWIFT</label>
-                            <span class="field"><input type="text" name="szift" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="text" name="swift" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
                             <label>Invoicing period </label>    
                             
                             <span class="field">
-                                <select name="invoicing_period" id="invoicing_period" class="status" required="required">
+                                <select name="invoicing_contact" id="invoicing_contact" class="status" required="required">
                                         <option value="15"> 15</option>
                                         <option value="30"> 30</option>
                                         <option value="45"> 45</option>
