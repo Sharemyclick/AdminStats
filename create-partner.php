@@ -1,5 +1,5 @@
 <?php
-// On inclut la page de paramètre de connection.
+
 include('conf.php');
 include('class/advertizer.class.php');
 include('class/category.class.php');
@@ -10,7 +10,7 @@ $categoriesList = $objCategory->getCategoriesList();
 
 //$objAdvertizer->createAdvertiser($_REQUEST);
 
-// On vérifie que le user est connecté sinon on le renvoie à la page de connection
+
 session_start();  
 if(!isset($_SESSION['login'])) {  
   echo '<script>document.location.href="dashboard.php"</script>';  
