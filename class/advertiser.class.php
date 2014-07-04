@@ -93,6 +93,13 @@ class Advertiser
     return $this->Adress;
   }
   
+  public function getAdvertisersList(){
+	  $advertiserSql = new AdvertiserSql();
+	  $advertisers_sql= $advertiserSql->SelectAdvertisersList();
+	  //TODO setup $campaign_managements_list from query results
+	  // structure of $campaign_management_list : Array('id','name')
+	  return $this->setAdvertisersList($advertiser_list);
+	  }
   /*
   SETTERS
   */
