@@ -82,7 +82,7 @@ class Advertiser
    // get address
   public function getAddress()
   {
-    return $this->Adress;
+    return $this->address;
   }
   public function getCompany_type() {
       return $this->company_type;
