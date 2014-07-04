@@ -4,18 +4,23 @@ include('conf.php');
 include('class/advertiser.class.php');
 include('class/category.class.php');
 
-$objAdvertiser= new Advertiser();
-$objCategory = new Category();
-$categoriesList = $objCategory->getCategoriesList();
-
-//$objAdvertiser->createAdvertiser($_REQUEST);
-
-
 session_start();  
 if(!isset($_SESSION['login'])) {  
   echo '<script>document.location.href="dashboard.php"</script>';  
   exit;  
 }
+
+$objAdvertiser= new Advertiser();
+$objCategory = new Category();
+$categoriesList = $objCategory->getCategoriesList();
+
+if(isset($_POST['submit_advertiser'])){
+    $objAdvertiser->createAdvertiser($_POST);
+}
+//$objAdvertiser->createAdvertiser($_REQUEST);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +96,7 @@ if(!isset($_SESSION['login'])) {
             	<h4 class="widgettitle nomargin shadowed">Company informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form class="stdform stdform2" method="post" action="forms.html">
+                    <form name="form_advertiser" class="stdform stdform2" method="post" action="">
                         <p>
                             <label>Company name</label>
                             <span class="field"><input type="text" name="company_name" class="input-xxlarge" required="required" /></span>
@@ -104,7 +109,7 @@ if(!isset($_SESSION['login'])) {
                         
                         <p>
                             <label>Telephone Company</label>
-                        <span class="field"><input type="text" name="telephone_compsny" class="input-xxlarge" /></span>
+                        <span class="field"><input type="text" name="telephone_company" class="input-xxlarge" /></span>
                         </p>
 
                         <p>
@@ -125,7 +130,7 @@ if(!isset($_SESSION['login'])) {
                                                             
                         <p>
                             <label> Websites</label>
-                            <span class="field"><input type="text" name="websites" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="url" name="websites" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
@@ -172,7 +177,7 @@ if(!isset($_SESSION['login'])) {
                         
                         <p>
                             <label>URL of the platform</label>
-                            <span class="field"><input type="text" name="url" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="url" name="url" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
@@ -199,7 +204,7 @@ if(!isset($_SESSION['login'])) {
                         
                         <p>
                             <label>Email</label>
-                            <span class="field"><input type="text" name="email_invoice_contact" class="input-xxlarge"  /></span>
+                            <span class="field"><input type="email" name="email_invoice_contact" class="input-xxlarge"  /></span>
                         </p>
                         
                         <p>
@@ -243,7 +248,7 @@ if(!isset($_SESSION['login'])) {
                         
                         <p>
                             <label>Email</label>
-                            <span class="field"><input type="text" name="email_management_contact" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="email" name="email_management_contact" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
@@ -284,7 +289,7 @@ if(!isset($_SESSION['login'])) {
                         </p>
                             
                         <p class="stdformbutton">
-                            <button class="btn btn-primary">Submit Button</button>
+                            <button type="submit" name="submit_advertiser" id="submit_advertiser" class="btn btn-primary">Submit Button</button>
                             <button type="reset" class="btn">Reset Button</button>
                         </p>
                         
