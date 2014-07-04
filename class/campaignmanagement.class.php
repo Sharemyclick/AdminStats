@@ -1,5 +1,5 @@
 <?php
-include "campaign_managementsql.class.php";
+include "campaignmanagementsql.class.php";
 
 
 class user{
