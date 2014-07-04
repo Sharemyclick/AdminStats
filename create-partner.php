@@ -103,8 +103,8 @@ if(isset($_POST['submit_advertiser'])){
                         </p>
 
                         <p>
-                            <label>Adress</label>
-                        <span class="field"><input type="text" name="adresse" class="input-xxlarge" required="required" /></span>
+                            <label>Address</label>
+                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
@@ -135,7 +135,7 @@ if(isset($_POST['submit_advertiser'])){
                         
                         <p>
                            <label>Logo</label>
-                           <span class="field"><input type="file" name="logo" id="logo" /></span>
+                           <span class="field"><input type="text" name="logo" id="logo" /></span>
 			</p>
                         
                         <p>
@@ -173,7 +173,7 @@ if(isset($_POST['submit_advertiser'])){
                             </span>  
                         </p>-->
                         
-                        <h4 class="widgettitle nomargin shadowed">Stats validation </h4>
+                        <h4 class="widgettitle nomargin shadowed"> validation </h4>
                         
                         <p>
                             <label>URL of the platform</label>
@@ -280,7 +280,7 @@ if(isset($_POST['submit_advertiser'])){
                         <p>
                             <label>Status</label>
                             <span class="field">
-                                <select name="selection" id="selection2" class="status" required="required">
+                                <select name="status" id="status" class="status" required="required">
                                         <option value="active"> Active</option>
                                         <option value="non active"> Non active</option>
                                         <option value="prospect adviser"> Prospect adviser</option>
