@@ -6,7 +6,7 @@ include "databasesql.class.php";
  * and open the template in the editor.
  */
 
-class user{
+class Database{
     
     private $id_database;
     private $name;
