@@ -172,6 +172,17 @@ class Advertiser
 
      // set address
  
+  public function createAdvertiser($advertiser)
+ { $advertiserSql = new AdvertiserSql();
+   $result = $advertiserSql->insertAdvertiser();
+  if(result==false)
+  {return($errors[2]);}
+  else{
+	  return $this->insertAdvertiser($advertisers);
+          echo 'advertiser had been created';
+  }
+  
+  
 }
   
   /*
@@ -190,9 +201,6 @@ class Advertiser
 	//upload logo in server
 	move_uploaded_file($logo['file'], '/img/'.$logo['name'])); //etc.......
   }*/
- // public insertAdvertise($advertiser)
- // { $insertadvertiser = new insertAdvertiser();
+ 
   
-  
-  
-//  }}
+}

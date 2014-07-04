@@ -27,22 +27,29 @@ public function insertAdvertiser($advertiser)
         . 'VALUES (" :company_name, :websites, :category_product, :id_stats_validation, :id_invoice_contact, :id_management_contact,'
         . ' :logo, :status, :adress, :company_type, :telephone_company")');
 $req->execute(array(
-		'company_name' => $_POST['company_name'],
-                'websites'=> $_POST['websites'],
-		'category_product' => $_POST['category_product'],
-		'id_stats_validation' => $_POST['id_stats_validation'],
-		'id_invoice_contact' => $_POST['id_invoice_contact'],
-		'id_management_contact' => $_POST['id_management_contact'],
-                'logo' => $_POST['logo'],
-		'status' => $_POST['status'],
-                'address' => $_POST['address'],
-                'company_type' => $_POST['company_type'],
-                'telephone_company' => $_POST['telephone_comnpany']
+		'company_name' => $advertiser['company_name'],
+                'websites'=> $advertiser['websites'],
+		'category_product' => $advertiser['category_product'],
+		'id_stats_validation' => $advertiser['id_stats_validation'],
+		'id_invoice_contact' => $advertiser['id_invoice_contact'],
+		'id_management_contact' => $advertiser['id_management_contact'],
+                'logo' => $advertiser['logo'],
+		'status' => $advertiser['status'],
+                'address' => $advertise['address'],
+                'company_type' => $advertiser['company_type'],
+                'telephone_company' => $advertiser['telephone_comnpany']
 		
 		)) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
-// On termine le traitement de la requete
-$coreg_id = $bdd->lastInsertId();
-$req->closeCursor();
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    return($errors[2]);
+}
+
+
 }
 
 }
