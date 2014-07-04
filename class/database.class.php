@@ -43,7 +43,7 @@ class user{
         return $this->status;
     }
     
-     public function getAffiliateDatabasesList(){
+     public function getDatabasesList(){
 	  $databaseSql = new DatabaseSql();
 	  $databases_sql= $databaseSql->SelectDatabaseList();
 	  //TODO setup $databases_list from query results
