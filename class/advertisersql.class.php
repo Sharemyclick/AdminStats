@@ -22,8 +22,27 @@ public function SelectAdvertisersList($advetiser = false){
 	
 }
 public function insertAdvertiser($advertiser)
-{ $req = $this->$bdd->prepare('INSERT INTO advertiser( "id_advertiser, company_name, websites, category_product, validation_delay, id_stats_validation, id_invoice_contact, id_management_contact, thumbnail, logo, status, adress") VALUES (":id_advertiser, :company_name,:websites, :category_product, :validation_delay, :id_stats_validation, :id_invoice_contact, :id_management_contact, :thumbnail, :logo, :status, :adress")');
-return $req;
+{ $req = $this->$bdd->prepare('INSERT INTO advertiser( " company_name, websites, category_product,'
+        . ' id_stats_validation, id_invoice_contact, id_management_contact,  logo, status, adress,company_type, telephone_company") '
+        . 'VALUES (" :company_name, :websites, :category_product, :id_stats_validation, :id_invoice_contact, :id_management_contact,'
+        . ' :logo, :status, :adress, :company_type, :telephone_company")');
+$req->execute(array(
+		'company_name' => $_POST['company_name'],
+                'websites'=> $_POST['websites'],
+		'category_product' => $_POST['category_product'],
+		'id_stats_validation' => $_POST['id_stats_validation'],
+		'id_invoice_contact' => $_POST['id_invoice_contact'],
+		'id_management_contact' => $_POST['id_management_contact'],
+                'logo' => $_POST['logo'],
+		'status' => $_POST['status'],
+                'address' => $_POST['address'],
+                'company_type' => $_POST['company_type'],
+                'telephone_company' => $_POST['telephone_comnpany']
+		
+		)) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+// On termine le traitement de la requete
+$coreg_id = $bdd->lastInsertId();
+$req->closeCursor();
 }
 
 }
