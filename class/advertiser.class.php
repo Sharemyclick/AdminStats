@@ -177,10 +177,10 @@ class Advertiser
   public function createAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
    $result = $advertiserSql->insertAdvertiser($advertiser);
-  if(result==false)
+  if(!$result)
   {return($advertiserSql->error);}
   else{
-         return 'advertiser had been created';
+         return 'advertiser has been created';
   } 
   
   

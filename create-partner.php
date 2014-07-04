@@ -15,7 +15,7 @@ $objCategory = new Category();
 $categoriesList = $objCategory->getCategoriesList();
 
 if(isset($_POST['submit_advertiser'])){
-    $objAdvertiser->createAdvertiser($_POST);
+    $message = $objAdvertiser->createAdvertiser($_POST);
 }
 //$objAdvertiser->createAdvertiser($_REQUEST);
 
@@ -50,7 +50,11 @@ if(isset($_POST['submit_advertiser'])){
 
 
 	
-	<?php include ('./menu/menu-left.php');?>
+	<?php include ('./menu/menu-left.php');
+        if(isset($_POST['submit_advertiser'])){
+        echo  "Result : ".$message;
+     }
+        ?>
     
     <!-- START OF RIGHT PANEL -->
     <div class="rightpanel">
