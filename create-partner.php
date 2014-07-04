@@ -173,26 +173,26 @@ if(isset($_POST['submit_advertiser'])){
                             </span>  
                         </p>-->
                         
-                        <h4 class="widgettitle nomargin shadowed"> validation </h4>
+                        <h4 class="widgettitle nomargin shadowed"> Stats validation </h4>
                         
                         <p>
                             <label>URL of the platform</label>
-                            <span class="field"><input type="url" name="url" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="url" name="url" id="url" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
                             <label>Username</label>
-                            <span class="field"><input type="text" name="username" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="text" name="username" id="username" class="input-xxlarge" required="required" /></span>
                         </p>
 							
                         <p>
                             <label>Password</label>
-                            <span class="field"><input type="text" name="password" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="text" name="password" id="password" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                          <p>
                             <label>Validation delay</label>
-                            <span class="field"><input type="text" name="validation_delay" class="input-xxlarge"  /></span>
+                            <span class="field"><input type="text" name="validation_delay" id="validation_delay" class="input-xxlarge"  /></span>
                         </p>
 						
                         <h4 class="widgettitle nomargin shadowed">Invoice contact </h4>
@@ -266,7 +266,7 @@ if(isset($_POST['submit_advertiser'])){
                            
                             
                             <span class="field">
-                                    <select name="partner_name" id="partner_name" class="status">
+                                    <select name="conversation_language" id="conversation_language" class="status">
                                         <?php 
                                     $req_jc = $bdd->query("SELECT language FROM language ORDER BY language ASC");
                                     while ($val_jc = $req_jc->fetch()){?>
