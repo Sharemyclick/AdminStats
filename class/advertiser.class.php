@@ -1,4 +1,6 @@
 <?php
+
+include 'advertiser.class.php';
 class Advertiser
 {
   private $id_advertiser;
