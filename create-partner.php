@@ -219,7 +219,7 @@ if(isset($_POST['submit_advertiser'])){
                         
                         <p>
                             <label>SWIFT</label>
-                            <span class="field"><input type="text" name="SWIFT" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="text" name="szift" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
