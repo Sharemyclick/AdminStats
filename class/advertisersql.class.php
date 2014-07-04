@@ -23,14 +23,81 @@ public function SelectAdvertisersList($advetiser = false){
 	
 }
 public function insertAdvertiser($advertiser)
-{ $req = $this->bdd->prepare('INSERT INTO advertiser(company_name, websites, category_product,'
-        . ' logo, status, address,company_type, telephone_company) '
-        . 'VALUES ( :company_name, :websites, :category_product, '
+        
+        
+        
+{$req = $this->$bdd->prepare('INSERT INTO management_contact(  name, email, telephone,skype, conversation_language ) VALUES ( :name, :email, :telephone, :skype, :conversation_language)');
+        $req->execute(array(
+		'name' => $advertiser['name_management_contact'],
+        'email' => $advertiser['email_management_contact'],
+            'telephone' => $advertiser['telephone_management_contact'],
+            'skype' => $advertiser['skype'],
+              'conversation_language' => $advertiser['conversation_language']   
+     )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+          $id_management_contact = $bdd->lastInsertId();
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+    
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'management contact : '.$errors[2];
+   
+   
+}
+
+    $req = $this->$bdd->prepare('INSERT INTO stats_validation(  url, username, password,validation_delay ) VALUES ( :url, :username, :password, :validation_delay)');
+        $req->execute(array(
+		'url' => $advertiser['url'],
+        'username' => $advertiser['username'],
+            'password' => $advertiser['password'],
+            'validation_delay' => $advertiser['validation_delay']   
+     )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+          $id_stats_validation = $bdd->lastInsertId();
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+    
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'stats validation : '.$errors[2];
+   
+   
+}
+
+$req = $this->$bdd->prepare('INSERT INTO invoice_contact(  email, name, IBAN, SWIFT, invoiving_contact ) VALUES ( :email, :name, :IBAN, :SWIFT, :invoiving_contact)');
+        $req->execute(array(
+		'email' => $advertiser['email'],
+        'name' => $advertiser['name'],
+            'iban' => $advertiser['iban'],
+            'swift' => $advertiser['swift'],
+            'invoicing_contact' => $advertiser['invoycing_contact']
+        )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+          $id_stats_validation = $bdd->lastInsertId();
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'invoice_contact : '.$errors[2];
+   
+}
+
+   
+ $req = $this->bdd->prepare('INSERT INTO advertiser(  company_name, websites, category_product,'
+        . ' id_stats_validation, id_invoice_contact, id_management_contact,  logo, status, address,company_type, telephone_company) '
+        . 'VALUES ( :company_name, :websites, :category_product, :id_stats_validation, :id_invoice_contact, :id_management_contact,'
         . ' :logo, :status, :address, :company_type, :telephone_company)');
+ 
+ 
 $req->execute(array(
 		'company_name' => $advertiser['company_name'],
                 'websites'=> $advertiser['websites'],
 		'category_product' => $advertiser['category_product'],
+    'id_stats_validation'  => $id_stats_validation,
+    'id_invoice_contact' => $id_invoice_contact,
+    'id_management_contact' => $id_management_contact,
                 'logo' => $advertiser['logo'],
 		'status' => $advertiser['status'],
                 'address' => $advertiser['address'],
@@ -44,7 +111,7 @@ $req->execute(array(
 } else {
     $errors = $req->errorInfo();
     $req->closeCursor();
-    $this->error = $errors[2];
+    $this->error = 'advertiser : '.$errors[2];
     return false;
 }
 
