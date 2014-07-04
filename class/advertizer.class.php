@@ -1,5 +1,5 @@
 <?php
-class Advertizer
+class Advertiser
 {
   private $id_advertiser;
   private $company_name;
@@ -14,7 +14,7 @@ class Advertizer
   private $status;
   private $adress;
        
-  public function Advertizer(){
+  public function Advertiser(){
       
   }
   
@@ -173,7 +173,7 @@ class Advertizer
   /*
   METHODS
   */
-  /*public createAdvertizer($advertiser){
+  /*public createAdvertiser($advertiser){
 	$advertizerSql = new AdvertizerSql();
 	$advertizerSql->insertAdvertizer($advertiser);
   }*/
@@ -181,8 +181,8 @@ class Advertizer
   /*public saveLogo($logo){
 	$this->setLogo($logo['name']);
 	//save in base
-	$advertizerSql = new AdvertizerSql();
-	$advertizerSql->insertLogo($logo['src']);
+	$advertiserSql = new AdvertiserSql();
+	$advertiserSql->insertLogo($logo['src']);
 	//upload logo in server
 	move_uploaded_file($logo['file'], '/img/'.$logo['name'])); //etc.......
   }*/
