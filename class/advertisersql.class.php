@@ -21,5 +21,9 @@ public function SelectAdvertisersList($advetiser = false){
 	return $req;
 	
 }
+public function insertAdvertiser($advertiser)
+{ $req = $this->$bdd->prepare('INSERT INTO advertiser( "id_advertiser, company_name, websites, category_product, validation_delay, id_stats_validation, id_invoice_contact, id_management_contact, thumbnail, logo, status, adress") VALUES (":id_advertiser, :company_name,:websites, :category_product, :validation_delay, :id_stats_validation, :id_invoice_contact, :id_management_contact, :thumbnail, :logo, :status, :adress")');
+return $req;
+}
 
 }
