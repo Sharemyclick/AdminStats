@@ -1,18 +1,20 @@
 <?php
+
+include 'advertisersql.class.php';
 class Advertiser
 {
   private $id_advertiser;
   private $company_name;
   private $websites;
   private $category_product;
-  private $validation_delay;
   private $id_stats_validation;
   private $id_invoice_contact;
   private $id_management_contact;
-  private $thumbnail;
   private $logo;
   private $status;
-  private $adress;
+  private $address;
+  private $company_type;
+  private $telephone_company;
        
   public function Advertiser(){
       
@@ -44,11 +46,6 @@ class Advertiser
     return $this->category_product;
   }
   
-  // get validationdelay
-  public function getValidationDelay()
-  {
-    return $this->validation_delay;
-  }
   
   // get idstatsvalidation
   public function getIdStatsValidation()
@@ -69,11 +66,6 @@ class Advertiser
     return $this->id_management_contact;
   }
    
-  // get thumbnail
-  public function getThumbnail()
-  {
-    return $this->thumbnail;
-  }
   
   // get logo
   public function getLogo()
@@ -92,14 +84,22 @@ class Advertiser
   {
     return $this->Adress;
   }
-  
-  public function getAdvertisersList(){
+  public function getCompany_type() {
+      return $this->company_type;
+  }
+
+  public function getTelephone_company() {
+      return $this->telephone_company;
+  }
+
+    public function getAdvertisersList(){
 	  $advertiserSql = new AdvertiserSql();
 	  $advertisers_sql= $advertiserSql->SelectAdvertisersList();
 	  //TODO setup $campaign_managements_list from query results
 	  // structure of $campaign_management_list : Array('id','name')
 	  return $this->setAdvertisersList($advertiser_list);
 	  }
+       
   /*
   SETTERS
   */
@@ -128,11 +128,6 @@ class Advertiser
    $this->category_product = $category_product;
   }
   
-  // set validationdelay
-  public function setValidationDelay($validation_delay)
-  {
-   $this->validation_delay = $validation_delay;
-  }
   
   // set idstatsvalidation
   public function setIdStatsValidation($id_stats_validation)
@@ -152,12 +147,7 @@ class Advertiser
   {
    $this->id_management_contact = $id_management_contact;
   }
-   
-  // set thumbnail
-  public function setThumbnail($thumbnail)
-  {
-    $this->thumbnail = $thumbnail;
-  }
+
   
   // set logo
   public function setLogo($logo)
@@ -170,12 +160,31 @@ class Advertiser
   {
    $this->status = $status;
   }
-  
-   // set address
-  public function setAddress($address)
-  {
-    $this->adress = $address;
+  public function setAddress($address) {
+      $this->address = $address;
   }
+
+    public function setCompany_type($company_type) {
+      $this->company_type = $company_type;
+  }
+
+  public function setTelephone_company($telephone_company) {
+      $this->telephone_company = $telephone_company;
+  }
+
+     // set address
+ 
+  public function createAdvertiser($advertiser)
+ { $advertiserSql = new AdvertiserSql();
+   $result = $advertiserSql->insertAdvertiser($advertiser);
+  if(result==false)
+  {return($advertiserSql->error);}
+  else{
+         return 'advertiser had been created';
+  } 
+  
+  
+}
   
   /*
   METHODS
@@ -193,5 +202,6 @@ class Advertiser
 	//upload logo in server
 	move_uploaded_file($logo['file'], '/img/'.$logo['name'])); //etc.......
   }*/
+ 
   
 }

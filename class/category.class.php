@@ -6,7 +6,7 @@ class Category
 {
   private $id_category;
   private $category_name;
-  private $category_mother;
+  private $mother_category;
  
   private $categories_list;
             
@@ -26,7 +26,7 @@ class Category
 	   // get category_mother
   public function getCategoryMother()
   {
-    return $this->category_mother;
+    return $this->mother_category;
 	}
 	
         
@@ -48,7 +48,7 @@ class Category
 	/*
   SETTERS
   */
-  
+   
    // set idcategory
   public function setIdCategory($id_category)
   {
@@ -63,7 +63,7 @@ class Category
    // set category_mother
   public function setCategoryMother($category_mother)
   {
-   $this->category_mother = $category_mother;
+   $this->category_mother = $mother_category;
   } 
   
     // set categories list

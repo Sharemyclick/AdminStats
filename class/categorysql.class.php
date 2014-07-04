@@ -10,7 +10,7 @@ public function CategorySql(){
 
 public function SelectCategoriesList($mainCategory = false){
 
-	$req = $this->bdd->query('SELECT id_category, name_category, id_mother FROM category');
+	$req = $this->bdd->query('SELECT id_category, name_category, mother_category FROM category');
 	return $req;
 	
 }

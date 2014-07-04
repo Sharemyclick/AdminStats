@@ -9,6 +9,7 @@
 class AdvertiserSql
 {
 private $bdd;
+private $error;
 
 public function AdvertiserSql(){
 	// On se connecte à la base de données.
@@ -22,8 +23,35 @@ public function SelectAdvertisersList($advetiser = false){
 	
 }
 public function insertAdvertiser($advertiser)
-{ $req = $this->$bdd->prepare('INSERT INTO advertiser( "id_advertiser, company_name, websites, category_product, validation_delay, id_stats_validation, id_invoice_contact, id_management_contact, thumbnail, logo, status, adress") VALUES (":id_advertiser, :company_name,:websites, :category_product, :validation_delay, :id_stats_validation, :id_invoice_contact, :id_management_contact, :thumbnail, :logo, :status, :adress")');
-return $req;
+{ $req = $this->$bdd->prepare('INSERT INTO advertiser( " company_name, websites, category_product,'
+        . ' id_stats_validation, id_invoice_contact, id_management_contact,  logo, status, adress,company_type, telephone_company") '
+        . 'VALUES (" :company_name, :websites, :category_product, :id_stats_validation, :id_invoice_contact, :id_management_contact,'
+        . ' :logo, :status, :adress, :company_type, :telephone_company")');
+$req->execute(array(
+		'company_name' => $advertiser['company_name'],
+                'websites'=> $advertiser['websites'],
+		'category_product' => $advertiser['category_product'],
+		'id_stats_validation' => $advertiser['id_stats_validation'],
+		'id_invoice_contact' => $advertiser['id_invoice_contact'],
+		'id_management_contact' => $advertiser['id_management_contact'],
+                'logo' => $advertiser['logo'],
+		'status' => $advertiser['status'],
+                'address' => $advertise['address'],
+                'company_type' => $advertiser['company_type'],
+                'telephone_company' => $advertiser['telephone_comnpany']
+		
+		)) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = $errors[2];
+    return false;
+}
+
+
 }
 
 }
