@@ -266,7 +266,7 @@ if(isset($_POST['submit_advertiser'])){
                            
                             
                             <span class="field">
-                                    <select name="partner_name" id="partner_name" class="status">
+                                    <select name="conversation_language" id="conversation_language" class="status">
                                         <?php 
                                     $req_jc = $bdd->query("SELECT language FROM language ORDER BY language ASC");
                                     while ($val_jc = $req_jc->fetch()){?>
