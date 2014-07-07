@@ -165,8 +165,9 @@ if(isset($_POST['submit_advertiser'])){
                             
                             <span class="field">
                                 <select name="category_product" id="category_product" class="status">
-                                        <?php foreach($objCategory->categories_list as $indCat => $valCat){?>
-                                <option value="<?php echo $indCat; ?>"><?php echo $valCat; ?></option>
+                                        <?php 
+                                        foreach($objCategory->categories_list as $indCat => $valCat){?>
+                                    <option value="<?php echo $indCat['mother_category']; ?>"><?php if($indCat['id']==='0'){?><strong><?php echo $valCat['name']; ?></strong><?php }else { echo $valCat['name'];}?></option>
                                 <?php } ?>
                                 </select>
                             </span>  
@@ -326,3 +327,4 @@ if(isset($_POST['submit_advertiser'])){
 
 </body>
 </html>
+}
