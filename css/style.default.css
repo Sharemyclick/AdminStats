@@ -45,7 +45,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 /***** MAIN WRAPPER *****/
 /************************/
-
+.option { 
+text-align:center; 
+font-weight:bold; 
+} 
 body { background: #bcbcbc; font-family: 'HelveticaNeue', Arial, Helvetica, sans-serif; font-size: 12px; line-height: 21px; color: #666; }
 button, input, textarea, select, a, a:focus { outline: none; }
 a { text-decoration: none; color: #546f8e; }

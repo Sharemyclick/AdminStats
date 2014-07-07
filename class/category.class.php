@@ -41,7 +41,9 @@ class Category
                 $categories_list[$row['id_category']]['id'] = $row['id_category'];
 		$categories_list[$row['id_category']]['name'] = $row['name_category'];
                 // type = 0 if mother category, idd of mother category otherwise
-                $categories_list[$row['id_category']]['type'] = $row['mother_category'];
+                if(isset($categories_list[$row['id_category']]['type']) && $categories_list[$row['id_category']]['type'] == 1){
+                }else
+                 $categories_list[$row['id_category']]['type'] = 0;
                // loop into mothers categories only
                 if($row['mother_category'] == 0){ 
                     // get list categories in order to retrieve its children

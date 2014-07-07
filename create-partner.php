@@ -167,7 +167,9 @@ if(isset($_POST['submit_advertiser'])){
                                 <select name="category_product" id="category_product" class="status">
                                         <?php 
                                         foreach($objCategory->categories_list as $indCat => $valCat){?>
-                                    <option value="<?php echo $indCat['mother_category']; ?>"><?php if($indCat['id']==='0'){?><strong><?php echo $valCat['name']; ?></strong><?php }else { echo $valCat['name'];}?></option>
+                                    <option value="<?php echo $valCat['id']; ?>">
+                                        <?php if($valCat['type']==0){?><option class="option" ><?php echo $valCat['name']; ?></span>
+                                            <?php }else { echo $valCat['name'];}?></option>
                                 <?php } ?>
                                 </select>
                             </span>  
