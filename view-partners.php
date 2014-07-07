@@ -97,6 +97,7 @@ $viewAdvertiser->getAdvertisers();
 							<th class="centeralign">Management contact</th>
 							<th class="centeralign">Telephone</th>
 							<th class="centeralign"> Email</th>
+                                                        <th class="centeralign"> Skype</th>
 							
 						</tr>
                     </thead>
@@ -110,7 +111,8 @@ $viewAdvertiser->getAdvertisers();
                                                         </td>
                                                         <td class="centeralign"><?php echo $advertiser['management_name'] ?></td>
 							<td class="centeralign"><?php echo $advertiser['telephone'] ?></td> 
-							<td class="centeralign"><?php echo $advertiser['management_email'] ?> </td>
+                                                        <td class="centeralign"><a href="mailto:<?php echo $advertiser['management_email'] ?>" ><?php echo $advertiser['management_email'] ?> </a></td>
+                                                        <td class="centeralign"><?php echo $advertiser['skype'] ?> </td>
 							</tr>
 						<?php }
 					?>
