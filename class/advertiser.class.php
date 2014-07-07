@@ -15,7 +15,7 @@ class Advertiser
   private $address;
   private $company_type;
   private $telephone_company;
-       
+     private $advertisers = array();  
   public function Advertiser(){
       
   }
@@ -190,36 +190,36 @@ class Advertiser
   $query = $advertiserSql->getAdvertisers($filters, $order);
       if(!$result){return false;}
   else{
-    $advertisers = array();
+   
     $i = 0;
     while($result = $query->fetch())
     {
-       $advertisers[$i]['company_name'] = $result['company_name'];
-        $advertisers[$i]['websites'] = $result['websites'];
-        $advertisers[$i]['category_product'] = $result['category_product'];
-        $advertisers[$i]['logo'] = $result['logo'];
-        $advertisers[$i]['status'] = $result['status'];
-        $advertisers[$i]['address'] = $result['address'];
-        $advertisers[$i]['company_type'] = $result['company_type'];
-        $advertisers[$i]['telephone_company'] = $result['telephone_company'];
-        $advertisers[$i]['invoice_email'] = $result['i.email'];
-        $advertisers[$i]['invoice_name'] = $result['i.name'];
-        $advertisers[$i]['iban'] = $result['iban'];
-        $advertisers[$i]['swift'] = $result['swift'];
-        $advertisers[$i]['invoicing_contact'] = $result['invoicing_contact'];
-        $advertisers[$i]['url'] = $result['url'];
-        $advertisers[$i]['username'] = $result['username'];
-        $advertisers[$i]['password'] = $result['password'];
-        $advertisers[$i]['validation_delay'] = $result['validation_delay'];
-        $advertisers[$i]['management_name'] = $result['m.name'];
-        $advertisers[$i]['management_email'] = $result['m.email'];
-        $advertisers[$i]['telephone'] = $result['telephone'];
-        $advertisers[$i]['skype'] = $result['skype'];
-        $advertisers[$i]['conversation_language'] = $result['conversation_language'];
+        $this->$advertisers[$i]['company_name'] = $result['company_name'];
+        $this->$advertisers[$i]['websites'] = $result['websites'];
+        $this->$advertisers[$i]['category_product'] = $result['category_product'];
+       $this->$advertisers[$i]['logo'] = $result['logo'];
+        $this->$advertisers[$i]['status'] = $result['status'];
+        $this->$advertisers[$i]['address'] = $result['address'];
+        $this->$advertisers[$i]['company_type'] = $result['company_type'];
+        $this->$advertisers[$i]['telephone_company'] = $result['telephone_company'];
+        $this->$advertisers[$i]['invoice_email'] = $result['i.email'];
+        $this->$advertisers[$i]['invoice_name'] = $result['i.name'];
+        $this->$advertisers[$i]['iban'] = $result['iban'];
+        $this->$advertisers[$i]['swift'] = $result['swift'];
+        $this->$advertisers[$i]['invoicing_contact'] = $result['invoicing_contact'];
+        $this->$advertisers[$i]['url'] = $result['url'];
+        $this->$advertisers[$i]['username'] = $result['username'];
+        $this->$advertisers[$i]['password'] = $result['password'];
+        $this->$advertisers[$i]['validation_delay'] = $result['validation_delay'];
+        $this->$advertisers[$i]['management_name'] = $result['m.name'];
+        $this->$advertisers[$i]['management_email'] = $result['m.email'];
+        $this->$advertisers[$i]['telephone'] = $result['telephone'];
+        $this->$advertisers[$i]['skype'] = $result['skype'];
+        $this->$advertisers[$i]['conversation_language'] = $result['conversation_language'];
       
         $i++;
     }
-    return $advertisers;
+    return true;
   
 }
   }
