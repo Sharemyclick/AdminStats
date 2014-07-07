@@ -182,10 +182,47 @@ class Advertiser
   else{
          return 'advertiser has been created';
   } 
+ }
   
+  
+  public function getAdvertisers($filters = false, $order = false)
+  {$advertiserSql = new AdvertiserSql();
+  $query = $advertiserSql->getAdvertisers($filters, $order);
+      if(!$result){return false;}
+  else{
+    $advertisers = array();
+    $i = 0;
+    while($result = $query->fetch())
+    {
+       $advertisers[$i]['company_name'] = $result['company_name'];
+        $advertisers[$i]['websites'] = $result['websites'];
+        $advertisers[$i]['category_product'] = $result['category_product'];
+        $advertisers[$i]['logo'] = $result['logo'];
+        $advertisers[$i]['status'] = $result['status'];
+        $advertisers[$i]['address'] = $result['address'];
+        $advertisers[$i]['company_type'] = $result['company_type'];
+        $advertisers[$i]['telephone_company'] = $result['telephone_company'];
+        $advertisers[$i]['invoice_email'] = $result['i.email'];
+        $advertisers[$i]['invoice_name'] = $result['i.name'];
+        $advertisers[$i]['iban'] = $result['iban'];
+        $advertisers[$i]['swift'] = $result['swift'];
+        $advertisers[$i]['invoicing_contact'] = $result['invoicing_contact'];
+        $advertisers[$i]['url'] = $result['url'];
+        $advertisers[$i]['username'] = $result['username'];
+        $advertisers[$i]['password'] = $result['password'];
+        $advertisers[$i]['validation_delay'] = $result['validation_delay'];
+        $advertisers[$i]['management_name'] = $result['m.name'];
+        $advertisers[$i]['management_email'] = $result['m.email'];
+        $advertisers[$i]['telephone'] = $result['telephone'];
+        $advertisers[$i]['skype'] = $result['skype'];
+        $advertisers[$i]['conversation_language'] = $result['conversation_language'];
+      
+        $i++;
+    }
+    return $advertisers;
   
 }
-  
+  }
   /*
   METHODS
   */

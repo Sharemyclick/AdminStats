@@ -116,5 +116,20 @@ $req->execute(array(
 
 
 }
+public function getAdvertisers($filters = false, $order = false)
+{
+   if($order){
+       $order_by = ' ORDER BY '.$order['value'].' '.$order['asc_desc'];
+   }else{
+       $order_by = ' ORDER BY company_name';
+   }
+    if($filters){
+        $where = " AND ".$filters['field']." = ".$filters['value'];
+    }
+    $req = $this->bdd->query('SELECT * FROM advertiser a JOIN invoice_contact i ON a.id_invoice_contact=i.id_invoice_contact JOIN stats_validation s ON a.id_stats_validation=s.id_stats_validation JOIN management_contact m ON a.id_management_contact=m.id_management_contact'
+            . ' WHERE 1 '.$where.$order_by);
+return $req;
+
+}
 
 }
