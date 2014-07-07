@@ -192,6 +192,7 @@ class Advertiser
   else{
    
     $i = 0;
+    
     while($result = $query->fetch())
     {
         $this->$advertisers[$i]['company_name'] = $result['company_name'];
