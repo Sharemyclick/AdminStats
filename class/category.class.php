@@ -8,7 +8,7 @@ class Category
   private $category_name;
   private $mother_category;
  
-  private $categories_list;
+  public $categories_list = array();
             
    /*
    GETTERS
@@ -42,7 +42,8 @@ class Category
 		} 
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  return $categories_list;
+                $this->setCategoriesList($categories_list);
+	  return true;
 	  }
 	
 	/*

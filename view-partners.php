@@ -1,6 +1,7 @@
 <?php
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
+include('class/advertiser.class.php');
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
 session_start();  
@@ -8,6 +9,9 @@ if(!isset($_SESSION['login'])) {
   echo '<script>document.location.href="dashboard.php"</script>';  
   exit;  
 }
+$viewAdvertiser = new Advertiser();
+$viewAdvertiser->getAdvertisers();
+
 ?>
 
 <!DOCTYPE html>
@@ -88,33 +92,26 @@ if(!isset($_SESSION['login'])) {
                     </colgroup>
                     <thead>
                         <tr>
-							<th class="centeralign">Partner</th>
-							<th class="centeralign">Address</th>
-							<th class="centeralign">Iban</th>
-							<th class="centeralign">Swift_bic</th>
-							<th class="centeralign">Email finance</th>
-							<th class="centeralign">Nº VAT</th>
+							<th class="centeralign">Company name</th>
+							<th class="centeralign">Logo</th>
+							<th class="centeralign">Management contact</th>
 							<th class="centeralign">Telephone</th>
+							<th class="centeralign"> Email</th>
+							
 						</tr>
                     </thead>
                     
 					<tbody>
-						<?php
-					// On recupere tout le contenu de la table 'dbase'
-					$reponse = $bdd->query('SELECT * FROM partner ORDER BY name') or die(print_r($bdd->errorInfo())); 
-					// On affiche chaque entree une a  une et cela  tant qu'il y en a
-					while ($donnees = $reponse->fetch())
-						{
-                        echo '<tr>';
-                            echo '<td class="centeralign">'.$donnees['name'].'</td>';
-                            echo '<td class="centeralign">'.$donnees['address'].'</td>';
-                            echo '<td class="centeralign">'.$donnees['iban'].'</td>';
-							echo '<td class="centeralign">'.$donnees['swift_bic'].'</td>';
-							echo '<td class="centeralign">'.$donnees['email_finance'].'</td>';
-							echo '<td class="centeralign">'.$donnees['vat_number'].'</td>';
-							echo '<td class="centeralign">'.$donnees['telephone'].'</td>';
-                        echo '</tr>';
-						}
+                                                <?php foreach($viewAdvertiser->advertisers as $list => $advertiser){?>         					
+						
+                                                        <tr>
+                                                        <td class="centeralign"><?php echo $advertiser['company_name'] ?></td>
+                                                        <td class="centeralign"><?php echo $advertiser['logo'] ?></td>
+                                                        <td class="centeralign"><?php echo $advertiser['management_name'] ?></td>
+							<td class="centeralign"><?php echo $advertiser['telephone'] ?></td> 
+							<td class="centeralign"><?php echo $advertiser['management_email'] ?> </td>
+							</tr>
+						<?php }
 					?>
                     </tbody>
 				</table>

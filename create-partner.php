@@ -12,7 +12,7 @@ if(!isset($_SESSION['login'])) {
 
 $objAdvertiser= new Advertiser();
 $objCategory = new Category();
-$categoriesList = $objCategory->getCategoriesList();
+$result = $objCategory->getCategoriesList();
 
 if(isset($_POST['submit_advertiser'])){
     $message = $objAdvertiser->createAdvertiser($_POST);
@@ -100,14 +100,14 @@ if(isset($_POST['submit_advertiser'])){
             	<h4 class="widgettitle nomargin shadowed">Company informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form name="form_advertiser" class="stdform stdform2" method="post" action="">
+                    <form name="form_advertiser" class="stdform stdform2" method="post" action="" enctype="multipart/form-data">
                         <p>
-                            <label>Company name</label>
+                            <label>Company name *</label>
                             <span class="field"><input type="text" name="company_name" class="input-xxlarge" required="required" /></span>
                         </p>
 
                         <p>
-                            <label>Address</label>
+                            <label>Address *</label>
                         <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" required="required" /></span>
                         </p>
                         
@@ -117,7 +117,7 @@ if(isset($_POST['submit_advertiser'])){
                         </p>
 
                         <p>
-                            <label>Country</label>
+                            <label>Country *</label>
                             
                             <span class="field">
                                 <select name="country" id="country" class="status" required="required">
@@ -133,7 +133,7 @@ if(isset($_POST['submit_advertiser'])){
                             
                                                             
                         <p>
-                            <label> Websites</label>
+                            <label> Website *</label>
                             <span class="field"><input type="url" name="websites" class="input-xxlarge" required="required" /></span>
                         </p>
                         
@@ -158,7 +158,7 @@ if(isset($_POST['submit_advertiser'])){
                             
                             <span class="field">
                                 <select name="category_product" id="category_product" class="status">
-                                        <?php foreach($categoriesList as $indCat => $valCat){?>
+                                        <?php foreach($objCategory->categories_list as $indCat => $valCat){?>
                                 <option value="<?php echo $indCat; ?>"><?php echo $valCat; ?></option>
                                 <?php } ?>
                                 </select>
@@ -180,17 +180,17 @@ if(isset($_POST['submit_advertiser'])){
                         <h4 class="widgettitle nomargin shadowed"> Stats validation </h4>
                         
                         <p>
-                            <label>URL of the platform</label>
+                            <label>URL of the platform *</label>
                             <span class="field"><input type="url" name="url" id="url" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
-                            <label>Username</label>
+                            <label>Username *</label>
                             <span class="field"><input type="text" name="username" id="username" class="input-xxlarge" required="required" /></span>
                         </p>
 							
                         <p>
-                            <label>Password</label>
+                            <label>Password *</label>
                             <span class="field"><input type="text" name="password" id="password" class="input-xxlarge" required="required" /></span>
                         </p>
                         
@@ -212,22 +212,22 @@ if(isset($_POST['submit_advertiser'])){
                         </p>
                         
                         <p>
-                            <label>VAT</label>
+                            <label>VAT *</label>
                             <span class="field"><input type="text" name="vat" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
-                            <label>IBAN</label>
+                            <label>IBAN *</label>
                             <span class="field"><input type="text" name="iban" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
-                            <label>SWIFT</label>
+                            <label>SWIFT *</label>
                             <span class="field"><input type="text" name="swift" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
-                            <label>Invoicing period </label>    
+                            <label>Invoicing period *</label>    
                             
                             <span class="field">
                                 <select name="invoicing_contact" id="invoicing_contact" class="status" required="required">
@@ -246,17 +246,17 @@ if(isset($_POST['submit_advertiser'])){
                         
                         
                         <p>
-                            <label>Name</label>
+                            <label>Name *</label>
                             <span class="field"><input type="text" name="name_management_contact" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
-                            <label>Email</label>
+                            <label>Email *</label>
                             <span class="field"><input type="email" name="email_management_contact" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                         <p>
-                            <label>Telephone Management contact</label>
+                            <label>Telephone Management contact *</label>
                             <span class="field"><input type="text" name="telephone_management_contact" class="input-xxlarge" required="required" /></span>
                         </p>
                         
@@ -282,7 +282,7 @@ if(isset($_POST['submit_advertiser'])){
                         </p>
                         
                         <p>
-                            <label>Status</label>
+                            <label>Status *</label>
                             <span class="field">
                                 <select name="status" id="status" class="status" required="required">
                                         <option value="active"> Active</option>

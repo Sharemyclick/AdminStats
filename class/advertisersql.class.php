@@ -118,7 +118,8 @@ $req->execute(array(
 }
 public function getAdvertisers($filters = false, $order = false)
 {
-   if($order){
+   $where = "";
+    if($order){
        $order_by = ' ORDER BY '.$order['value'].' '.$order['asc_desc'];
    }else{
        $order_by = ' ORDER BY company_name';
@@ -126,7 +127,7 @@ public function getAdvertisers($filters = false, $order = false)
     if($filters){
         $where = " AND ".$filters['field']." = ".$filters['value'];
     }
-    $req = $this->bdd->query('SELECT company_name, websites, category_product,logo, status, address, company_type, telephone_company,i.email AS invoice_invoice, i.name AS invoice_name, iban, swift, invoicing_contact, url, username, password, validation_delay, m.name AS management_name, m.email AS management_email, telephone, skype, conversation_language FROM advertiser a JOIN invoice_contact i ON a.id_invoice_contact=i.id_invoice_contact JOIN stats_validation s ON a.id_stats_validation=s.id_stats_validation JOIN management_contact m ON a.id_management_contact=m.id_management_contact'
+    $req = $this->bdd->query('SELECT company_name, websites, category_product,logo, status, address, company_type, telephone_company,i.email AS invoice_email, i.name AS invoice_name, iban, swift, invoicing_contact, url, username, password, validation_delay, m.name AS management_name, m.email AS management_email, telephone, skype, conversation_language FROM advertiser a JOIN invoice_contact i ON a.id_invoice_contact=i.id_invoice_contact JOIN stats_validation s ON a.id_stats_validation=s.id_stats_validation JOIN management_contact m ON a.id_management_contact=m.id_management_contact'
             . ' WHERE 1 '.$where.$order_by);
 return $req;
 
