@@ -176,6 +176,7 @@ class Advertiser
  
   public function createAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
+ 
  if($this->downloadLogo($advertiser['logo']))
    $result = $advertiserSql->insertAdvertiser($advertiser);
   if(!$result)
@@ -199,7 +200,7 @@ class Advertiser
         $this->advertisers[$i]['company_name'] = htmlentities($result['company_name'], ENT_QUOTES);
         $this->advertisers[$i]['websites'] = htmlentities($result['websites'], ENT_QUOTES);
         $this->advertisers[$i]['category_product'] = htmlentities($result['category_product'], ENT_QUOTES);
-       $this->advertisers[$i]['logo'] = htmlentities($result['logo'], ENT_QUOTES);
+       $this->advertisers[$i]['logo'] = $result['logo'];
         $this->advertisers[$i]['status'] = htmlentities($result['status'], ENT_QUOTES);
         $this->advertisers[$i]['address'] = htmlentities($result['address'], ENT_QUOTES);
         $this->advertisers[$i]['company_type'] = htmlentities($result['company_type'], ENT_QUOTES);
@@ -244,12 +245,12 @@ class Advertiser
  public function downloadLogo($logo){
      
  $folder = 'C:/xampp/htdocs/campaigns/img/logo/';//TODO remove local part when upload to server !!
- $file = basename($id_advertiser);
+ $file = utf8_decode(basename($logo['name']));
  $max_height = 1048576;
  $height = filesize($logo['tmp_name']);
  $extends = array('.png', '.gif', '.jpg', '.jpeg', '.JPG', '.JPEG', '.GIF', '.PNG');
  $extend= strrchr($logo['name'], '.'); 
-// Début des vérifications de sécurité...
+// Début des vérifications de sécurité$id_advertiser...
 if(!in_array($extend, $extends)) // Si l'extension n'est pas dans le tableau
  {
     $error = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg ...';
@@ -261,12 +262,12 @@ if($height>$max_height)
 if(!isset($error)) //S'il n'y a pas d'erreur, on upload
  {
     // On formate le nom du fichier ici...
-    $file = strtr($file, 
+    $upload_file = strtr($file, 
   'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
-        'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-    $file = preg_replace('/([^.a-z0-9]+)/i', '-', $file);
- 
-if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $file)) // Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+  'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+   //$file = preg_replace('/([^.a-z0-9]+)/i', '-', $upload_file);
+
+if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $upload_file)) // Si la fonction renvoie TRUE, c'est que ça a fonctionné...
     {
 
  foreach($_POST as $indPost => $valPost){
