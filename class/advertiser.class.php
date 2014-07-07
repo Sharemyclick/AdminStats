@@ -195,7 +195,7 @@ class Advertiser
     $i = 0;
     
     while($result = $query->fetch())
-    {$str = htmlentities($str, ENT_QUOTES);
+    {
         $this->advertisers[$i]['company_name'] = htmlentities($result['company_name'], ENT_QUOTES);
         $this->advertisers[$i]['websites'] = htmlentities($result['websites'], ENT_QUOTES);
         $this->advertisers[$i]['category_product'] = htmlentities($result['category_product'], ENT_QUOTES);
