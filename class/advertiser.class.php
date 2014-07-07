@@ -244,7 +244,7 @@ class Advertiser
  public function downloadLogo($logo){
      
  $folder = 'C:/xampp/htdocs/campaigns/img/logo/';//TODO remove local part when upload to server !!
- $file = basename($logo['name']);
+ $file = basename($id_advertiser);
  $max_height = 1048576;
  $height = filesize($logo['tmp_name']);
  $extends = array('.png', '.gif', '.jpg', '.jpeg', '.JPG', '.JPEG', '.GIF', '.PNG');
