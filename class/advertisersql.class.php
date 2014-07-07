@@ -97,7 +97,7 @@ $req->execute(array(
     'id_stats_validation'  => $id_stats_validation,
     'id_invoice_contact' => $id_invoice_contact,
     'id_management_contact' => $id_management_contact,
-                'logo' => $advertiser['logo'],
+                'logo' => $advertiser['logo']['name'],
 		'status' => $advertiser['status'],
                 'address' => $advertiser['address'],
                 'company_type' => $advertiser['company_type'],

@@ -176,6 +176,7 @@ class Advertiser
  
   public function createAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
+ if($this->downloadLogo($advertiser['logo']))
    $result = $advertiserSql->insertAdvertiser($advertiser);
   if(!$result)
   {return($advertiserSql->error);}
@@ -240,15 +241,14 @@ class Advertiser
 	//upload logo in server
 	move_uploaded_file($logo['file'], '/img/'.$logo['name'])); //etc.......
   }*/
- public function downloadLogo(){
-     if(empty($logo))
- {
- $folder = 'C:\xampp\htdocs\Arthur\campaigns\img\logo';//TODO remove local part when upload to server !!
- $file = /*$idcoreg.'-'.*/basename($_FILES['logo']['name']);
+ public function downloadLogo($logo){
+     
+ $folder = 'C:/xampp/htdocs/campaigns/img/logo/';//TODO remove local part when upload to server !!
+ $file = basename($logo['name']);
  $max_height = 1048576;
- $height = filesize($_FILES['logo']['tmp_name']);
+ $height = filesize($logo['tmp_name']);
  $extends = array('.png', '.gif', '.jpg', '.jpeg', '.JPG', '.JPEG', '.GIF', '.PNG');
- $extend= strrchr($_FILES['logo']['name'], '.'); 
+ $extend= strrchr($logo['name'], '.'); 
 // Début des vérifications de sécurité...
 if(!in_array($extend, $extends)) // Si l'extension n'est pas dans le tableau
  {
@@ -261,7 +261,7 @@ if($height>$max_height)
 if(!isset($error)) //S'il n'y a pas d'erreur, on upload
  {
     // On formate le nom du fichier ici...
-    $fichier = strtr($file, 
+    $file = strtr($file, 
   'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
         'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
     $file = preg_replace('/([^.a-z0-9]+)/i', '-', $file);
@@ -277,6 +277,7 @@ if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $file)) // Si la fo
  }
   
 }
- }
+return true;
+
  }
 }

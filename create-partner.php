@@ -15,7 +15,13 @@ $objCategory = new Category();
 $result = $objCategory->getCategoriesList();
 
 if(isset($_POST['submit_advertiser'])){
-    $message = $objAdvertiser->createAdvertiser($_POST);
+    $arPost = array();
+    foreach($_POST as $ind => $val){
+        $arPost[$ind] = $val;
+    }
+    $arPost['logo'] = $_FILES['logo'];
+    
+    $message = $objAdvertiser->createAdvertiser($arPost);
 }
 //$objAdvertiser->createAdvertiser($_REQUEST);
 
@@ -139,7 +145,8 @@ if(isset($_POST['submit_advertiser'])){
                         
                         <p>
                            <label>Logo</label>
-                           <span class="field"><input type="text" name="logo" id="logo" /></span>
+                           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                           <span class="field"><input type="file" name="logo" id="logo" /></span>
 			</p>
                         
                         <p>
