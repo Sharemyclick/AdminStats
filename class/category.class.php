@@ -35,11 +35,32 @@ class Category
 	  $categorySql = new CategorySql();
 	  $categories_sql= $categorySql->selectCategoriesList($mainCategory);
           $categories_list = array();
-                  
+              
 	  while ($row = $categories_sql->fetch()) 
 		{
-		$categories_list[$row['id_category']] = $row['name_category'];
-		} 
+                $categories_list[$row['id_category']]['id'] = $row['id_category'];
+		$categories_list[$row['id_category']]['name'] = $row['name_category'];
+                // type = 0 if mother category, idd of mother category otherwise
+                $categories_list[$row['id_category']]['type'] = $row['mother_category'];
+               // loop into mothers categories only
+                if($row['mother_category'] == 0){ 
+                    // get list categories in order to retrieve its children
+                    $categories_sql2= $categorySql->selectCategoriesList($mainCategory);
+                    while ($row2 = $categories_sql2->fetch()) 
+                    {
+                        // if mother category corresponds to category we are looping => we found a child
+                        if($row2['mother_category'] == $row['id_category']){
+                            // we fill the result array
+                            $categories_list[$row2['id_category']]['id'] = $row2['id_category'];
+                            $categories_list[$row2['id_category']]['name'] = $row2['name_category'];
+                            // type = 1 means its a child
+                            $categories_list[$row2['id_category']]['type'] = 1;                       
+                        }
+                        //echo $row['id_category']." ".$row2['id_category']." <br />";
+                    }
+                     
+                }
+		} //echo '<pre>', var_dump($categories_list), '</pre>'; 
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
                 $this->setCategoriesList($categories_list);
