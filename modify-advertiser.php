@@ -10,10 +10,16 @@ if(!isset($_SESSION['login'])) {
   exit;  
 }
 $filters['field'] = 'id_advertiser';
-$filters['value'] = $_GET['id'];
-$viewAdvertiser = new Advertiser();
+$filters['value'] = ($_GET['id'])?$_GET['id']:$_POST['id_advertiser'];
+/*
+ if($_GET['id']) 
+    $filters['value'] = $_GET['id'];
+ else
+  $filters['value'] = $_POST['id'];
+ */
+$viewAdvertiser = new Advertiser(); //objet = instance de classe
 $viewAdvertiser->getAdvertisers($filters);
-
+$_SESSION['advertiser'] = $viewAdvertiser->advertisers;
 ?>
 
 <!DOCTYPE html>

@@ -73,7 +73,7 @@ $viewAdvertiser->getAdvertisers();
             </ul>
         </div><!--breadcrumbwidget-->
       <div class="pagetitle">
-        	<h1>Modify Advertiser</h1> <span><strong><?php echo ucfirst($_SESSION['login']); ?></strong> , please select an advertiser to modify.</span>
+        	<h1>Modify Advertiser</h1> <span><strong><?php echo ucfirst($_SESSION['login']); ?></strong> , please select a advertiser to modify.</span>
         </div><!--pagetitle-->
         
         <div class="maincontent">
