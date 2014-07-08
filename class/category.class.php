@@ -68,23 +68,31 @@ class Category
                 $this->setCategoriesList($categories_list);
 	  return true;
 	  }
-	public function getCategory($mainCategory = false){
+	public function getCategory($id_advertiser){
              $categorySql = new CategorySql();
-	  $categories_sql= $categorySql->selectCategory($mainCategory);
-          $categories_list = array();
-            if(!$categories_list)
-          {return false;}
-      else{
-        
-        while($result = $categories_list->fetch())
+	  $categories_sql= $categorySql->SelectCategoryByAdvertiser($id_advertiser);
+          
+
+        while($result = $categories_sql->fetch())
         {
-              $this->categoryselect[]['id_category'] = $result['id_category'];
-              $this->categoryselect[]['name_category'] = $result['name_category'];
-              $this->categoryselect[]['mother_category'] = $result['mother_category'];
-        }
+           // echo '<pre>', var_dump($result), '</pre>'; 
+           // if($id_advertiser==$result['id_advertiser']){
+              $this->categoryselect['id_category'] = $result['id_category'];
+              $this->categoryselect['name_category'] = $result['name_category'];
+              if($result['mother_category']!=0)
+                  {
+                  $categories_sql_child = $categorySql->selectCategoryNameFromId($result['mother_category']);
+                  $res_categories_sql_child =  $categories_sql_child->fetch(); 
+                  $this->categoryselect['mother_category'] = $res_categories_sql_child ['name_category'];
+                 }
+              
+              //}
             
-          return true;  
+          
         }
+        if(!isset($this->categoryselect['mother_category']))$this->categoryselect['mother_category']='';
+       
+        return true;  
         }
 	/*
   SETTERS

@@ -14,7 +14,16 @@ public function SelectCategoriesList($mainCategory = false){
 	return $req;
 }
 
-public function SelectCategory () {
-    $req = $this->bdd->query('SELECT * FROM  category a JOIN advertiser a ON a.category_product=c.id_category');
+public function SelectCategoryByAdvertiser ($id_advertiser) {
+    $req = $this->bdd->query('SELECT c.* FROM  category c INNER JOIN advertiser a '
+            . 'ON a.category_product=c.id_category AND a.id_advertiser = '.$id_advertiser);
 return $req;}
+
+public function selectCategoryNameFromId($id_category){
+$req = $this->bdd->query('SELECT name_category FROM  category WHERE id_category = '.$id_category);
+return $req;
+
+}
+
+
 }
