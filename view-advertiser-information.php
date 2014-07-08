@@ -2,6 +2,7 @@
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/advertiser.class.php');
+include('class/category.class.php');
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
 session_start();  
@@ -13,6 +14,7 @@ $filters['field'] = 'id_advertiser';
 $filters['value'] = $_GET['id'];
 $viewAdvertiser = new Advertiser();
 $viewAdvertiser->getAdvertisers($filters);
+$viewCategory = new Category();
 
 ?>
 
@@ -264,7 +266,7 @@ $viewAdvertiser->getAdvertisers($filters);
                         </p>
                             
                         <p class="stdformbutton">
-                            <button type="submit" name="submit_advertiser" id="submit_advertiser" class="btn btn-primary"> Update informations</button>
+                            <button type="submit" name="update_advertiser" id="update_advertiser" class="btn btn-primary"> Update informations</button>
                             
                         </p>
                         

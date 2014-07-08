@@ -14,5 +14,7 @@ public function SelectCategoriesList($mainCategory = false){
 	return $req;
 	
 }
-
+public function SelectCategory () {
+    $req = $this->bdd->query('SELECT * FROM category, 
+}
 }
