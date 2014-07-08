@@ -37,7 +37,7 @@
                 	<ul>
                     	<li><a href="view-partners.php">View all Advertisers</a></li>
 						<li><a href="create-partner.php">Create Advertisers</a></li>
-						<li><a href="update-partner.php">Modify Advertisers</a></li>
+						<li><a href="modify-advertiser-globalview.php">Modify Advertisers</a></li>
                     </ul>
                 </li>
 				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> CAMPAIGNS</a>
