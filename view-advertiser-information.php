@@ -98,12 +98,12 @@ $viewAdvertiser->getAdvertisers($filters);
 
                         <p>
                             <label>Address *</label>
-                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['address']; ?>" /></span>
+                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['address']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>Telephone Company</label>
-                        <span class="field"><input type="text" name="telephone_company" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['telephone_company']; ?>" /></span>
+                        <span class="field"><input type="text" name="telephone_company" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['telephone_company']; ?>" readonly="readonly"/></span>
                         </p>
 
                         <p>
@@ -111,7 +111,7 @@ $viewAdvertiser->getAdvertisers($filters);
                             
                             <span class="field">
                                 
-                                    <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['country']; ?>" />
+                                    <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['country']; ?>" readonly="readonly"/>
                             </span>
                             
                         </p>
@@ -119,7 +119,7 @@ $viewAdvertiser->getAdvertisers($filters);
                                                             
                         <p>
                             <label> Website *</label>
-                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['websites']; ?>" /></span>
+                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['websites']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
@@ -130,7 +130,7 @@ $viewAdvertiser->getAdvertisers($filters);
                         
                         <p>
                             <label> Company type</label>
-                                <span class="field"><input type="url" name="company_type" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['company_type']; ?>" /></span>
+                                <span class="field"><input type="url" name="company_type" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['company_type']; ?>" readonly="readonly"/></span>
                             </span>  
                         </p>
                         
@@ -152,49 +152,49 @@ $viewAdvertiser->getAdvertisers($filters);
                         
                         <p>
                             <label>URL of the platform *</label>
-                            <span class="field"><input type="url" name="url" id="url" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['url']; ?>"/></span>
+                            <span class="field"><input type="url" name="url" id="url" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['url']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>Username *</label>
-                            <span class="field"><input type="text" name="username" id="username" class="input-xxlarge"  value="<?php echo $viewAdvertiser->advertisers[0]['username']; ?>"/></span>
+                            <span class="field"><input type="text" name="username" id="username" class="input-xxlarge"  value="<?php echo $viewAdvertiser->advertisers[0]['username']; ?>" readonly="readonly"/></span>
                         </p>
 							
                         <p>
                             <label>Password *</label>
-                            <span class="field"><input type="text" name="password" id="password" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['password']; ?>"/></span>
+                            <span class="field"><input type="text" name="password" id="password" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['password']; ?>" readonly="readonly"/></span>
                         </p>
                         
                          <p>
                             <label>Validation delay</label>
-                            <span class="field"><input type="text" name="validation_delay" id="validation_delay" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['validation_delay']; ?>"/></span>
+                            <span class="field"><input type="text" name="validation_delay" id="validation_delay" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['validation_delay']; ?>" readonly="readonly"/></span>
                         </p>
 						
                         <h4 class="widgettitle nomargin shadowed">Invoice contact </h4>
 						
                         <p>
                             <label>Name</label>
-                            <span class="field"><input type="text" name="name_invoice_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['invoice_name']; ?>"/></span>
+                            <span class="field"><input type="text" name="name_invoice_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['invoice_name']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>Email</label>
-                            <span class="field"><input type="email" name="email_invoice_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['invoice_email']; ?>" /></span>
+                            <span class="field"><input type="email" name="email_invoice_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['invoice_email']; ?>" readonly="readonly" /></span>
                         </p>
                         
                         <p>
                             <label>VAT *</label>
-                            <span class="field"><input type="text" name="vat" class="input-xxlarge" /></span>
+                            <span class="field"><input type="text" name="vat" class="input-xxlarge" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>IBAN *</label>
-                            <span class="field"><input type="text" name="iban" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['iban']; ?>" /></span>
+                            <span class="field"><input type="text" name="iban" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['iban']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>SWIFT *</label>
-                            <span class="field"><input type="text" name="swift" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['swift']; ?>"  /></span>
+                            <span class="field"><input type="text" name="swift" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['swift']; ?>" readonly="readonly" /></span>
                         </p>
                         
                         <p>
@@ -218,22 +218,22 @@ $viewAdvertiser->getAdvertisers($filters);
                         
                         <p>
                             <label>Name *</label>
-                            <span class="field"><input type="text" name="name_management_contact" class="input-xxlarge"value="<?php echo $viewAdvertiser->advertisers[0]['management_name']; ?>" /></span>
+                            <span class="field"><input type="text" name="name_management_contact" class="input-xxlarge"value="<?php echo $viewAdvertiser->advertisers[0]['management_name']; ?>" readonly="readonly" /></span>
                         </p>
                         
                         <p>
                             <label>Email *</label>
-                            <span class="field"><input type="email" name="email_management_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['management_email']; ?>"/></span>
+                            <span class="field"><input type="email" name="email_management_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['management_email']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>Telephone Management contact *</label>
-                            <span class="field"><input type="tel" name="telephone_management_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['telephone']; ?>" /></span>
+                            <span class="field"><input type="tel" name="telephone_management_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['telephone']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>Skype</label>
-                            <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['skype']; ?>"/></span>
+                            <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['skype']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
