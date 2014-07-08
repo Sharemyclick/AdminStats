@@ -141,7 +141,7 @@ $viewCategory->getCategory($id_adv);
                             <label>Category Product</label>
                             
                             <span class="field">
-                               <input type="text" name="company_product" class="input-xxlarge" value="<?php echo $viewCategory->categoryselect['id_category'];echo $viewCategory->categoryselect['name_category']."-".$viewCategory->categoryselect['mother_category'] ?>" readonly="readonly"/>
+                               <input type="text" name="company_product" class="input-xxlarge" value="<?php echo $viewCategory->categoryselect['name_category']."-".$viewCategory->categoryselect['mother_category'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
