@@ -70,27 +70,23 @@ class Category
 	  }
 	public function getCategory($id_advertiser){
              $categorySql = new CategorySql();
-	  $categories_sql= $categorySql->selectCategory();
-          $categories_sql_child = $categorySql->selectCategory();
+	  $categories_sql= $categorySql->SelectCategoryByAdvertiser($id_advertiser);
+          
 
         while($result = $categories_sql->fetch())
-        {if($id_advertiser==$result['id_advertiser']){
+        {
+           // echo '<pre>', var_dump($result), '</pre>'; 
+           // if($id_advertiser==$result['id_advertiser']){
               $this->categoryselect['id_category'] = $result['id_category'];
               $this->categoryselect['name_category'] = $result['name_category'];
               if($result['mother_category']!=0)
                   {
-              
-                  while($resultf = $categories_sql_child->fetch())
-                     {
-                      if($result['mother_category']==$resultf['id_category'])
-                         {  $this->categoryselect['mother_category'] = $resultf['mother_category'];
-                         }
-                  
-                      }
-        
+                  $categories_sql_child = $categorySql->selectCategoryNameFromId($result['mother_category']);
+                  $res_categories_sql_child =  $categories_sql_child->fetch(); 
+                  $this->categoryselect['mother_category'] = $res_categories_sql_child ['name_category'];
                  }
               
-              }
+              //}
             
           
         }
