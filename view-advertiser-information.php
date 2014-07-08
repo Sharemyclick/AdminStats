@@ -92,7 +92,7 @@ $viewCategory = new Category();
             	<h4 class="widgettitle nomargin shadowed">Advertiser informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form name="form_advertiser" class="stdform stdform2" method="post" action="" enctype="multipart/form-data">
+                    <form name="form_advertiser" class="stdform stdform2" method="post" action="modify-advertiser.php?:id<?php echo $_GET['id'];?>" enctype="multipart/form-data">
                         <p>
                             <label>Company name *</label>
                             <span class="field"><input type="text" value="<?php echo $viewAdvertiser->advertisers[0]['company_name']; ?>" name="company_name" class="input-xxlarge" readonly="readonly" /></span>
