@@ -100,7 +100,7 @@ if(isset($_POST['submit_advertiser'])){
                 
                 <?php
                      if(isset($_POST['submit_advertiser'])){
-                         ?>   <h4 class='widgettitle nomargin shadowed' style="text-align: center" ">The Advertiser has been created </h4> </br> <?php ;}
+                         ?>   <h4 class='confirmation' style="text-align: center" ">The Advertiser has been created </h4> </br> <?php ;}
                 ?>
 			<div class="widgetcontent">
 			
