@@ -97,6 +97,7 @@ $viewAdvertiser->getAdvertisers();
 							<th class="centeralign">Management contact</th>
 							<th class="centeralign">Telephone</th>
 							<th class="centeralign"> Email</th>
+                                                        <th class="centeralign"> Skype</th>
 							
 						</tr>
                     </thead>
@@ -105,11 +106,13 @@ $viewAdvertiser->getAdvertisers();
                                                 <?php foreach($viewAdvertiser->advertisers as $list => $advertiser){?>         					
 						
                                                         <tr>
-                                                        <td class="centeralign"><?php echo $advertiser['company_name'] ?></td>
-                                                        <td class="centeralign"><img src="<?php echo $advertiser['logo'] ?>" height="42" width="42"> <?php echo $advertiser['logo'] ?></td>
+                                                            <td class="centeralign"><a href="view-advertiser-information.php?id=<?php echo $advertiser['id_advertiser']; ?>" ><?php echo $advertiser['company_name'] ?></a></td>
+                                                        <td class="centeralign"><img src="<?php echo 'http://localhost/campaigns/img/logo/'.$advertiser['logo'] ?>" height="92" width="52">
+                                                        </td>
                                                         <td class="centeralign"><?php echo $advertiser['management_name'] ?></td>
 							<td class="centeralign"><?php echo $advertiser['telephone'] ?></td> 
-							<td class="centeralign"><?php echo $advertiser['management_email'] ?> </td>
+                                                        <td class="centeralign"><a href="mailto:<?php echo $advertiser['management_email'] ?>" ><?php echo $advertiser['management_email'] ?> </a></td>
+                                                        <td class="centeralign"><?php echo $advertiser['skype'] ?> </td>
 							</tr>
 						<?php }
 					?>

@@ -176,6 +176,7 @@ class Advertiser
  
   public function createAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
+ 
  if($this->downloadLogo($advertiser['logo']))
    $result = $advertiserSql->insertAdvertiser($advertiser);
   if(!$result)
@@ -189,42 +190,41 @@ class Advertiser
   public function getAdvertisers($filters = false, $order = false)
   {$advertiserSql = new AdvertiserSql();
   $query = $advertiserSql->getAdvertisers($filters, $order);
-      if(!$query){return false;}
-  else{
-   
-    $i = 0;
-    
-    while($result = $query->fetch())
-    {
-        $this->advertisers[$i]['company_name'] = htmlentities($result['company_name'], ENT_QUOTES);
-        $this->advertisers[$i]['websites'] = htmlentities($result['websites'], ENT_QUOTES);
-        $this->advertisers[$i]['category_product'] = htmlentities($result['category_product'], ENT_QUOTES);
-       $this->advertisers[$i]['logo'] = htmlentities($result['logo'], ENT_QUOTES);
-        $this->advertisers[$i]['status'] = htmlentities($result['status'], ENT_QUOTES);
-        $this->advertisers[$i]['address'] = htmlentities($result['address'], ENT_QUOTES);
-        $this->advertisers[$i]['company_type'] = htmlentities($result['company_type'], ENT_QUOTES);
-        $this->advertisers[$i]['telephone_company'] = htmlentities($result['telephone_company'], ENT_QUOTES);
-        $this->advertisers[$i]['invoice_email'] = htmlentities($result['invoice_email'], ENT_QUOTES);
-        $this->advertisers[$i]['invoice_name'] = htmlentities($result['invoice_name'], ENT_QUOTES);
-        $this->advertisers[$i]['iban'] = htmlentities($result['iban'], ENT_QUOTES);
-        $this->advertisers[$i]['swift'] = htmlentities($result['swift'], ENT_QUOTES);
-        $this->advertisers[$i]['invoicing_contact'] = htmlentities($result['invoicing_contact'], ENT_QUOTES);
-        $this->advertisers[$i]['url'] = htmlentities($result['url'], ENT_QUOTES);
-        $this->advertisers[$i]['username'] = htmlentities($result['username'], ENT_QUOTES);
-        $this->advertisers[$i]['password'] = htmlentities($result['password'], ENT_QUOTES);
-        $this->advertisers[$i]['validation_delay'] = htmlentities($result['validation_delay'], ENT_QUOTES);
-        $this->advertisers[$i]['management_name'] = htmlentities($result['management_name'], ENT_QUOTES);
-        $this->advertisers[$i]['management_email'] = htmlentities($result['management_email'], ENT_QUOTES);
-        $this->advertisers[$i]['telephone'] = htmlentities($result['telephone'], ENT_QUOTES);
-        $this->advertisers[$i]['skype'] = htmlentities($result['skype'], ENT_QUOTES);
-        $this->advertisers[$i]['conversation_language'] = htmlentities($result['conversation_language'], ENT_QUOTES);
-      
-        $i++;
-    }
+      if(!$query)
+          {return false;}
+      else{
+        $i = 0;
+        while($result = $query->fetch())
+        {
+             $this->advertisers[$i]['id_advertiser'] = $result['id_advertiser'];
+            $this->advertisers[$i]['company_name'] = $result['company_name'];
+            $this->advertisers[$i]['websites'] = $result['websites'];
+            $this->advertisers[$i]['category_product'] = $result['category_product'];
+            $this->advertisers[$i]['logo'] = $result['logo'];
+            $this->advertisers[$i]['status'] = $result['status'];
+            $this->advertisers[$i]['address'] = $result['address'];
+            $this->advertisers[$i]['company_type'] = $result['company_type'];
+            $this->advertisers[$i]['telephone_company'] =$result['telephone_company'];
+            $this->advertisers[$i]['invoice_email'] =$result['invoice_email'];
+            $this->advertisers[$i]['invoice_name'] = $result['invoice_name'];
+            $this->advertisers[$i]['iban'] = $result['iban'];
+            $this->advertisers[$i]['swift'] = $result['swift'];
+            $this->advertisers[$i]['invoicing_contact'] = $result['invoicing_contact'];
+            $this->advertisers[$i]['url'] =$result['url'];
+            $this->advertisers[$i]['username'] = $result['username'];
+            $this->advertisers[$i]['password'] = $result['password'];
+            $this->advertisers[$i]['validation_delay'] =$result['validation_delay'];
+            $this->advertisers[$i]['management_name'] = $result['management_name'];
+            $this->advertisers[$i]['management_email'] = $result['management_email'];
+            $this->advertisers[$i]['telephone'] = $result['telephone'];
+            $this->advertisers[$i]['skype'] = $result['skype'];
+            $this->advertisers[$i]['conversation_language'] = $result['conversation_language'];
+
+            $i++;
+        }
     return true;
-  
+        }
 }
-  }
   /*
   METHODS
   */
@@ -244,12 +244,12 @@ class Advertiser
  public function downloadLogo($logo){
      
  $folder = 'C:/xampp/htdocs/campaigns/img/logo/';//TODO remove local part when upload to server !!
- $file = basename($logo['name']);
+ $file = utf8_decode(basename($logo['name']));
  $max_height = 1048576;
  $height = filesize($logo['tmp_name']);
  $extends = array('.png', '.gif', '.jpg', '.jpeg', '.JPG', '.JPEG', '.GIF', '.PNG');
  $extend= strrchr($logo['name'], '.'); 
-// Début des vérifications de sécurité...
+// Début des vérifications de sécurité$id_advertiser...
 if(!in_array($extend, $extends)) // Si l'extension n'est pas dans le tableau
  {
     $error = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg ...';
@@ -261,12 +261,12 @@ if($height>$max_height)
 if(!isset($error)) //S'il n'y a pas d'erreur, on upload
  {
     // On formate le nom du fichier ici...
-    $file = strtr($file, 
+    $upload_file = strtr($file, 
   'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
-        'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-    $file = preg_replace('/([^.a-z0-9]+)/i', '-', $file);
- 
-if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $file)) // Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+  'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+   //$file = preg_replace('/([^.a-z0-9]+)/i', '-', $upload_file);
+
+if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $upload_file)) // Si la fonction renvoie TRUE, c'est que ça a fonctionné...
     {
 
  foreach($_POST as $indPost => $valPost){
