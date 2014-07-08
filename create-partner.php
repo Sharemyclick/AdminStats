@@ -56,11 +56,7 @@ if(isset($_POST['submit_advertiser'])){
 
 
 	
-	<?php include ('./menu/menu-left.php');
-        if(isset($_POST['submit_advertiser'])){
-        echo  "Result : ".$message;
-     }
-        ?>
+	<?php include ('./menu/menu-left.php');?>
     
     <!-- START OF RIGHT PANEL -->
     <div class="rightpanel">
@@ -101,6 +97,11 @@ if(isset($_POST['submit_advertiser'])){
         <div class="maincontent">
 		
             <div class="contentinner">
+                
+                <?php
+                     if(isset($_POST['submit_advertiser'])){
+                         ?>   <h4 class='widgettitle nomargin shadowed' style="text-align: center" ">The Advertiser has been created </h4> </br> <?php ;}
+                ?>
 			<div class="widgetcontent">
 			
             	<h4 class="widgettitle nomargin shadowed">Company informations</h4>
@@ -169,7 +170,7 @@ if(isset($_POST['submit_advertiser'])){
                                         foreach($objCategory->categories_list as $indCat => $valCat){?>
                                     
                                         
-                                    <option value="<?php echo $valCat['id']; ?>" <?php if($valCat['type']==0){?> class="option"   style="color:black;font-style: bold;" <?php } else {?> style="padding-left: 10px;" <?php }?> > <?php echo $valCat['name']; ?></option>
+                                    <option value="<?php echo $valCat['id']; ?>" <?php if($valCat['type']==0){?> class="option"   style="color:black;" <?php } else {?> style="text-align:center; color:grey;" <?php }?> > <?php if($valCat['type']==0){} else { ?>&nbsp &nbsp &nbsp  <?php        } echo $valCat['name']; ?></option>
                                             </option>
                                 <?php } ?>
                                 </select>
