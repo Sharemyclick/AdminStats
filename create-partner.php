@@ -167,9 +167,10 @@ if(isset($_POST['submit_advertiser'])){
                                 <select name="category_product" id="category_product" class="status">
                                         <?php 
                                         foreach($objCategory->categories_list as $indCat => $valCat){?>
-                                    <option value="<?php echo $valCat['id']; ?>">
-                                        <?php if($valCat['type']==0){?><option class="option"style="color:black;font-style: bold;"> <?php echo $valCat['name']; ?></span>
-                                            <?php }else { echo $valCat['name'];}?></option>
+                                    
+                                        
+                                    <option value="<?php echo $valCat['id']; ?>" <?php if($valCat['type']==0){?> class="option"   style="color:black;font-style: bold;" <?php } else {?> style="padding-left: 10px;" <?php }?> > <?php echo $valCat['name']; ?></option>
+                                            </option>
                                 <?php } ?>
                                 </select>
                             </span>  
@@ -303,8 +304,8 @@ if(isset($_POST['submit_advertiser'])){
                         </p>
                             
                         <p class="stdformbutton">
-                            <button type="submit" name="submit_advertiser" id="submit_advertiser" class="btn btn-primary">Submit Button</button>
-                            <button type="reset" class="btn">Reset Button</button>
+                            <button type="submit" name="submit_advertiser" id="submit_advertiser" class="btn btn-primary">Submit </button>
+                            <button type="reset" class="btn">Reset </button>
                         </p>
                         
                         </form>
