@@ -5,11 +5,11 @@ include "categorysql.class.php";
 class Category
 {
   private $id_category;
-  private $category_name;
+  private $name_category;
   private $mother_category;
  
   public $categories_list = array();
-            
+            public $categoryselect = array();
    /*
    GETTERS
    */
@@ -19,9 +19,9 @@ class Category
     return $this->id_category;
 }	
 	   // get category_name
-  public function getCategoryName()
+  public function getNameCategory()
   {
-    return $this->category_name;
+    return $this->name_category;
   }	
 	   // get category_mother
   public function getCategoryMother()
@@ -68,7 +68,24 @@ class Category
                 $this->setCategoriesList($categories_list);
 	  return true;
 	  }
-	
+	public function getCategory($mainCategory = false){
+             $categorySql = new CategorySql();
+	  $categories_sql= $categorySql->selectCategory($mainCategory);
+          $categories_list = array();
+            if(!$categories_list)
+          {return false;}
+      else{
+        
+        while($result = $categories_list->fetch())
+        {
+              $this->categoryselect[]['id_category'] = $result['id_category'];
+              $this->categoryselect[]['name_category'] = $result['name_category'];
+              $this->categoryselect[]['mother_category'] = $result['mother_category'];
+        }
+            
+          return true;  
+        }
+        }
 	/*
   SETTERS
   */
@@ -79,9 +96,9 @@ class Category
    $this->id_category = $id_category;
   } 
    // set category_name
-  public function setCategoryName($category_name)
+  public function setCategoryName($name_category)
   {
-   $this->category_name = $category_name;
+   $this->category_name = $name_category;
   } 
   
    // set category_mother
