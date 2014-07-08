@@ -107,7 +107,7 @@ $viewAdvertiser->getAdvertisers();
 						
                                                         <tr>
                                                             <td class="centeralign"><a href="view-advertiser-information.php?id=<?php echo $advertiser['id_advertiser']; ?>" ><?php echo $advertiser['company_name'] ?></a></td>
-                                                        <td class="centeralign"><img src="<?php echo 'http://localhost/campaigns/img/logo/'.$advertiser['logo'] ?>" height="92" width="52">
+                                                        <td class="centeralign"><img src="<?php echo 'http://localhost/Arthur/campaigns/img/logo/'.$advertiser['logo'] ?>" height="92" width="52">
                                                         </td>
                                                         <td class="centeralign"><?php echo $advertiser['management_name'] ?></td>
 							<td class="centeralign"><?php echo $advertiser['telephone'] ?></td> 
