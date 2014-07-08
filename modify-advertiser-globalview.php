@@ -73,7 +73,7 @@ $viewAdvertiser->getAdvertisers();
             </ul>
         </div><!--breadcrumbwidget-->
       <div class="pagetitle">
-        	<h1>View Partners</h1> <span><strong><?php echo ucfirst($_SESSION['login']); ?></strong> , please see all the details for your existing Partners.</span>
+        	<h1>Modify Advertiser</h1> <span><strong><?php echo ucfirst($_SESSION['login']); ?></strong> , please select an advertiser to modify.</span>
         </div><!--pagetitle-->
         
         <div class="maincontent">
@@ -111,7 +111,7 @@ $viewAdvertiser->getAdvertisers();
                                                         </td>
                                                         <td class="centeralign"><?php echo $advertiser['management_name'] ?></td>
 							<td class="centeralign"><?php echo $advertiser['telephone'] ?></td> 
-                                                        <td class="centeralign"><a href="mailto:<?php echo $advertiser['management_email'] ?>" ><?php echo $advertiser['management_email'] ?> </a></td>
+                                                        <td class="centeralign"><?php echo $advertiser['management_email'] ?> </a></td>
                                                         <td class="centeralign"><?php echo $advertiser['skype'] ?> </td>
 							</tr>
 						<?php }
