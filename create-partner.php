@@ -168,7 +168,7 @@ if(isset($_POST['submit_advertiser'])){
                                         <?php 
                                         foreach($objCategory->categories_list as $indCat => $valCat){?>
                                     <option value="<?php echo $valCat['id']; ?>">
-                                        <?php if($valCat['type']==0){?><option class="option"style="color:red;font-style: bold;"> <?php echo $valCat['name']; ?></span>
+                                        <?php if($valCat['type']==0){?><option class="option"style="color:black;font-style: bold;"> <?php echo $valCat['name']; ?></span>
                                             <?php }else { echo $valCat['name'];}?></option>
                                 <?php } ?>
                                 </select>
