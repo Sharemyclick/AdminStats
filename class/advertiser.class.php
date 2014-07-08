@@ -272,7 +272,7 @@ if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $upload_file)) // S
  foreach($_POST as $indPost => $valPost){
   $checkpos = strpos($indPost, "result_");
   if($checkpos !== false)
-   $result .= $valPost;
+   $result = $valPost;
  }
  }
   
