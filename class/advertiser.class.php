@@ -209,8 +209,8 @@ class Advertiser
             $this->advertisers[$i]['invoice_name'] = $result['invoice_name'];
             $this->advertisers[$i]['iban'] = $result['iban'];
             $this->advertisers[$i]['swift'] = $result['swift'];
-            $this->advertisers[$i]['vat'] = $result['vat'];
             $this->advertisers[$i]['invoicing_contact'] = $result['invoicing_contact'];
+            $this->advertisers[$i]['vat'] = $result['vat'];
             $this->advertisers[$i]['url'] =$result['url'];
             $this->advertisers[$i]['username'] = $result['username'];
             $this->advertisers[$i]['password'] = $result['password'];

@@ -202,16 +202,7 @@ $viewCategory->getCategory($id_adv);
                         <p>
                             <label>Invoicing period *</label>    
                             
-                            <span class="field">
-                                <select name="invoicing_contact" id="invoicing_contact" class="status" >
-                                        <option value="15"> 15</option>
-                                        <option value="30"> 30</option>
-                                        <option value="45"> 45</option>
-                                        <option value="60"> 60</option>
-                                        <option value="75"> 75</option>
-                                        <option value="90"> 90</option>
-                                </select>
-                            </span>  
+                            <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['invoicing_contact']; ?>" readonly="readonly"/></span>
                             
                         </p>
                         
@@ -256,13 +247,7 @@ $viewCategory->getCategory($id_adv);
                         
                         <p>
                             <label>Status *</label>
-                            <span class="field">
-                                <select name="status" id="status" class="status" >
-                                        <option value="active"> Active</option>
-                                        <option value="non active"> Non active</option>
-                                        <option value="prospect adviser"> Prospect adviser</option>
-                                </select>
-                            </span>                            
+                           <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['status']; ?>" readonly="readonly"/></span>                        
                         </p>
                             
                         <p class="stdformbutton">

@@ -65,14 +65,14 @@ public function insertAdvertiser($advertiser)
    
 }
 
-$req = $this->bdd->prepare('INSERT INTO invoice_contact(  email, name, iban, vat, swift, invoicing_contact ) VALUES ( :email, :name, :iban, :vat, :swift, :invoicing_contact)');
+$req = $this->bdd->prepare('INSERT INTO invoice_contact(  email, name, iban, swift, invoicing_contact,vat ) VALUES ( :email, :name, :iban, :swift, :invoicing_contact, :vat)');
         $req->execute(array(
 		'email' => $advertiser['email_invoice_contact'],
         'name' => $advertiser['name_invoice_contact'],
             'iban' => $advertiser['iban'],
-             'vat' => $advertiser['vat'],
             'swift' => $advertiser['swift'],
-            'invoicing_contact' => $advertiser['invoicing_contact']
+            'invoicing_contact' => $advertiser['invoicing_contact'],
+                'vat' => $advertiser['vat']
         )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
           $id_invoice_contact = $this->bdd->lastInsertId();
  if($req->errorCode() == 0) {
@@ -128,7 +128,7 @@ public function getAdvertisers($filters = false, $order = false)
     if($filters){
         $where = " AND ".$filters['field']." = ".$filters['value'];
     }
-    $req = $this->bdd->query('SELECT id_advertiser, company_name, websites, category_product,logo, status, address, company_type, telephone_company,i.email AS invoice_email, i.name AS invoice_name, iban, swift, invoicing_contact, url, username, password, validation_delay, m.name AS management_name, m.email AS management_email, telephone, skype, conversation_language FROM advertiser a JOIN invoice_contact i ON a.id_invoice_contact=i.id_invoice_contact JOIN stats_validation s ON a.id_stats_validation=s.id_stats_validation JOIN management_contact m ON a.id_management_contact=m.id_management_contact'
+    $req = $this->bdd->query('SELECT id_advertiser, company_name, websites, category_product,logo, status, address, company_type, telephone_company,i.email AS invoice_email, i.name AS invoice_name, iban, swift, invoicing_contact, vat, url, username, password, validation_delay, m.name AS management_name, m.email AS management_email, telephone, skype, conversation_language FROM advertiser a JOIN invoice_contact i ON a.id_invoice_contact=i.id_invoice_contact JOIN stats_validation s ON a.id_stats_validation=s.id_stats_validation JOIN management_contact m ON a.id_management_contact=m.id_management_contact'
             . ' WHERE 1 '.$where.$order_by);
 return $req;
 
