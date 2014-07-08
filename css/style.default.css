@@ -1293,6 +1293,13 @@ blockquote.pull-right { background-position: right 5px; padding: 0 40px 0 0; bor
 	
 }
 .alert-success .close, .alert-success h4 { color: #468847; }
+
+.confirmation { background-color: green;
+                opacity: 0.6;
+                color: black;
+                text-align: center;
+                                
+               }
 .alert-info {
 	border-color: #88c4e2; color: #3a87ad;
 	background: rgb(217,237,247);
