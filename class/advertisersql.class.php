@@ -65,11 +65,12 @@ public function insertAdvertiser($advertiser)
    
 }
 
-$req = $this->bdd->prepare('INSERT INTO invoice_contact(  email, name, iban, swift, invoicing_contact ) VALUES ( :email, :name, :iban, :swift, :invoicing_contact)');
+$req = $this->bdd->prepare('INSERT INTO invoice_contact(  email, name, iban, vat, swift, invoicing_contact ) VALUES ( :email, :name, :iban, :vat, :swift, :invoicing_contact)');
         $req->execute(array(
 		'email' => $advertiser['email_invoice_contact'],
         'name' => $advertiser['name_invoice_contact'],
             'iban' => $advertiser['iban'],
+             'vat' => $advertiser['vat'],
             'swift' => $advertiser['swift'],
             'invoicing_contact' => $advertiser['invoicing_contact']
         )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
