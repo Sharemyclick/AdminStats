@@ -12,10 +12,11 @@ if(!isset($_SESSION['login'])) {
 }
 $filters['field'] = 'id_advertiser';
 $filters['value'] = $_GET['id'];
+$id_adv = $_GET['id'];
 $viewAdvertiser = new Advertiser();
 $viewAdvertiser->getAdvertisers($filters);
 $viewCategory = new Category();
-
+$viewCategory->getCategory($id_adv);
 ?>
 
 <!DOCTYPE html>
@@ -140,11 +141,7 @@ $viewCategory = new Category();
                             <label>Category Product</label>
                             
                             <span class="field">
-                                <select name="category_product" id="category_product" class="status">
-                                        <?php foreach($objCategory->categories_list as $indCat => $valCat){?>
-                                <option value="<?php echo $indCat; ?>"><?php echo $valCat; ?></option>
-                                <?php } ?>
-                                </select>
+                               <input type="text" name="company_product" class="input-xxlarge" value="<?php echo $viewCategory->categoryselect['id_category'];echo $viewCategory->categoryselect['name_category']."-".$viewCategory->categoryselect['mother_category'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
