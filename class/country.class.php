@@ -42,19 +42,21 @@ class Country
             while($result = $countries_sql->fetch())
         {
           $this->countryselect['id_country'] = $result['id_country'];
-              $this->countryselect['name_country'] = $result['name_country'];
+          $this->countryselect['name_country'] = $result['name_country'];
         }
         return true;
             }
 
              public function getCountryList(){
+                 $i = 0;
              $countrySql = new CountrySql();
 	  $countries_sql= $countrySql->SelectCountryList();
           
             while($result = $countries_sql->fetch())
         {
-          $this->countryselect['id_country'] = $result['id_country'];
-          $this->countryselect['name_country'] = $result['name_country'];
+          $this->countryselect[$i]['id_country'] = $result['id_country'];
+          $this->countryselect[$i]['name_country'] = $result['name_country'];
+          $i++;
         }
         return true;
             }

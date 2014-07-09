@@ -208,12 +208,12 @@ $_SESSION['advertiser'] = $viewAdvertiser->advertisers;
                             
                             <span class="field">
                                 <select name="invoicing_contact" id="invoicing_contact" class="status" >
-                                        <option value="15"> 15</option>
-                                        <option value="30"> 30</option>
-                                        <option value="45"> 45</option>
-                                        <option value="60"> 60</option>
-                                        <option value="75"> 75</option>
-                                        <option value="90"> 90</option>
+                                        <option value="15" <?php if($viewAdvertiser->advertisers[0]['invoicing_contact'] == 15){?> selected <?php } ?>  > 15</option>
+                                        <option value="30" <?php if($viewAdvertiser->advertisers[0]['invoicing_contact'] == 30){?> selected <?php } ?>  > 30</option>
+                                        <option value="45" <?php if($viewAdvertiser->advertisers[0]['invoicing_contact'] == 45){?> selected <?php } ?> > 45</option>
+                                        <option value="60" <?php if($viewAdvertiser->advertisers[0]['invoicing_contact'] == 60){?> selected <?php } ?> > 60</option>
+                                        <option value="75" <?php if($viewAdvertiser->advertisers[0]['invoicing_contact'] == 75){?> selected <?php } ?> > 75</option>
+                                        <option value="90" <?php if($viewAdvertiser->advertisers[0]['invoicing_contact'] == 90){?> selected <?php } ?> > 90</option>
                                 </select>
                             </span>  
                             
@@ -248,12 +248,13 @@ $_SESSION['advertiser'] = $viewAdvertiser->advertisers;
                             
                             <span class="field">
                                     <select name="conversation_language" id="conversation_language" class="status">
-                                        <?php 
-                                    $req_jc = $bdd->query("SELECT language FROM language ORDER BY language ASC");
-                                    while ($val_jc = $req_jc->fetch()){?>
-                                    <option value="<?php echo $val_jc['language']; ?>"><?php echo $val_jc['language']; ?></option>
-                                    <?php }?>
-                                </select>
+                                        <option value="English" <?php if($viewAdvertiser->advertisers[0]['conversation_language'] == 'English'){?> selected <?php } ?>  > English</option>
+                                        <option value="French" <?php if($viewAdvertiser->advertisers[0]['conversation_language'] == 'French'){?> selected <?php } ?>  > French</option>
+                                        <option value="German" <?php if($viewAdvertiser->advertisers[0]['conversation_language'] == 'German'){?> selected <?php } ?> > German</option>
+                                        <option value="Spanish" <?php if($viewAdvertiser->advertisers[0]['conversation_language'] == 'Spanish'){?> selected <?php } ?> > Spanish</option>
+                                        <option value="Italian" <?php if($viewAdvertiser->advertisers[0]['conversation_language'] == 'Italian'){?> selected <?php } ?> > Italian</option>
+                                        <option value="Portuguese" <?php if($viewAdvertiser->advertisers[0]['conversation_language'] == 'Portuguese'){?> selected <?php } ?> > Portuguese</option>
+                                    </select>
                             </span> 
                             
                         </p>
@@ -262,9 +263,10 @@ $_SESSION['advertiser'] = $viewAdvertiser->advertisers;
                             <label>Status *</label>
                             <span class="field">
                                 <select name="status" id="status" class="status" >
-                                        <option value="active"> Active</option>
-                                        <option value="non active"> Non active</option>
-                                        <option value="prospect adviser"> Prospect adviser</option>
+                                     <option value="Active" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Active'){?> selected <?php } ?>  > Active</option>
+                                     <option value="Non active" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Non active'){?> selected <?php } ?>  > Non active</option>
+                                      <option value="Prospect adviser" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Prospect adviser'){?> selected <?php } ?>  > Prospect adviser</option>
+                                      
                                 </select>
                             </span>                            
                         </p>

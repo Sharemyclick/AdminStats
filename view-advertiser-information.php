@@ -233,15 +233,7 @@ $viewCategory->getCategory($id_adv);
                             <label>Language</label>
                            
                             
-                            <span class="field">
-                                    <select name="conversation_language" id="conversation_language" class="status">
-                                        <?php 
-                                    $req_jc = $bdd->query("SELECT language FROM language ORDER BY language ASC");
-                                    while ($val_jc = $req_jc->fetch()){?>
-                                    <option value="<?php echo $val_jc['language']; ?>"><?php echo $val_jc['language']; ?></option>
-                                    <?php }?>
-                                </select>
-                            </span> 
+                           <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['conversation_language']; ?>" readonly="readonly"/></span>
                             
                         </p>
                         
