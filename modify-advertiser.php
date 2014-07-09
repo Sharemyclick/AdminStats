@@ -13,7 +13,8 @@ if(!isset($_SESSION['login'])) {
   exit;  
 }
 $filters['field'] = 'id_advertiser';
-$filters['value'] = ($_GET['id'])?$_GET['id']:$_POST['id_advertiser'];
+if(isset($_POST['id_advertiser']) || isset($_GET['id']))
+$filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id_advertiser'];
 /*
  if($_GET['id']) 
     $filters['value'] = $_GET['id'];
@@ -29,6 +30,12 @@ $result = $objCategory->getCategoriesList();
 
 $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
+
+ if(isset($_POST['submit_update'])){
+     $viewAdvertiser->updateAdvertiser($_POST);
+ }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -103,7 +110,7 @@ $resultCountry = $objCountry->getCountryList();
                 
                 <?php
                      if(isset($_POST['submit_update'])){
-                         ?>   <h4 class='confirmation' style="text-align: center" ">Informations have been created </h4> </br> <?php ;}
+                         ?>   <h4 class='confirmation' style="text-align: center" ">Informations have been updated. </h4> </br> <?php ;}
                 ?>
 			<div class="widgetcontent">
 			
@@ -113,7 +120,8 @@ $resultCountry = $objCountry->getCountryList();
                     <form name="form_advertiser" class="stdform stdform2" method="post" action="" enctype="multipart/form-data">
                         <p>
                             <label>Company name *</label>
-                            <span class="field"><input type="text" value="<?php echo $viewAdvertiser->advertisers[0]['company_name']; ?>" name="company_name" class="input-xxlarge" /></span>
+                             <input type="hidden" name="id_advertiser" value="<?php echo (isset($_GET['id']))?$_GET['id']:$_POST['id_advertiser'];?>" />
+                             <span class="field"><input type="text" value="<?php echo $viewAdvertiser->advertisers[0]['company_name']; ?>" name="company_name" class="input-xxlarge" /></span>
                         </p>
 
                         <p>
@@ -157,7 +165,7 @@ $resultCountry = $objCountry->getCountryList();
                            
                         <p>
                             <label> Company type</label>
-                                <span class="field"><input type="url" name="company_type" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['company_type']; ?>" /></span>
+                                <span class="field"><input name="company_type" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['company_type']; ?>" /></span>
                             </span>  
                         </p>
                         
@@ -255,7 +263,7 @@ $resultCountry = $objCountry->getCountryList();
                         
                         <p>
                             <label>Telephone Management contact *</label>
-                            <span class="field"><input type="tel" name="telephone_management_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['telephone']; ?>" /></span>
+                            <span class="field"><input type="tel" name="telephone" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['telephone']; ?>" /></span>
                         </p>
                         
                         <p>

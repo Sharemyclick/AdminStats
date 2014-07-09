@@ -138,9 +138,11 @@ return $req;
 
 
 
-public function updateAdvertisers()
+public function updateAdvertiser($advertiser)
 {
-   $req = $this->bdd->prepare('UPDATE advertiser SET company_name=:company_name, websites=:websites, category_product=:category_product, logo=:logo, country=:country , status=:status , adress=:adress , company_type=:company_type , telephone_company=:telephone_company , WHERE id_advertiser =' .$id_adveriser);
+    $req = $this->bdd->query('SELECT id_invoice_contact, id_management_contact,id_stats_validation WHERE id_advertiser =' .$id_advertiser);
+    
+   $req = $this->bdd->prepare('UPDATE advertiser SET company_name=:company_name, websites=:websites, category_product=:category_product, logo=:logo, country=:country , status=:status , address=:address , company_type=:company_type , telephone_company=:telephone_company  WHERE id_advertiser =' .$id_advertiser);
    $req->execute(array( 
        'company_name' => $advertiser['company_name'],
                 'websites'=> $advertiser['websites'],
@@ -155,7 +157,7 @@ public function updateAdvertisers()
 
 
 
-   $req = $this->bdd->prepare('UPDATE invoice_contact SET email=:email_invoice_contact, name=:name_invoice_contact, iban=:iban, swift=:iban, invoicing_contact=:invoicing_contact, vat=:vat WHERE id_invoice_contact =' .$id_invoice_contact);
+   $req = $this->bdd->prepare('UPDATE invoice_contact SET email=:email, name=:name, iban=:iban, swift=:swift, invoicing_contact=:invoicing_contact, vat=:vat WHERE id_invoice_contact =' .$id_invoice_contact);
    $req->execute(array(
              'email' => $advertiser['email_invoice_contact'],
              'name' => $advertiser['name_invoice_contact'],
@@ -181,11 +183,11 @@ public function updateAdvertisers()
 
 
 
-   $req = $this->bdd->prepare('UPDATE management_contact SET name=:name_management_contact, email=:email_management_contact, telephone=:telephone_management_contact,skype=:skype, conversation_language=:conversation_language WHERE $id_management_contact =' .$id_management_contact);
+   $req = $this->bdd->prepare('UPDATE management_contact SET name=:name, email=:email, telephone=:telephone,skype=:skype, conversation_language=:conversation_language WHERE $id_management_contact =' .$id_management_contact);
     $req->execute(array(    
              'name' => $advertiser['name_management_contact'],
              'email' => $advertiser['email_management_contact'],
-            'telephone' => $advertiser['telephone_management_contact'],
+            'telephone' => $advertiser['telephone'],
             'skype' => $advertiser['skype'],
             'conversation_language' => $advertiser['conversation_language'] 
 
