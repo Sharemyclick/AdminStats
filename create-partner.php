@@ -3,6 +3,7 @@
 include('conf.php');
 include('class/advertiser.class.php');
 include('class/category.class.php');
+include('class/country.class.php');
 
 session_start();  
 if(!isset($_SESSION['login'])) {  
@@ -13,6 +14,8 @@ if(!isset($_SESSION['login'])) {
 $objAdvertiser= new Advertiser();
 $objCategory = new Category();
 $result = $objCategory->getCategoriesList();
+$objCountry = new Country();
+$resultCountry = $objCountry->getCountryList();
 
 if(isset($_POST['submit_advertiser'])){
     $arPost = array();
@@ -125,14 +128,15 @@ if(isset($_POST['submit_advertiser'])){
 
                         <p>
                             <label>Country *</label>
-                            
+                            <?php //echo '<pre>', var_dump($objCountry->countryselect), '</pre>'; ?>
                             <span class="field">
-                                <select name="country" id="country" class="status" required="required">
+                                <select name="country" id="country" class="status">
                                         <?php 
-                                $req_jc = $bdd->query("SELECT name_country FROM country ORDER BY name_country ASC");
-                                while ($val_jc = $req_jc->fetch()){?>
-                                <option value="<?php echo $val_jc['name_country']; ?>"><?php echo $val_jc['name_country']; ?></option>
-                            <?php }?>
+                                        foreach($objCountry->countryselect as $indCountry => $valCountry){?>
+                                        
+                                    <option value="<?php echo $valCountry['id_country']; ?>"  ><?php echo $valCountry['name_country']; ?> </option>
+                                            </option>
+                                <?php } ?>
                                 </select>
                             </span>
                             
