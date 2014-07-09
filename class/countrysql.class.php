@@ -14,6 +14,11 @@ public function SelectCountry($id_country){
 	$req = $this->bdd->query('SELECT id_country, name_country FROM country WHERE id_country =' .$id_country);
 	return $req;
 }
+public function SelectCountryList(){
+
+	$req = $this->bdd->query('SELECT id_country, name_country FROM country WHERE 1');
+	return $req;
+}
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

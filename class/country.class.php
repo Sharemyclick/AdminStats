@@ -47,4 +47,16 @@ class Country
         return true;
             }
 
+             public function getCountryList(){
+             $countrySql = new CountrySql();
+	  $countries_sql= $countrySql->SelectCountryList();
+          
+            while($result = $countries_sql->fetch())
+        {
+          $this->countryselect['id_country'] = $result['id_country'];
+          $this->countryselect['name_country'] = $result['name_country'];
+        }
+        return true;
+            }
+
         }
