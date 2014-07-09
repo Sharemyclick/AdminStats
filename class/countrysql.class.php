@@ -11,7 +11,7 @@ public function CountrySql(){
 
 public function SelectCountry($id_country){
 
-	$req = $this->bdd->query('SELECT id_country, name_country FROM country WHERE id_country ==' .$id_country);
+	$req = $this->bdd->query('SELECT id_country, name_country FROM country WHERE id_country =' .$id_country);
 	return $req;
 }
 /* 

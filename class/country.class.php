@@ -6,6 +6,7 @@ class Country
   private $id_country;
   private $name_country;
  
+   public $countryselect = array();
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -34,5 +35,16 @@ class Country
  
  //METHODS
   
- 
-}
+ public function getCountry($id_country){
+             $countrySql = new CountrySql();
+	  $countries_sql= $countrySql->SelectCountry($id_country);
+          
+            while($result = $countries_sql->fetch())
+        {
+          $this->countryselect['id_country'] = $result['id_country'];
+              $this->countryselect['name_country'] = $result['name_country'];
+        }
+        return true;
+            }
+
+        }
