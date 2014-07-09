@@ -11,6 +11,7 @@ class Advertiser
   private $id_invoice_contact;
   private $id_management_contact;
   private $logo;
+  private $country;
   private $status;
   private $address;
   private $company_type;
@@ -46,8 +47,11 @@ class Advertiser
     return $this->category_product;
   }
   
-  
-  // get idstatsvalidation
+  public function getCountry() {
+      return $this->country;
+  }
+
+    // get idstatsvalidation
   public function getIdStatsValidation()
   {
     return $this->id_stats_validation;
@@ -128,8 +132,11 @@ class Advertiser
    $this->category_product = $category_product;
   }
   
-  
-  // set idstatsvalidation
+  public function setCountry($country) {
+      $this->country = $country;
+  }
+
+    // set idstatsvalidation
   public function setIdStatsValidation($id_stats_validation)
   {
    $this->id_stats_validation = $id_stats_validation;
@@ -200,6 +207,7 @@ class Advertiser
             $this->advertisers[$i]['company_name'] = $result['company_name'];
             $this->advertisers[$i]['websites'] = $result['websites'];
             $this->advertisers[$i]['category_product'] = $result['category_product'];
+            $this->advertisers[$i]['country'] = $result['country'];
             $this->advertisers[$i]['logo'] = $result['logo'];
             $this->advertisers[$i]['status'] = $result['status'];
             $this->advertisers[$i]['address'] = $result['address'];
