@@ -235,6 +235,17 @@ class Advertiser
     return true;
         }
 }
+public function updateAdvertiser($advertiser)
+ { $advertiserSql = new AdvertiserSql();
+ 
+ if($this->downloadLogo($advertiser['logo']))
+   $result = $advertiserSql->updateAdvertiser($advertiser);
+  if(!$result)
+  {return($advertiserSql->error);}
+  else{
+         return 'advertiser has been created';
+  } 
+ }
   /*
   METHODS
   */
