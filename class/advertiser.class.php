@@ -238,7 +238,7 @@ class Advertiser
 public function updateAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
  
- if($this->downloadLogo($advertiser['logo']))
+ //if($this->downloadLogo($advertiser['logo']))
    $result = $advertiserSql->updateAdvertiser($advertiser);
   if(!$result)
   {return($advertiserSql->error);}

@@ -291,7 +291,7 @@ $resultCountry = $objCountry->getCountryList();
                         <p>
                             <label>Status *</label>
                             <span class="field">
-                                <select name="c" id="status" class="status" >
+                                <select name="status" id="status" class="status" >
                                      <option value="Active" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Active'){?> selected <?php } ?>  > Active</option>
                                      <option value="Non active" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Non active'){?> selected <?php } ?>  > Non active</option>
                                       <option value="Prospect adviser" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Prospect adviser'){?> selected <?php } ?>  > Prospect adviser</option>
