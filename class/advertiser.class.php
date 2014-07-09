@@ -207,8 +207,9 @@ class Advertiser
             $this->advertisers[$i]['company_name'] = $result['company_name'];
             $this->advertisers[$i]['websites'] = $result['websites'];
             $this->advertisers[$i]['category_product'] = $result['category_product'];
-            $this->advertisers[$i]['country'] = $result['country'];
+            
             $this->advertisers[$i]['logo'] = $result['logo'];
+            $this->advertisers[$i]['country'] = $result['country'];
             $this->advertisers[$i]['status'] = $result['status'];
             $this->advertisers[$i]['address'] = $result['address'];
             $this->advertisers[$i]['company_type'] = $result['company_type'];

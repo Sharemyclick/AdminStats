@@ -128,7 +128,6 @@ if(isset($_POST['submit_advertiser'])){
 
                         <p>
                             <label>Country *</label>
-                            <?php //echo '<pre>', var_dump($objCountry->countryselect), '</pre>'; ?>
                             <span class="field">
                                 <select name="country" id="country" class="status">
                                         <?php 

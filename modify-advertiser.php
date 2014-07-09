@@ -2,6 +2,9 @@
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/advertiser.class.php');
+include('class/category.class.php');
+include('class/country.class.php');
+
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
 session_start();  
@@ -20,6 +23,12 @@ $filters['value'] = ($_GET['id'])?$_GET['id']:$_POST['id_advertiser'];
 $viewAdvertiser = new Advertiser(); //objet = instance de classe
 $viewAdvertiser->getAdvertisers($filters);
 $_SESSION['advertiser'] = $viewAdvertiser->advertisers;
+
+$objCategory = new Category();
+$result = $objCategory->getCategoriesList();
+
+$objCountry = new Country();
+$resultCountry = $objCountry->getCountryList();
 ?>
 
 <!DOCTYPE html>
@@ -117,7 +126,14 @@ $_SESSION['advertiser'] = $viewAdvertiser->advertisers;
                             
                             <span class="field">
                                 
-                                    <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['country']; ?>" "/>
+                               <select name="country" id="country" class="status">
+                                        <?php 
+                                        foreach($objCountry->countryselect as $indCountry => $valCountry){?>
+                                        
+                                    <option value="<?php echo $valCountry['id_country']; ?>" <?php if($viewAdvertiser->advertisers[0]['country'] == $valCountry['name_country']){?> selected <?php } ?>  ><?php echo $valCountry['name_country']; ?> </option>
+                                            </option>
+                                <?php } ?>
+                                </select>
                             </span>
                             
                         </p>
@@ -146,7 +162,7 @@ $_SESSION['advertiser'] = $viewAdvertiser->advertisers;
                             <span class="field">
                                 <select name="category_product" id="category_product" class="status">
                                         <?php foreach($objCategory->categories_list as $indCat => $valCat){?>
-                                <option value="<?php echo $indCat; ?>"><?php echo $valCat; ?></option>
+                                <option value="<?php echo $indCat; ?>" <?php if($viewAdvertiser->advertisers[0]['category_product'] == $indCat){?> selected <?php } ?> ><?php echo $valCat['name']; ?></option>
                                 <?php } ?>
                                 </select>
                             </span>  
