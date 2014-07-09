@@ -100,6 +100,11 @@ $resultCountry = $objCountry->getCountryList();
         <div class="maincontent">
 		
             <div class="contentinner">
+                
+                <?php
+                     if(isset($_POST['submit_update'])){
+                         ?>   <h4 class='confirmation' style="text-align: center" ">Informations have been created </h4> </br> <?php ;}
+                ?>
 			<div class="widgetcontent">
 			
             	<h4 class="widgettitle nomargin shadowed">Advertiser informations</h4>
@@ -148,8 +153,8 @@ $resultCountry = $objCountry->getCountryList();
                            <label>Logo</label>
                            <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
                            <span class="field"><img src="<?php echo 'http://localhost/campaigns/img/logo/'.$viewAdvertiser->advertisers[0]['logo'] ?>" height="180" width="98"></span>
-			</p>
-                        
+                           <span class="field"><input type="file" name="logo" id="logo" /></span>
+                           
                         <p>
                             <label> Company type</label>
                                 <span class="field"><input type="url" name="company_type" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['company_type']; ?>" /></span>
@@ -278,7 +283,7 @@ $resultCountry = $objCountry->getCountryList();
                         <p>
                             <label>Status *</label>
                             <span class="field">
-                                <select name="status" id="status" class="status" >
+                                <select name="c" id="status" class="status" >
                                      <option value="Active" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Active'){?> selected <?php } ?>  > Active</option>
                                      <option value="Non active" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Non active'){?> selected <?php } ?>  > Non active</option>
                                       <option value="Prospect adviser" <?php if($viewAdvertiser->advertisers[0]['status'] == 'Prospect adviser'){?> selected <?php } ?>  > Prospect adviser</option>
@@ -288,7 +293,7 @@ $resultCountry = $objCountry->getCountryList();
                         </p>
                             
                         <p class="stdformbutton">
-                            <button type="submit" name="submit_advertiser" id="submit_advertiser" class="btn btn-primary"> Update informations</button>
+                            <button type="submit" name="submit_update" id="submit_advertiser" class="btn btn-primary"> Update informations</button>
                             
                         </p>
                         
