@@ -32,7 +32,12 @@ $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
 
  if(isset($_POST['submit_update'])){
-     $viewAdvertiser->updateAdvertiser($_POST);
+     $arPost = array();
+    foreach($_POST as $ind => $val){
+        $arPost[$ind] = $val;
+    }
+    $arPost['logo'] = $_FILES['logo'];
+     $viewAdvertiser->updateAdvertiser($arPost);
  }
 
 
