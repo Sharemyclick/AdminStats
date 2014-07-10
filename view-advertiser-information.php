@@ -93,7 +93,7 @@ $viewCategory->getCategory($id_adv);
             	<h4 class="widgettitle nomargin shadowed">Advertiser informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form name="form_advertiser" class="stdform stdform2" method="post" action="modify-advertiser.php" enctype="multipart/form-data">
+                    <form name="form_advertiser" class="stdform stdform2" method="post" action="update-advertiser.php" enctype="multipart/form-data">
                         
                         <input type="hidden" name="id_advertiser" value="<?php echo $filters['value'] ;?>">
                         

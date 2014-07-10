@@ -35,9 +35,9 @@
                 </li>
 				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> ADVERTISERS</a>
                 	<ul>
-                    	<li><a href="view-partners.php">View all Advertisers</a></li>
-						<li><a href="create-partner.php">Create Advertisers</a></li>
-						<li><a href="modify-advertiser-globalview.php">Modify Advertisers</a></li>
+                    	<li><a href="view-advertiser.php">View all Advertisers</a></li>
+						<li><a href="create-advertiser.php">Create Advertisers</a></li>
+						<li><a href="update-advertiser-globalview.php">Modify Advertisers</a></li>
                     </ul>
                 
 				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> AFFILIATES</a>

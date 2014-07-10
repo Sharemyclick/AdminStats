@@ -131,7 +131,7 @@ $resultCountry = $objCountry->getCountryList();
                 
                          <span class="field" >
                              <div class="widgetcontent">
-                             <a href="modify-advertiser-globalview.php" >   
+                             <a href="update-advertiser-globalview.php" >   
                                  <input type="button" value="Return to all advertiser"> 
                              </a>
                              </div>
