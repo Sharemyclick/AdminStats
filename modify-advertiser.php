@@ -129,10 +129,12 @@ $resultCountry = $objCountry->getCountryList();
                      if(isset($_POST['submit_update'])){
                          ?>   <h4 class='confirmation' style="text-align: center" ">Informations have been updated. </h4> </br> 
                 
-                         <span class="field">
+                         <span class="field" >
+                             <div class="widgetcontent">
                              <a href="modify-advertiser-globalview.php" >   
                                  <input type="button" value="Return to all advertiser"> 
                              </a>
+                             </div>
                          </span>
                 <?php ;}
                 else {?>

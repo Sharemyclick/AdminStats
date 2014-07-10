@@ -308,7 +308,7 @@ if(isset($_POST['submit_advertiser'])){
                         </p>
                             
                         <p class="stdformbutton">
-                            <button type="submit" name="submit_advertiser" id="submit_advertiser" class="btn btn-primary">Submit </button>
+                            <button type="submit" name="submit_advertiser" id="submit_advertiser" class="btn btn-primary">Create </button>
                             <button type="reset" class="btn">Reset </button>
                         </p>
                         
