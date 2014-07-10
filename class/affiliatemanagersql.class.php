@@ -41,7 +41,7 @@ public function insertAffiliateManager($affiliate_manager)
     
     $this->error = 'affiliate_company : '.$errors[2];
    
-   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_affiliate_company, id_country) VALUES ( :id_affiliate_company, :id_country)');
+   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_affiliate_manager, id_country) VALUES ( :id_affiliate_manager, :id_country)');
         $req->execute(array(
             'id_affiliate_manager' => $id_affiliate_manager,
              'id_country' => $affiliate_manager['id_country']
