@@ -39,14 +39,7 @@
 						<li><a href="create-partner.php">Create Advertisers</a></li>
 						<li><a href="modify-advertiser-globalview.php">Modify Advertisers</a></li>
                     </ul>
-                </li>
-				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> CAMPAIGNS</a>
-                	<ul>
-                    	<li><a href="view-campaigns3.php">View all Campaigns</a></li>
-						<li><a href="create-campaign.php">Create Campaign</a></li>
-						<li><a href="update-campaign.php">Modify Campaign</a></li>
-                    </ul>
-                </li>
+                
 				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> AFFILIATES</a>
                 	<ul>
                     	<li><a href="view-affiliates.php">View all Affiliates</a></li>
@@ -57,6 +50,15 @@
 				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> INVOICING</a>
                 	<ul>
                     	<li><a href="check-invoicing.php">Check invoicing</a></li>
+                    </ul>
+                </li>
+                
+                </li>
+				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> CAMPAIGNS</a>
+                	<ul>
+                    	<li><a href="view-campaigns3.php">View all Campaigns</a></li>
+						<li><a href="create-campaign.php">Create Campaign</a></li>
+						<li><a href="update-campaign.php">Modify Campaign</a></li>
                     </ul>
                 </li>
 				<li style="height:50px;border-bottom:none;"><a href="settings.php"><img src="img/gemicon/settings.png" alt="" style="width:32px;height:32px;display:inline-block;" />
