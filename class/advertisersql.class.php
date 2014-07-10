@@ -18,7 +18,7 @@ public function AdvertiserSql(){
 
 public function SelectAdvertisersList($advetiser = false){
 
-	$req = $this->bdd->query('SELECT * FROM advertiser');
+	$req = $this->bdd->query('SELECT * FROM advertiser ORDER BY "company_name"');
 	return $req;
 	
 }
@@ -86,7 +86,7 @@ $req = $this->bdd->prepare('INSERT INTO invoice_contact(  email, name, iban, swi
 
    
  $req = $this->bdd->prepare('INSERT INTO advertiser(  company_name, websites, category_product, country'
-        . ' id_stats_validation, id_invoice_contact, id_management_contact,  logo, status, address,company_type, telephone_company) '
+        . ' , id_stats_validation, id_invoice_contact, id_management_contact,  logo, status, address,company_type, telephone_company) '
         . 'VALUES ( :company_name, :websites, :category_product, :country, :id_stats_validation, :id_invoice_contact, :id_management_contact,'
         . ' :logo, :status, :address, :company_type, :telephone_company)');
  
@@ -95,10 +95,10 @@ $req->execute(array(
 		'company_name' => $advertiser['company_name'],
                 'websites'=> $advertiser['websites'],
 		'category_product' => $advertiser['category_product'],
-    'country' => $advertiser['country'],
-    'id_stats_validation'  => $id_stats_validation,
-    'id_invoice_contact' => $id_invoice_contact,
-    'id_management_contact' => $id_management_contact,
+                'country' => $advertiser['country'],
+                'id_stats_validation'  => $id_stats_validation,
+                'id_invoice_contact' => $id_invoice_contact,
+                'id_management_contact' => $id_management_contact,
                 'logo' => $advertiser['logo']['name'],
 		'status' => $advertiser['status'],
                 'address' => $advertiser['address'],
@@ -210,4 +210,61 @@ public function updateAdvertiser($advertiser)
     return false;
 }
 }
+
+
+public function insertAdvertiserHistorical($advertiser)
+{
+  
+ $req = $this->bdd->prepare('INSERT INTO historical_advertiser ( modification_date, id_advertiser, company_name, websites, category_product,' 
+        .'logo, status, company_address, company_type, telephone_company, '
+        . ' country, url_stats_validation, username, password, validation_delay, email_invoice_contact, name_invoice_contact, iban, swift, vat,'
+        . 'invoicing_contact, name_management_contact, email_management_contact, telephone_management_contact, skype) '
+        . 'VALUES'
+        . '( :modification_date, :id_advertiser, :company_name, :websites, :category_product, :logo, :status, :company_address,'
+        . ':company_type, :telephone_company, '
+        . ' :country, :url, :username, :password, :validation_delay, :email_invoice_contact, :name_invoice_contact, :iban, :swift, :vat,'
+        . ':invoicing_contact, :name_management_contact, :email_management_contact, :telephone_management_contact, :skype)');
+ 
+$req->execute(array(
+                'modification_date' => date('Y-m-d'),
+		'id_advertiser' => $advertiser[0]['id_advertiser'],
+                'company_name'=> $advertiser[0]['company_name'],
+                'websites'=> $advertiser[0]['websites'],
+		'category_product' => $advertiser[0]['category_product'],
+                'logo' => $advertiser[0]['logo'],
+		'status' => $advertiser[0]['status'],
+                'company_address' => $advertiser[0]['address'],
+                'company_type' => $advertiser[0]['company_type'],
+                'telephone_company' => $advertiser[0]['telephone_company'],
+                'country' => $advertiser[0]['country'],
+                'url' => $advertiser[0]['url'],
+                'username' => $advertiser[0]['username'],
+                'password' => $advertiser[0]['password'],
+                'validation_delay' => $advertiser[0]['validation_delay'],
+                'email_invoice_contact' => $advertiser[0]['invoice_email'],
+                'name_invoice_contact' => $advertiser[0]['invoice_name'],
+                'iban' => $advertiser[0]['iban'],
+                'swift' => $advertiser[0]['swift'],
+                'vat' => $advertiser[0]['vat'],
+                'invoicing_contact' => $advertiser[0]['invoicing_contact'],
+                'name_management_contact' => $advertiser[0]['management_name'],
+                'email_management_contact' => $advertiser[0]['management_email'],
+                'telephone_management_contact' => $advertiser[0]['telephone'],
+                'skype' => $advertiser[0]['skype']
+        
+		)) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'advertiser : '.$errors[2];
+    return false;
+}
+
+
+}
+
+
 }

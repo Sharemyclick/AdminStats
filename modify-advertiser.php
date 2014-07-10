@@ -32,11 +32,23 @@ $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
 
  if(isset($_POST['submit_update'])){
+     
+     $viewAdvertiser= new Advertiser();
+    $viewAdvertiser->createAdvertiserHistorical($_SESSION['advertiser']);
+     
      $arPost = array();
     foreach($_POST as $ind => $val){
         $arPost[$ind] = $val;
     }
-    $arPost['logo'] = $_FILES['logo'];
+    if(isset($_FILES['logo']) && !empty($_FILES['logo']['name']))
+    {
+        $arPost['logo'] = $_FILES['logo'];
+        $arPost['ready_to_upload'] = false;
+    }else
+    {
+        $arPost['logo']['name'] = $_POST['path'];
+        $arPost['ready_to_upload'] = true;
+    }
      $viewAdvertiser->updateAdvertiser($arPost);
  }
 
@@ -115,8 +127,16 @@ $resultCountry = $objCountry->getCountryList();
                 
                 <?php
                      if(isset($_POST['submit_update'])){
-                         ?>   <h4 class='confirmation' style="text-align: center" ">Informations have been updated. </h4> </br> <?php ;}
-                ?>
+                         ?>   <h4 class='confirmation' style="text-align: center" ">Informations have been updated. </h4> </br> 
+                
+                         <span class="field">
+                             <a href="modify-advertiser-globalview.php" >   
+                                 <input type="button" value="Return to all advertiser"> 
+                             </a>
+                         </span>
+                <?php ;}
+                else {?>
+                
 			<div class="widgetcontent">
 			
             	<h4 class="widgettitle nomargin shadowed">Advertiser informations</h4>
@@ -165,8 +185,9 @@ $resultCountry = $objCountry->getCountryList();
                         <p>
                            <label>Logo</label>
                            <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-                           <span class="field"><img src="<?php echo 'http://localhost/campaigns/img/logo/'.$viewAdvertiser->advertisers[0]['logo'] ?>" height="180" width="98"></span>
+                           <span class="field"><img src="<?php echo 'http://localhost/campaigns/img/logo/'.$viewAdvertiser->advertisers[0]['logo']; ?>" height="180" width="98"></span>
                            <span class="field"><input type="file" name="logo" id="logo" /></span>
+                           <input type="hidden" name="path" id="path" value="<?php echo $viewAdvertiser->advertisers[0]['logo']; ?>" />	
                            
                         <p>
                             <label> Company type</label>
@@ -307,7 +328,7 @@ $resultCountry = $objCountry->getCountryList();
                             
                         <p class="stdformbutton">
                             <button type="submit" name="submit_update" id="submit_advertiser" class="btn btn-primary"> Update informations</button>
-                            
+ <?php }?>
                         </p>
                         
                         </form>

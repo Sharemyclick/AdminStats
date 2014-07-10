@@ -184,8 +184,10 @@ class Advertiser
   public function createAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
  
- if($this->downloadLogo($advertiser['logo']))
-   $result = $advertiserSql->insertAdvertiser($advertiser);
+ if(is_array($advertiser['logo'])){ 
+    if($this->downloadLogo($advertiser['logo']))
+      $result = $advertiserSql->insertAdvertiser($advertiser);
+ }else $result = $advertiserSql->insertAdvertiser($advertiser);
   if(!$result)
   {return($advertiserSql->error);}
   else{
@@ -238,10 +240,15 @@ class Advertiser
 public function updateAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
  
- //if($this->downloadLogo($advertiser['logo']))
+ if(!$advertiser['ready_to_upload']){
+ if($this->downloadLogo($advertiser['logo']))
    $result = $advertiserSql->updateAdvertiser($advertiser);
+ }else $result = $advertiserSql->updateAdvertiser($advertiser);
   if(!$result)
-  {return($advertiserSql->error);}
+ {
+      return($advertiserSql->error);
+      
+  }
   else{
          return 'advertiser has been created';
   } 
@@ -301,4 +308,20 @@ if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $upload_file)) // S
 return true;
 
  }
+ //Get historical information
+  public function createAdvertiserHistorical($advertiser)
+ { $advertiserSql = new AdvertiserSql();
+ 
+
+ //if($this->downloadLogo($advertiser['logo']))
+   $result = $advertiserSql->insertAdvertiserHistorical($advertiser);
+
+  if(!$result)
+  {return($advertiserSql->error);}
+  else{
+         return 'advertiser has been created';
+  } 
+ }
+  
+ 
 }
