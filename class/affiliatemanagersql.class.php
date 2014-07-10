@@ -14,6 +14,10 @@ public function SelectAffiliateManagerList($mainAffiliateManager = false){
 	return $req;
 	
 }
+
+//==========================INSERT====================================
+
+
 public function insertAffiliateManager($affiliate_manager)
         
         
@@ -31,18 +35,40 @@ public function insertAffiliateManager($affiliate_manager)
             'status' => $affiliate_manager['status']
      )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          
+   $id_affiliate_manager = $this->bdd->lastInsertId();
+         
  if($req->errorCode() == 0) {
-     $req->closeCursor();
+   
     
 } else {
     $errors = $req->errorInfo();
-    $req->closeCursor();
-    $this->error = 'affiliate_manager : '.$errors[2];
+    
+    $this->error = 'affiliate_company : '.$errors[2];
    
+   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_affiliate_manager, id_country) VALUES ( :id_affiliate_manager, :id_country)');
+        $req->execute(array(
+            'id_affiliate_manager' => $id_affiliate_manager,
+             'id_country' => $affiliate_manager['id_country']
+                
+                
+                )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'category : '.$errors[2];
+    return false;
    
 }
 
 }
+}
+
+//========================UPDATE===================================
+
+
 public function updateAffiliateManager($affiliate_manager)
 {
    $req = $this->bdd->prepare('UPDATE affiliate_manager SET name=:name, surname=:surname, email=:email,skype=:skype, telephone=:telephone, id_affiliate_company=:id_affiliate_company, date_birth=:date_birth, status=:status WHERE id_affiliate_manager =' .$id_affiliate_manager);
