@@ -40,11 +40,19 @@
 						<li><a href="update-advertiser-globalview.php">Modify Advertisers</a></li>
                     </ul>
                 
-				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> AFFILIATES</a>
+				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> AFFILIATE COMPANY</a>
                 	<ul>
-                    	<li><a href="view-affiliates.php">View all Affiliates</a></li>
-						<li><a href="create-affiliates.php">Create Affiliates</a></li>
-						<li><a href="update-affiliates.php">Modify Affiliates</a></li>
+                    	<li><a href="view-affiliate-company.php">View all Affiliates companies</a></li>
+						<li><a href="create-affiliate-company.php">Create Affiliate company</a></li>
+						<li><a href="update-affiliate-company.php">Modify Affiliate company</a></li>
+                    </ul>
+                </li>
+                
+                	<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> AFFILIATE MANAGER</a>
+                	<ul>
+                    	<li><a href="view-affiliate-manager.php">View all Affiliate manager</a></li>
+						<li><a href="create-affiliate-manager.php">Create Affiliates manager</a></li>
+						<li><a href="update-affiliate-manager.php">Modify Affiliates manager</a></li>
                     </ul>
                 </li>
 				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> INVOICING</a>
