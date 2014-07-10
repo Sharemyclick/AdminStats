@@ -1,7 +1,7 @@
 <?php
 
 include "affiliatemanagersql.class.php";
-class Affiliate_Company
+class AffiliateManager
 {
   private $id_affiliate_manager;
   private $name;

@@ -2,7 +2,7 @@
 
 include "affiliatecompanysql.class.php";
 
-class Affiliate_Company
+class AffiliateCompany
 {
   private $id_affiliate_company;
   private $company_name;
@@ -60,12 +60,12 @@ class Affiliate_Company
 	}
 	
 	  // get categories list
-	public function getCategoriesList($mainCategory = false){
-	  $categorySql = new CategorySql();
-	  $categories_sql= $categorySql->selectCategoriesList($mainCategory);
+	public function getAffiliateCompaniesList(){
+	  $affiliate_companiesSql = new AffiliateCompanySql();
+	  $affiliate_companies_sql= $affiliate_companySql->selectAffiliateCompaniesList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  return $this->setCategoriesList($categories_list);
+	  return $this->setAffiliateCompaniessList();
 	  }
 	
 	/*
