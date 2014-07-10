@@ -14,11 +14,59 @@ public function SelectAffiliateManagerList($mainAffiliateManager = false){
 	return $req;
 	
 }
+public function insertAffiliateManager($affiliate_manager)
+        
+        
+        
+{$req = $this->bdd->prepare('INSERT INTO affiliate_manager(  name, surname, email, skype, telephone, id_affiliate_company, date_birth, status ) VALUES ( :name, :surname, :email, :skype, :telephone, :id_affiliate_company, :date_birth, :status)');
+        $req->execute(array(
+            'name' => $affiliate_manager['name'],
+             'surname' => $affiliate_manager['surname'],
+            'email' => $affiliate_manager['email'],
+             'skype' => $affiliate_manager['skype'],
+            'telephone' => $affiliate_manager['telephone'],
+         
+            'id_affiliate_company' => $affiliate_manager['id_affiliate_company'],   
+            'date_birth' => $affiliate_manager['date_birth']   ,
+            'status' => $affiliate_manager['status']
+     )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+    
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'affiliate_manager : '.$errors[2];
+   
+   
+}
 
 }
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+public function updateAdvertiser($advertiser)
+{
+   $req = $this->bdd->prepare('UPDATE affiliate_manager SET name=:name, surname=:surname, email=:email,skype=:skype, telephone=:telephone, id_affiliate_company=:id_affiliate_company, date_birth=:date_birth, status=:status WHERE id_affiliate_manager =' .$id_affiliate_manager);
+   $req->execute(array(    
+            'name' => $affiliate_manager['name'],
+            'surname' => $affiliate_manager['surname'],
+            'email' => $affiliate_manager['email'],
+            'skype' => $affiliate_manager['skype'],
+            'telephone' => $affiliate_manager['telephone'],
+         
+            'id_affiliate_company' => $affiliate_manager['id_affiliate_company'],   
+            'date_birth' => $affiliate_manager['date_birth']   ,
+            'status' => $affiliate_manager['status']
 
+)) or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'advertiser : '.$errors[2];
+    return false;
+}
+}
+
+}

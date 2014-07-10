@@ -106,5 +106,26 @@ public function setAffiliateManagersList($affiliatemanagers_list)
     /*
   METHODS
   */
-      
+    public function createAffiliateManager($affiliate_manager)
+ { $affiliate_managerSql = new AdffiliateManagerSql();
+ 
+ //if($this->downloadLogo($advertiser['logo']))
+   $result = $affiliate_managerSql->insertAffiliateManager($affiliate_manager);
+  if(!$result)
+  {return($affiliate_managerSql->error);}
+  else{
+         return 'An affiliate manager has been created';
+  } 
+ }
+   public function updateAffiliateManager($affiliate_manager)
+ { $affiliate_managerSql = new AdffiliateManagerSql();
+ 
+ //if($this->downloadLogo($advertiser['logo']))
+   $result = $affiliate_managerSql->updateAffiliateManager($affiliate_manager);
+  if(!$result)
+  {return($affiliate_managerSql->error);}
+  else{
+         return 'advertiser has been updated';
+  } 
+ }   
 }
