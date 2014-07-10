@@ -9,6 +9,13 @@ public function AffiliateCompanySql(){
 	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
 }
 
+public function SelectAffiliateCompanyCategoryList(){
+
+	$req = $this->bdd->query('SELECT * FROM affiliate_company_category');
+	return $req;
+	
+}
+
 public function SelectAffiliateCompanyList($mainCategory = false){
 
 	$req = $this->bdd->query('SELECT * FROM affiliate_company');
@@ -31,16 +38,32 @@ public function insertAffiliateCompany($affiliate_company)
            
             'status' => $affiliate_company['status']
      )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         $id_affiliate_company = $this->bdd->lastInsertId();
          
  if($req->errorCode() == 0) {
-     $req->closeCursor();
+   
     
 } else {
     $errors = $req->errorInfo();
+    
+    $this->error = 'affiliate_company : '.$errors[2];
+   
+   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_affiliate_company, id_country) VALUES ( :id_affiliate_company, :id_country)');
+        $req->execute(array(
+            'id_affiliate_company' => $id_affiliate_company,
+             'id_country' => $affiliate_company['id_country']
+                
+                
+                )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
     $req->closeCursor();
-    $this->error = 'affiliate_manager : '.$errors[2];
-   
-   
+    $this->error = 'category : '.$errors[2];
+    return false;
+}
 }
 
 }
