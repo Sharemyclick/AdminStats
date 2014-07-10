@@ -125,7 +125,7 @@ public function setAffiliateManagersList($affiliatemanagers_list)
   if(!$result)
   {return($affiliate_managerSql->error);}
   else{
-         return 'advertiser has been updated';
+         return 'affiliate manager has been updated';
   } 
  }   
 }

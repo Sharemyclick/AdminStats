@@ -1,4 +1,7 @@
 <?php
+
+include "affiliatecompanysql.class.php";
+
 class Affiliate_Company
 {
   private $id_affiliate_company;
