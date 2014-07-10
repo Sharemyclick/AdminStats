@@ -14,6 +14,10 @@ public function SelectAffiliateManagerList($mainAffiliateManager = false){
 	return $req;
 	
 }
+
+//==========================INSERT====================================
+
+
 public function insertAffiliateManager($affiliate_manager)
         
         
@@ -61,6 +65,10 @@ public function insertAffiliateManager($affiliate_manager)
 
 }
 }
+
+//========================UPDATE===================================
+
+
 public function updateAffiliateManager($affiliate_manager)
 {
    $req = $this->bdd->prepare('UPDATE affiliate_manager SET name=:name, surname=:surname, email=:email,skype=:skype, telephone=:telephone, id_affiliate_company=:id_affiliate_company, date_birth=:date_birth, status=:status WHERE id_affiliate_manager =' .$id_affiliate_manager);
