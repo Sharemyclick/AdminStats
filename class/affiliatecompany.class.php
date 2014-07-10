@@ -98,4 +98,28 @@ class Affiliate_Company
     /*
   METHODS
   */
-}
+ public function createAffiliateCompany($affiliate_company)
+ { $affiliate_companySql = new AdffiliateManagerSql();
+ 
+ //if($this->downloadLogo($advertiser['logo']))
+   $result = $affiliate_companySql->insertAffiliateCompany($affiliate_company);
+  if(!$result)
+  {return($affiliate_companySql->error);}
+  else{
+         return 'An affiliate company has been created';
+  } 
+ }
+   public function updateAffiliateCompany($affiliate_company)
+ { $affiliate_companySql = new AdffiliateCompanySql();
+ 
+ //if($this->downloadLogo($advertiser['logo']))
+   $result = $affiliate_companySql->updateAffiliateCompany($affiliate_company);
+  if(!$result)
+  {return($affiliate_managerSql->error);}
+  else{
+         return 'affiliate company has been updated';
+  } 
+ }   
+  
+  
+  }
