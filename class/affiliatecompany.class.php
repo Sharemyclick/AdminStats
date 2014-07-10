@@ -72,29 +72,44 @@ class Affiliate_Company
   SETTERS
   */
   
-   // set idcategory
-  public function setIdCategory($id_category)
+ public function setId_affiliate_company($id_affiliate_company) {
+     $this->id_affiliate_company = $id_affiliate_company;
+ }
+
+ public function setCompany_name($company_name) {
+     $this->company_name = $company_name;
+ }
+
+ public function setAddress($address) {
+     $this->address = $address;
+ }
+
+ public function setId_country($id_country) {
+     $this->id_country = $id_country;
+ }
+
+ public function setWebsites($websites) {
+     $this->websites = $websites;
+ }
+
+ public function setId_hq($id_hq) {
+     $this->id_hq = $id_hq;
+ }
+
+ public function setType_of_affiliate($type_of_affiliate) {
+     $this->type_of_affiliate = $type_of_affiliate;
+ }
+
+ public function setStatus($status) {
+     $this->status = $status;
+ }
+
+     // set categories list
+  public function setAffiliateCompanyList($affiliate_companies_list)
   {
-   $this->id_category = $id_category;
+   $this->affiliate_companies_list = $affiliate_companies_list;
   } 
-   // set category_name
-  public function setCategoryName($category_name)
-  {
-   $this->category_name = $category_name;
-  } 
-  
-   // set category_mother
-  public function setCategoryMother($category_mother)
-  {
-   $this->category_mother = $category_mother;
-  } 
-  
-    // set categories list
-  public function setCategoriesList($categories_list)
-  {
-   $this->categories_list = $categories_list;
-  } 
-  
+
     /*
   METHODS
   */

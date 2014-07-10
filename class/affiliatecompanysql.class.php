@@ -24,7 +24,7 @@ public function SelectAffiliateCompanyList($mainCategory = false){
 }
 public function insertAffiliateCompany($affiliate_company)
         
-        
+//=====================================INSERT=======================================        
         
 {$req = $this->bdd->prepare('INSERT INTO affiliate_company(  company_name, address, id_country, websites, id_hq, type_of_affiliate,  status ) VALUES ( :company_name, :address, :id_country, :websites, :id_hq, :type_of_affiliate, :status)');
         $req->execute(array(
@@ -67,6 +67,8 @@ public function insertAffiliateCompany($affiliate_company)
 }
 
 }
+
+//============================UPDATE==============================================
 public function updateAffiliateCompany($affiliate_company)
 {
    $req = $this->bdd->prepare('UPDATE affiliate_company SET company_name=:company_name, address=:address, id_country=:id_country, websites=:websites, id_hq=:id_hq, type_of_affiliate=:type_of_affiliate,  status=:status WHERE id_affiliate_company =' .$id_affiliate_company);
