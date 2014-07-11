@@ -11,7 +11,10 @@ class AffiliateCompany
   private $websites;
   private $id_hq;
   private $type_of_affiliate;
-  private $status;          
+  private $status;  
+  public $affiliate_companySql = array();
+  public $affiliate_companies_list;
+
    /*
    GETTERS
    */
@@ -41,10 +44,16 @@ class AffiliateCompany
   {
     return $this->websites;
   }	
-	   // get id_hq 
+  public function getAffiliate_companies_list() {
+      return $this->affiliate_companies_list;
+  }
+
+  	   // get id_hq 
   public function getIdHq()
   {
     return $this->id_hq;
+    
+    
 	}	
 	
 	   // get status
@@ -61,11 +70,11 @@ class AffiliateCompany
 	
 	  // get categories list
 	public function getAffiliateCompaniesList(){
-	  $affiliate_companiesSql = new AffiliateCompanySql();
+	  $affiliate_companySql = new AffiliateCompanySql();
 	  $affiliate_companies_sql= $affiliate_companySql->selectAffiliateCompaniesList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  return $this->setAffiliateCompaniessList();
+	  return $this->setAffiliateCompaniesList($affiliate_companies_list);
 	  }
 	
 	/*
@@ -103,9 +112,12 @@ class AffiliateCompany
  public function setStatus($status) {
      $this->status = $status;
  }
+ public function setAffiliate_companies_list($affiliate_companies_list) {
+     $this->affiliate_companies_list = $affiliate_companies_list;
+ }
 
-     // set categories list
-  public function setAffiliateCompanyList($affiliate_companies_list)
+      // set categories list
+  public function setAffiliateCompaniesList($affiliate_companies_list)
   {
    $this->affiliate_companies_list = $affiliate_companies_list;
   } 
