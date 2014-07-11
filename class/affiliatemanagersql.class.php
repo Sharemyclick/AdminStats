@@ -7,7 +7,12 @@ public function AffiliateManagerSql(){
 	// On se connecte à la base de données.
 	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
 }
+public function SelectAffiliateManagerCategoryList(){
 
+	$req = $this->bdd->query('SELECT * FROM affiliate_company_category');
+	return $req;
+	
+}
 public function SelectAffiliateManagerList($mainAffiliateManager = false){
 
 	$req = $this->bdd->query('SELECT * FROM affiliate_manager');
