@@ -16,6 +16,12 @@ $resultHeadquarter = $objHeadquarter->getAffiliateCompanyList();
 $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
 
+ if(isset($_POST['submit_affiliate_company'])){
+     
+       $message = $objHeadquarter->createAffiliateCompany($_POST);
+     
+ }
+
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +94,7 @@ $resultCountry = $objCountry->getCountryList();
             <div class="contentinner">
                 
                 <?php
-                     if(isset($_POST['submit_advertiser'])){
+                     if(isset($_POST['submit_affiliate_company'])){
                          ?>   <h4 class='confirmation' style="text-align: center" ">The Affiliate company has been created </h4> </br> <?php ;}
                 ?>
 			<div class="widgetcontent">
@@ -110,7 +116,7 @@ $resultCountry = $objCountry->getCountryList();
                         <p>
                             <label>Country *</label>
                             <span class="field">
-                                <select name="country" id="country" class="status">
+                                <select name="id_country" id="id_country" class="status">
                                         <?php 
                                         foreach($objCountry->countryselect as $indCountry => $valCountry){?>
                                         
@@ -131,7 +137,7 @@ $resultCountry = $objCountry->getCountryList();
                             <label>Headquarter</label>
                             
                             <span class="field">
-                                <select name="headquarter" id="headquarter" class="status">
+                                <select name="id_hq" id="id_hq" class="status">
                                         <?php 
                                         
                                       
@@ -146,19 +152,24 @@ $resultCountry = $objCountry->getCountryList();
                         
                         <p>
                             <label> Type of Affiliate *</label>
-                            <span class="field"><input type="url" name="type_affiliate" class="input-xxlarge" required="required" /></span>
-                        </p>
+                            <span class="field">
+                                <select name="type_affiliate" id="type_affiliate" class="status">
+                                        <option value="agency"> Agency</option>
+                                        <option value="mailleur"> Maileur</option>
+                                </select>                        
+                            </span>
+                            </p>
                         
                         <p>
                             <label> Status</label>
                             <span class="field">
-                                
-                                <?php 
-                                        foreach($objHeadquarter->categories_list as $indCompany => $nameCompany){?>
-                                                 <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name']; ?></option>
-                                                 </option>
-                                <?php } ?>
-                                
+                                <select name="status" id="status" class="status">
+                                        <option value="Opportunity"> Opportunity</option>
+                                        <option value="Delete"> Delete</option>
+                                        <option value="In contact"> In contact</option>
+                                        <option value="In business"> In business</option>
+
+                                </select>                        
                             </span>
                         </p>
                         
