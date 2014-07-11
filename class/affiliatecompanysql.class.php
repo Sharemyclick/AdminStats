@@ -18,13 +18,21 @@ public function SelectAffiliateCompanyCategoryList(){
 
 public function SelectAffiliateCompanyList($mainCategory = false){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_company a JOIN country c ON a.id_country = c.id_country JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company JOIN type_traffic t ON act.id_traffic=t.id_traffic   ');
+	$req = $this->bdd->query('SELECT * FROM affiliate_company a '
+                . 'JOIN country c ON a.id_country = c.id_country '
+                . 'JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
+                . 'JOIN type_traffic t ON act.id_traffic=t.id_traffic   ');
 	return $req;
 	
 }
 
         
-//=====================================INSERT=======================================        
+//=====================================INSERT======================================= 
+//================================================================================
+
+//==============Affiliate=company==================
+
+
         public function insertAffiliateCompany($affiliate_company)
 {$req = $this->bdd->prepare('INSERT INTO affiliate_company(  company_name, address, id_country, websites, id_hq, type_of_affiliate,  status ) VALUES ( :company_name, :address, :id_country, :websites, :id_hq, :type_of_affiliate, :status)');
         $req->execute(array(
@@ -46,8 +54,12 @@ public function SelectAffiliateCompanyList($mainCategory = false){
 } else {
     $errors = $req->errorInfo();
     
-    $this->error = 'affiliate_company : '.$errors[2];
-   
+$this->error = 'affiliate_company : '.$errors[2];}
+
+
+  //=============Affiliate=company=category============================================
+    
+
    $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_affiliate_company, id_country) VALUES ( :id_affiliate_company, :id_country)');
         $req->execute(array(
             'id_affiliate_company' => $id_affiliate_company,
@@ -64,7 +76,11 @@ public function SelectAffiliateCompanyList($mainCategory = false){
     $errors = $req->errorInfo();
     
 $this->error = 'affiliate_company : '.$errors[2];}
-   
+
+
+   //=================Type=TRAFFIC==========================================
+
+
    $req = $this->bdd->prepare('INSERT INTO affiliate_company_traffic(  id_affiliate_company, id_traffic) VALUES ( :id_affiliate_company, :id_traffic)');
         $req->execute(array(
             'id_affiliate_company' => $id_affiliate_company,
@@ -80,11 +96,14 @@ $this->error = 'affiliate_company : '.$errors[2];}
     $this->error = 'category : '.$errors[2];
     return false;
 }
-}
+
 
 }
 
 //============================UPDATE==============================================
+//==================================================================================
+
+
 public function updateAffiliateCompany($affiliate_company)
 {
    $req = $this->bdd->prepare('UPDATE affiliate_company SET company_name=:company_name, address=:address, id_country=:id_country, websites=:websites, id_hq=:id_hq, type_of_affiliate=:type_of_affiliate,  status=:status WHERE id_affiliate_company =' .$id_affiliate_company);
