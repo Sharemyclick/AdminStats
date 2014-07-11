@@ -19,6 +19,8 @@ public function SelectCategoryByAdvertiser ($id_advertiser) {
             . 'ON a.category_product=c.id_category AND a.id_advertiser = '.$id_advertiser);
 return $req;}
 
+
+
 public function selectCategoryNameFromId($id_category){
 $req = $this->bdd->query('SELECT name_category FROM  category WHERE id_category = '.$id_category);
 return $req;

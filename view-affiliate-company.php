@@ -107,8 +107,7 @@ $viewAffiliateCompany->getAffiliateCompanyList();
                     </thead>
                     
 					<tbody>
-                                                <?php var_dump($viewAffiliateCompany);
-                                                
+                                                <?php                                                 
                                                 foreach($viewAffiliateCompany->affiliate_companies_list as $list => $affiliate){?>         					
 						
                                                         <tr>
