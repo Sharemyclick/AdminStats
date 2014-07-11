@@ -9,7 +9,7 @@ public function AffiliateCompanySql(){
 	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
 }
 
-public function SelectAffiliateCompaniesList(){
+public function SelectAffiliateCompanyCategoryList(){
 
 	$req = $this->bdd->query('SELECT * FROM affiliate_company_category');
 	return $req;

@@ -13,10 +13,11 @@ class AffiliateCompany
   private $type_of_affiliate;
   private $status;  
   public $affiliate_companySql = array();
-  public $affiliate_companies_list;
+  public $affiliate_company_category_list;
+  
 
    /*
-   GETTERS
+   =============================GETTERS==================================
    */
    // get id_affiliate_company
   public function getIdAffiliateCompany()
@@ -67,18 +68,25 @@ class AffiliateCompany
   {
     return $this->status;
 	}
-	
+	//==================================GET=LIST==========================
 	  // get categories list
-	public function getAffiliateCompaniesList(){
-	  $affiliate_companySql = new AffiliateCompanySql();
-	  $affiliate_companies_sql= $affiliate_companySql->selectAffiliateCompaniesList();
+	public function getAffiliateCompanyList(){
+	  $affiliate_company_categorySql = new AffiliateCompanySql();
+	  $affiliate_companies_list= $affiliate_company_categorySql->selectAffiliateCompanyList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
 	  return $this->setAffiliateCompaniesList($affiliate_companies_list);
 	  }
 	
+          public function getAffiliateCompanyCategoryList(){
+	  $affiliate_companySql = new AffiliateCompanySql();
+	  $affiliate_companies_list= $affiliate_companySql->selectAffiliateCompanyList();
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  return $this->setAffiliateCompaniesList($affiliate_companies_list);
+	  }
 	/*
-  SETTERS
+  =============================SETTERS======================================
   */
   
  public function setId_affiliate_company($id_affiliate_company) {
@@ -112,9 +120,11 @@ class AffiliateCompany
  public function setStatus($status) {
      $this->status = $status;
  }
- public function setAffiliate_companies_list($affiliate_companies_list) {
-     $this->affiliate_companies_list = $affiliate_companies_list;
- }
+ 
+ //=================================SET=LIST============================
+ public function setAffiliate_company_category_list($affiliate_company_category_list) {
+     $this->affiliate_company_cattegory_list = $affiliate_company_category_list;
+ }  
 
       // set categories list
   public function setAffiliateCompaniesList($affiliate_companies_list)
@@ -123,7 +133,7 @@ class AffiliateCompany
   } 
 
     /*
-  METHODS
+ ========================= METHODS==================================
   */
  public function createAffiliateCompany($affiliate_company)
  { $affiliate_companySql = new AdffiliateManagerSql();
