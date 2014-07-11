@@ -133,10 +133,12 @@ $resultCountry = $objCountry->getCountryList();
                             <span class="field">
                                 <select name="headquarter" id="headquarter" class="status">
                                         <?php 
-                                        foreach($objHeadquarter->affiliate_companiesSql as $indCompany => $nameCompany){?>
+                                        
+                                      
+                                        foreach($objHeadquarter->affiliate_companies_list as $indCompany => $nameCompany){?>
                                                  <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name']; ?></option>
                                                  </option>
-                                <?php } ?>
+                                <?php }   ?>
                                 </select>
                             </span>  
                             

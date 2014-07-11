@@ -11,6 +11,7 @@ class AffiliateCompany
   private $websites;
   private $id_hq;
   private $type_of_affiliate;
+  public $affiliate_companies_list;
   private $status;  
   public $affiliate_companySql = array();
   public $affiliate_company_category_list;
@@ -75,7 +76,8 @@ class AffiliateCompany
 	  $affiliate_companies_list= $affiliate_companySql->selectAffiliateCompanyList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  return $this->setAffiliateCompaniesList($affiliate_companies_list);
+	  $this->setAffiliateCompaniesList($affiliate_companies_list);
+          return true;
 	  }
 	
           public function getAffiliateCompanyCategoryList(){
