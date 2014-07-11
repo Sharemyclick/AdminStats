@@ -11,8 +11,8 @@ if(!isset($_SESSION['login'])) {
   exit;  
 }
 
-$objHeadquarter = new Affiliate_Company();
-$resultHeadquarter = $objHeadquarter->getCompanyName();
+$objHeadquarter = new AffiliateCompany();
+$resultHeadquarter = $objHeadquarter->getAffiliateCompanyList();
 $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
 
@@ -121,13 +121,11 @@ $resultCountry = $objCountry->getCountryList();
                             </span>
                             
                         </p>
-                            
                                                             
                         <p>
                             <label> Website *</label>
                             <span class="field"><input type="url" name="websites" class="input-xxlarge" required="required" /></span>
                         </p>
-                        
                                          
 			<p>
                             <label>Headquarter</label>
@@ -135,7 +133,7 @@ $resultCountry = $objCountry->getCountryList();
                             <span class="field">
                                 <select name="headquarter" id="headquarter" class="status">
                                         <?php 
-                                        foreach($objHeadquarter->categories_list as $indCompany => $nameCompany){?>
+                                        foreach($objHeadquarter->affiliate_companiesSql as $indCompany => $nameCompany){?>
                                                  <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name']; ?></option>
                                                  </option>
                                 <?php } ?>
@@ -149,8 +147,21 @@ $resultCountry = $objCountry->getCountryList();
                             <span class="field"><input type="url" name="type_affiliate" class="input-xxlarge" required="required" /></span>
                         </p>
                         
+                        <p>
+                            <label> Status</label>
+                            <span class="field">
+                                
+                                <?php 
+                                        foreach($objHeadquarter->categories_list as $indCompany => $nameCompany){?>
+                                                 <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name']; ?></option>
+                                                 </option>
+                                <?php } ?>
+                                
+                            </span>
+                        </p>
+                        
                         <p class="stdformbutton">
-                            <button type="submit" name="submit_advertiser" id="submit_advertiser" class="btn btn-primary">Create </button>
+                            <button type="submit" name="submit_affiliate_company" id="submit_affiliate_company" class="btn btn-primary">Create </button>
                             <button type="reset" class="btn">Reset </button>
                         </p>
                         

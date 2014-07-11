@@ -71,19 +71,19 @@ class AffiliateCompany
 	//==================================GET=LIST==========================
 	  // get categories list
 	public function getAffiliateCompanyList(){
-	  $affiliate_company_categorySql = new AffiliateCompanySql();
-	  $affiliate_companies_list= $affiliate_company_categorySql->selectAffiliateCompanyList();
+	  $affiliate_companySql = new AffiliateCompanySql();
+	  $affiliate_companies_list= $affiliate_companySql->selectAffiliateCompanyList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
 	  return $this->setAffiliateCompaniesList($affiliate_companies_list);
 	  }
 	
           public function getAffiliateCompanyCategoryList(){
-	  $affiliate_companySql = new AffiliateCompanySql();
-	  $affiliate_companies_list= $affiliate_companySql->selectAffiliateCompanyList();
+	  $affiliate_company_categorySql = new AffiliateCompanySql();
+	  $affiliate_companies_list= $affiliate_company_categorySql->selectAffiliateCompanyCategoryList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  return $this->setAffiliateCompaniesList($affiliate_companies_list);
+	  return $this->setAffiliateCompanyCategoryList($affiliate_companies_list);
 	  }
 	/*
   =============================SETTERS======================================
@@ -122,7 +122,7 @@ class AffiliateCompany
  }
  
  //=================================SET=LIST============================
- public function setAffiliate_company_category_list($affiliate_company_category_list) {
+ public function setAffiliateCompanyCategoryList($affiliate_company_category_list) {
      $this->affiliate_company_cattegory_list = $affiliate_company_category_list;
  }  
 

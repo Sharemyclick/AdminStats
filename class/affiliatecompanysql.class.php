@@ -22,10 +22,10 @@ public function SelectAffiliateCompanyList($mainCategory = false){
 	return $req;
 	
 }
-public function insertAffiliateCompany($affiliate_company)
+
         
 //=====================================INSERT=======================================        
-        
+        public function insertAffiliateCompany($affiliate_company)
 {$req = $this->bdd->prepare('INSERT INTO affiliate_company(  company_name, address, id_country, websites, id_hq, type_of_affiliate,  status ) VALUES ( :company_name, :address, :id_country, :websites, :id_hq, :type_of_affiliate, :status)');
         $req->execute(array(
             'company_name' => $affiliate_company['company_name'],
