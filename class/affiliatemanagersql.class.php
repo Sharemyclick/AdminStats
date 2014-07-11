@@ -15,7 +15,7 @@ public function SelectAffiliateManagerCategoryList(){
 }
 public function SelectAffiliateManagerList($mainAffiliateManager = false){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_manager');
+	$req = $this->bdd->query('SELECT * FROM affiliate_manager m JOIN country c ON m.id_country = c.id_country');
 	return $req;
 	
 }

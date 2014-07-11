@@ -14,6 +14,8 @@ class AffiliateManager
   private $status;        
   
   private $affiliatecompanies_list = array();
+
+//==================================GET=======================================
  public  function getId_affiliate_manager() {
 return $this->id_affiliate_manager;
 }
@@ -49,7 +51,7 @@ return $this->date_birth;
 public  function getStatus() {
 return $this->status;
 }
-
+//================================GET=LIST==============================
   // get categories list
 	public function getAffiliateManagersList(){
 	  $affiliatemanagerSql = new AffiliateManagerSql();
@@ -60,7 +62,7 @@ return $this->status;
 	  }
 	
 	/*
-  SETTERS
+  ==========================SETTERS===================================
   */
 
 public function setId_affiliate_manager($id_affiliate_manager) {
@@ -104,7 +106,7 @@ public function setAffiliateManagersList($affiliatemanagers_list)
    $this->affiliatemanagers_list = $affiliatemanagers_list;
   } 
     /*
-  METHODS
+  ==============================METHODS==================================
   */
     public function createAffiliateManager($affiliate_manager)
  { $affiliate_managerSql = new AdffiliateManagerSql();
