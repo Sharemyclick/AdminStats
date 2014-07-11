@@ -1,7 +1,7 @@
 <?php
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
-include('class/advertiser.class.php');
+include('class/affiliatecompany.class.php');
 include('class/category.class.php');
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
@@ -10,9 +10,11 @@ if(!isset($_SESSION['login'])) {
   echo '<script>document.location.href="dashboard.php"</script>';  
   exit;  
 }
-$filters['field'] = 'id_advertiser';
+$filters['field'] = 'id_company';
 $filters['value'] = $_GET['id'];
-$id_adv = $_GET['id'];
+$id_affcom = $_GET['id'];
+
+
 $viewAdvertiser = new Advertiser();
 $viewAdvertiser->getAdvertisers($filters);
 $viewCategory = new Category();
@@ -82,7 +84,7 @@ $viewCategory->getCategory($id_adv);
             </ul>
         </div><!--breadcrumbwidget-->
         <div class="pagetitle">
-        	<h1> Advertiser's information</h1> <span><?php echo $_SESSION['login']; ?> , here the informations of the company.</span>
+        	<h1> Affiliate company's informations</h1> <span><?php echo $_SESSION['login']; ?> , here the informations of the company.</span>
         </div><!--pagetitle-->
         
         <div class="maincontent">
