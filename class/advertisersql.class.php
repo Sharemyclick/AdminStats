@@ -24,7 +24,10 @@ public function SelectAdvertisersList($advetiser = false){
 }
 public function insertAdvertiser($advertiser)
         
+  //=============================INSERT======================================
+        //==============================================================
         
+        //================MANAGEMENT_CONTACT================================
         
 {$req = $this->bdd->prepare('INSERT INTO management_contact(  name, email, telephone,skype, conversation_language ) VALUES ( :name, :email, :telephone, :skype, :conversation_language)');
         $req->execute(array(
@@ -45,6 +48,8 @@ public function insertAdvertiser($advertiser)
    
    
 }
+  //================STAT_VALIDATION================================
+
 
     $req = $this->bdd->prepare('INSERT INTO stats_validation(  url, username, password,validation_delay ) VALUES ( :url, :username, :password, :validation_delay)');
         $req->execute(array(
@@ -64,6 +69,8 @@ public function insertAdvertiser($advertiser)
    
    
 }
+  //================INVOICE_CONTACT================================
+
 
 $req = $this->bdd->prepare('INSERT INTO invoice_contact(  email, name, iban, swift, invoicing_contact,vat ) VALUES ( :email, :name, :iban, :swift, :invoicing_contact, :vat)');
         $req->execute(array(
@@ -84,7 +91,9 @@ $req = $this->bdd->prepare('INSERT INTO invoice_contact(  email, name, iban, swi
    
 }
 
-   
+     //================ADVERTISER================================
+
+
  $req = $this->bdd->prepare('INSERT INTO advertiser(  company_name, websites, category_product, country'
         . ' , id_stats_validation, id_invoice_contact, id_management_contact,  logo, status, address,company_type, telephone_company) '
         . 'VALUES ( :company_name, :websites, :category_product, :country, :id_stats_validation, :id_invoice_contact, :id_management_contact,'
@@ -136,7 +145,7 @@ return $req;
 }
 
 
-
+//============================UPDATE=========================================
 
 public function updateAdvertiser($advertiser)
 {
