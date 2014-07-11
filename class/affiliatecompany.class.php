@@ -138,12 +138,12 @@ class AffiliateCompany
  ========================= METHODS==================================
   */
  public function createAffiliateCompany($affiliate_company)
- { $affiliate_companySql = new AdffiliateManagerSql();
+ { $affiliate_companySql = new AffiliateCompanySql();
  
  //if($this->downloadLogo($advertiser['logo']))
    $result = $affiliate_companySql->insertAffiliateCompany($affiliate_company);
   if(!$result)
-  {return($affiliate_companySql->error);}
+  {}
   else{
          return 'An affiliate company has been created';
   } 
