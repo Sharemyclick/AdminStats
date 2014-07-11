@@ -55,6 +55,22 @@ public function SelectAffiliateCompanyList($mainCategory = false){
                 
                 
                 )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         $id_affiliate_company = $this->bdd->lastInsertId();
+         
+ if($req->errorCode() == 0) {
+   
+    
+} else {
+    $errors = $req->errorInfo();
+    
+$this->error = 'affiliate_company : '.$errors[2];}
+   
+   $req = $this->bdd->prepare('INSERT INTO affiliate_company_traffic(  id_affiliate_company, id_traffic) VALUES ( :id_affiliate_company, :id_traffic)');
+        $req->execute(array(
+            'id_affiliate_company' => $id_affiliate_company,
+             'id_traffic' => $affiliate_company['id_traffic']
+                
+                )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
  if($req->errorCode() == 0) {
      $req->closeCursor();
      return true;
