@@ -39,16 +39,13 @@ public function selectAffiliateCompanyTrafficList($mainCategory = false){
 
 
         public function insertAffiliateCompany($affiliate_company)
-{$req = $this->bdd->prepare('INSERT INTO affiliate_company(  company_name, address, id_country, websites, id_hq, type_of_affiliate,  status ) VALUES ( :company_name, :address, :id_country, :websites, :id_hq, :type_of_affiliate, :status)');
+{$req = $this->bdd->prepare('INSERT INTO affiliate_company(  company_name, address, id_country, websites, id_hq,   status ) VALUES ( :company_name, :address, :id_country, :websites, :id_hq,  :status)');
         $req->execute(array(
             'company_name' => $affiliate_company['company_name'],
              'address' => $affiliate_company['address'],
             'id_country' => $affiliate_company['id_country'],
              'websites' => $affiliate_company['websites'],
-            'id_hq' => $affiliate_company['id_hq'],
-         
-            'type_of_affiliate' => $affiliate_company['type_of_affiliate'],   
-           
+            'id_hq' => $affiliate_company['id_hq'],       
             'status' => $affiliate_company['status']
      )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          $id_affiliate_company = $this->bdd->lastInsertId();
