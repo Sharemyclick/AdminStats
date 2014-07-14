@@ -10,18 +10,23 @@ public function DatabaseSql(){
 
 public function SelectDatabasesList($database = false){
 
-	$req = $this->bdd->query('SELECT * FROM database');
+	$req = $this->bdd->query('SELECT * FROM dbase d LEFT JOIN affiliate_manager_database amd ON amd.id_database = d.id_database '
+                . 'LEFT JOIN affiliate_manager am ON amd.id_affiliate_manager = am.id_affiliate_manager '
+                . 'LEFT JOIN database_country dc ON dc.id_database = d.id_database '
+                . 'LEFT JOIN country c ON c.id_country = dc.id_country '
+                . 'LEFT JOIN database_type dt ON dt.id_database = d.id_database '
+                . 'LEFT JOIN type_display_db tdt ON tdt.id_type = dt.id_type');
 	return $req;
 	
 }
  //======================INSERT========================
-  
+  //====================================================
         
 public function insertDatabase($database)
         
           //====================DATABASE===============================
    
-{$req = $this->bdd->prepare('INSERT INTO database(  name, collect_url, volume, campaign_performance, status ) VALUES ( :name, :collect_url, :volume, :campaign_performance, :status)');
+{$req = $this->bdd->prepare('INSERT INTO dbase(  name, collect_url, volume, campaign_performance, status ) VALUES ( :name, :collect_url, :volume, :campaign_performance, :status)');
         $req->execute(array(
             'name' => $database['name'],
              'collect_url' => $database['collect_url'],
