@@ -2,7 +2,7 @@
 
 include('conf.php');
 include('class/advertiser.class.php');
-include('class/category.class.php');
+include('class/categoryproduct.class.php');
 include('class/country.class.php');
 
 session_start();  
@@ -12,8 +12,8 @@ if(!isset($_SESSION['login'])) {
 }
 
 $objAdvertiser= new Advertiser();
-$objCategory = new Category();
-$result = $objCategory->getCategoriesList();
+$objCategoryProduct = new CategoryProduct();
+$result = $objCategoryProduct->getCategoriesList();
 $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
 
@@ -168,9 +168,9 @@ if(isset($_POST['submit_advertiser'])){
                             <label>Category Product</label>
                             
                             <span class="field">
-                                <select name="category_product" id="category_product" class="status">
+                                <select name="id_category_product" id="id_category_product" class="status">
                                         <?php 
-                                        foreach($objCategory->categories_list as $indCat => $valCat){?>
+                                        foreach($objCategoryProduct->categories_list as $indCat => $valCat){?>
                                     
                                         
                                     <option value="<?php echo $valCat['id']; ?>" <?php if($valCat['type']==0){?> class="option"   style="color:black;" <?php } else {?> style="text-align:center; color:grey;" <?php }?> > <?php if($valCat['type']==0){} else { ?>&nbsp &nbsp &nbsp  <?php        } echo $valCat['name']; ?></option>

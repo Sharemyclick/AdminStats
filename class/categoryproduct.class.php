@@ -1,8 +1,8 @@
 <?php
 
-include "categorysql.class.php";
+include "categoryproductsql.class.php";
 
-class Category
+class CategoryProduct
 {
   private $id_category;
   private $name_category;
@@ -77,7 +77,7 @@ class Category
         {
            // echo '<pre>', var_dump($result), '</pre>'; 
            // if($id_advertiser==$result['id_advertiser']){
-              $this->categoryselect['id_category'] = $result['id_category'];
+              $this->categoryselect['id_category_product'] = $result['id_category_product'];
               $this->categoryselect['name_category'] = $result['name_category'];
               if($result['mother_category']!=0)
                   {

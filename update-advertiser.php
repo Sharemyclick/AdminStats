@@ -201,7 +201,7 @@ $resultCountry = $objCountry->getCountryList();
                             <label>Category Product</label>
                             
                             <span class="field">
-                                <select name="category_product" id="category_product" class="status">
+                                <select name="id_category_product" id="id_category_product" class="status">
                                         <?php foreach($objCategory->categories_list as $indCat => $valCat){?>
                                 <option value="<?php echo $indCat; ?>" <?php if($viewAdvertiser->advertisers[0]['category_product'] == $indCat){?> selected <?php } ?> ><?php echo $valCat['name']; ?></option>
                                 <?php } ?>

@@ -13,8 +13,18 @@ if(!isset($_SESSION['login'])) {
 
 $objHeadquarter = new AffiliateCompany();
 $resultHeadquarter = $objHeadquarter->getAffiliateCompanyList();
+
 $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
+
+$objTraffic = new AffiliateCompany();
+$resultTraffic = $objTraffic->getAffiliateCompanyTrafficList(); 
+
+$objTypeAffiliate = new AffiliateCompany();
+$resultTraffic = $objTypeAffiliate ->getAffiliateCompanyTypeAffiliateList();
+
+$objCategory = new Category();
+$result = $objCategory->getCategoriesList();
 
  if(isset($_POST['submit_affiliate_company'])){
      
@@ -153,10 +163,15 @@ $resultCountry = $objCountry->getCountryList();
                         <p>
                             <label> Type of Affiliate *</label>
                             <span class="field">
-                                <select name="type_affiliate" id="type_affiliate" class="status">
-                                        <option value="agency"> Agency</option>
-                                        <option value="mailleur"> Maileur</option>
-                                </select>                        
+                                
+                                 <select name="type_affiliate" id="type_affiliate" class="status">
+                                        <?php 
+                                        foreach($objTypeAffiliate->affiliate_companies_type_affiliate_list as $indTypeAffiliate => $valTypeAffiliate){?>
+                                        
+                                    <option value="<?php echo $valTypeAffiliate['id_type_affiliate']; ?>"  ><?php echo $valTypeAffiliate['type_affiliate']; ?> </option>
+                                            </option>
+                                <?php } ?>
+                                </select>
                             </span>
                             </p>
                         
@@ -171,6 +186,21 @@ $resultCountry = $objCountry->getCountryList();
 
                                 </select>                        
                             </span>
+                        </p>
+                        
+                        <p>
+                            <label>Type of traffic *</label>
+                            <span class="field">
+                                <select name="id_traffic" id="id_traffic" class="status">
+                                        <?php 
+                                        foreach($objTraffic->affiliate_companies_traffic_list as $indTraffic => $valTraffic){?>
+                                        
+                                    <option value="<?php echo $valTraffic['id_traffic']; ?>"  ><?php echo $valTraffic['traffic']; ?> </option>
+                                            </option>
+                                <?php } ?>
+                                </select>
+                            </span>
+                            
                         </p>
                         
                         <p class="stdformbutton">

@@ -6,7 +6,7 @@ class Advertiser
   private $id_advertiser;
   private $company_name;
   private $websites;
-  private $category_product;
+  private $id_category_product;
   private $id_stats_validation;
   private $id_invoice_contact;
   private $id_management_contact;
@@ -44,7 +44,7 @@ class Advertiser
   // get categoryproduct
   public function getCategoryProduct()
   {
-    return $this->category_product;
+    return $this->id_category_product;
   }
   
   public function getCountry() {
@@ -129,7 +129,7 @@ class Advertiser
   // set categoryproduct
   public function setCategoryProduct($category_product)
   {
-   $this->category_product = $category_product;
+   $this->id_category_product = $id_category_product;
   }
   
   public function setCountry($country) {
@@ -208,7 +208,7 @@ class Advertiser
              $this->advertisers[$i]['id_advertiser'] = $result['id_advertiser'];
             $this->advertisers[$i]['company_name'] = $result['company_name'];
             $this->advertisers[$i]['websites'] = $result['websites'];
-            $this->advertisers[$i]['category_product'] = $result['category_product'];
+            $this->advertisers[$i]['id_category_product'] = $result['id_category_product'];
             
             $this->advertisers[$i]['logo'] = $result['logo'];
             $this->advertisers[$i]['country'] = $result['country'];

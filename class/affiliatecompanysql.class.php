@@ -44,7 +44,9 @@ public function selectAffiliateCompanyTrafficList($mainCategory = false){
 
 
         public function insertAffiliateCompany($affiliate_company)
-{$req = $this->bdd->prepare('INSERT INTO affiliate_company(  company_name, address, id_country, websites, id_hq,   status ) VALUES ( :company_name, :address, :id_country, :websites, :id_hq,  :status)');
+{
+            
+            $req = $this->bdd->prepare('INSERT INTO affiliate_company(  company_name, address, id_country, websites, id_hq,   status ) VALUES ( :company_name, :address, :id_country, :websites, :id_hq,  :status)');
         $req->execute(array(
             'company_name' => $affiliate_company['company_name'],
              'address' => $affiliate_company['address'],
@@ -67,15 +69,15 @@ $this->error = 'affiliate_company : '.$errors[2];}
   //=============Affiliate=company=category============================================
     
 
-   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_affiliate_company, id_country) VALUES ( :id_affiliate_company, :id_country)');
+   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_category, id_affiliate_company) VALUES ( :id_category, :id_affiliate_company)');
         $req->execute(array(
-            'id_affiliate_company' => $id_affiliate_company,
-             'id_country' => $affiliate_company['id_country']
+            'id_category' => $affiliate_company['id_category'],
+            'id_affiliate_company' => $id_affiliate_company             
                 
                 
                 )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          $id_affiliate_company = $this->bdd->lastInsertId();
-         
+      
  if($req->errorCode() == 0) {
    
     

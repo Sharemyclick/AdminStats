@@ -2,7 +2,7 @@
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/advertiser.class.php');
-include('class/category.class.php');
+include('class/categoryproduct.class.php');
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
 session_start();  
@@ -15,7 +15,7 @@ $filters['value'] = $_GET['id'];
 $id_adv = $_GET['id'];
 $viewAdvertiser = new Advertiser();
 $viewAdvertiser->getAdvertisers($filters);
-$viewCategory = new Category();
+$viewCategory = new CategoryProduct();
 $viewCategory->getCategory($id_adv);
 ?>
 
@@ -144,7 +144,7 @@ $viewCategory->getCategory($id_adv);
                             <label>Category Product</label>
                             
                             <span class="field">
-                               <input type="text" name="company_product" class="input-xxlarge" value="<?php echo $viewCategory->categoryselect['name_category']."-".$viewCategory->categoryselect['mother_category'] ?>" readonly="readonly"/>
+                               <input type="text" name="id_company_product" class="input-xxlarge" value="<?php echo $viewCategory->categoryselect['name_category']."-".$viewCategory->categoryselect['mother_category'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
