@@ -4,12 +4,12 @@ class AffiliateCompanySql
 {
 private $bdd;
 
-public function AffiliateCompanySql(){
+public function affiliateCompanySql(){
 	// On se connecte à la base de données.
 	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
 }
 
-public function SelectAffiliateCompanyCategoryList(){
+public function selectAffiliateCompanyCategoryList(){
 
 	$req = $this->bdd->query('SELECT * FROM affiliate_company_category');
 	return $req;
@@ -25,7 +25,12 @@ public function selectAffiliateCompanyList($mainCategory = false){
 	return $req;
 	
 }
+public function selectAffiliateCompanyTrafficList($mainCategory = false){
 
+	$req = $this->bdd->query('SELECT * FROM type_traffic ');
+	return $req;
+	
+}
         
 //=====================================INSERT======================================= 
 //================================================================================

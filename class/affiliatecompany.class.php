@@ -15,7 +15,7 @@ class AffiliateCompany
   private $status;  
   public $affiliate_companySql = array();
   public $affiliate_company_category_list;
-  
+  public $affiliate_company_category_traffic_list;
 
    /*
    =============================GETTERS==================================
@@ -79,7 +79,14 @@ class AffiliateCompany
 	  $this->setAffiliateCompaniesList($affiliate_companies_list);
           return true;
 	  }
-	
+	public function getAffiliateCompanyTrafficList(){
+	  $affiliate_companySql = new AffiliateCompanySql();
+	  $affiliate_companies_list= $affiliate_companySql->selectAffiliateCompanyTrafficList();
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  $this->setAffiliateCompaniesList($affiliate_companies_traffic_list);
+          return true;
+	  }
           public function getAffiliateCompanyCategoryList(){
 	  $affiliate_company_categorySql = new AffiliateCompanySql();
 	  $affiliate_companies_list= $affiliate_company_categorySql->selectAffiliateCompanyCategoryList();
