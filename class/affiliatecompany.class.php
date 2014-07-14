@@ -81,7 +81,7 @@ class AffiliateCompany
 	  }
 	public function getAffiliateCompanyTrafficList(){
 	  $affiliate_companySql = new AffiliateCompanySql();
-	  $affiliate_companies_list= $affiliate_companySql->selectAffiliateCompanyTrafficList();
+	  $affiliate_companies_traffic_list= $affiliate_companySql->selectAffiliateCompanyTrafficList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
 	  $this->setAffiliateCompaniesList($affiliate_companies_traffic_list);
