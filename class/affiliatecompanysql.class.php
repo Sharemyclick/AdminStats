@@ -31,7 +31,12 @@ public function selectAffiliateCompanyTrafficList($mainCategory = false){
 	return $req;
 	
 }
-        
+  public function selectAffiliateCompanyTypeAffiliateList($mainCategory = false){
+
+	$req = $this->bdd->query('SELECT * FROM type_affiliate ');
+	return $req;
+	
+}      
 //=====================================INSERT======================================= 
 //================================================================================
 

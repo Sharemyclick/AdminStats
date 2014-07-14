@@ -16,6 +16,7 @@ class AffiliateCompany
   public $affiliate_companySql = array();
   public $affiliate_company_category_list = array();
   public $affiliate_companies_traffic_list = array ();
+  public $affiliate_companies_type_affiliate_list = array();
 
    /*
    =============================GETTERS==================================
@@ -87,6 +88,14 @@ class AffiliateCompany
 	  $this->setAffiliateCompaniesTrafficList($affiliate_companies_traffic_list);
           return true;
 	  }
+          public function getAffiliateCompanyTypeAffiliateList(){
+	  $affiliate_companySql = new AffiliateCompanySql();
+	  $affiliate_companies_type_affiliate_list= $affiliate_companySql->selectAffiliateCompanyTypeAffiliateList();
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  $this->setAffiliateCompanyTypeAffiliateList($affiliate_companies_type_affiliate_list);
+          return true;
+	  }
           public function getAffiliateCompanyCategoryList(){
 	  $affiliate_company_categorySql = new AffiliateCompanySql();
 	  $affiliate_companies_list= $affiliate_company_categorySql->selectAffiliateCompanyCategoryList();
@@ -143,6 +152,10 @@ class AffiliateCompany
  public function setAffiliateCompaniesTrafficList($affiliate_companies_traffic_list)
   {
    $this->affiliate_companies_traffic_list = $affiliate_companies_traffic_list;
+  } 
+  public function setAffiliateCompaniesTypeAffiliateList($affiliate_companies_type_affiliate_list)
+  {
+   $this->affiliate_companies_type_affiliate_list = $affiliate_companies_type_affiliate_list;
   } 
     /*
  ========================= METHODS==================================
