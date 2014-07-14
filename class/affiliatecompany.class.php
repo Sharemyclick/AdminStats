@@ -11,7 +11,7 @@ class AffiliateCompany
   private $websites;
   private $id_hq;
   private $type_of_affiliate;
-  public $affiliate_companies_list;
+  public $affiliate_companies_list = array ();
   private $status;  
   public $affiliate_companySql = array();
   public $affiliate_company_category_list = array();

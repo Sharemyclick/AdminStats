@@ -21,7 +21,9 @@ public function selectAffiliateCompanyList($mainCategory = false){
 	$req = $this->bdd->query('SELECT * FROM affiliate_company a '
                 . 'LEFT JOIN country c ON a.id_country = c.id_country '
                 . 'LEFT JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
-                . 'LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   ');
+                . 'LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   '
+                . ' LEFT JOIN affiliate_company_type_affiliate acta ON acta.id_affiliate_company = a.id_affiliate_company'
+                . ' LEFT JOIN type_affiliate ta ON ta.id_type_affiliate = acta.id_type_affiliate ');
 	return $req;
 	
 }
@@ -31,9 +33,9 @@ public function selectAffiliateCompanyTrafficList($mainCategory = false){
 	return $req;
 	
 }
-  public function selectAffiliateCompanyTypeAffiliateList($mainCategory = false){
+  public function selectAffiliateCompanyTypeAffiliateList($id_affiliate_company = false){
 
-	$req = $this->bdd->query('SELECT * FROM type_affiliate ');
+	$req = $this->bdd->query('SELECT * FROM type_affiliate WHERE id_affiliate_company = '.$id_affiliate_company);
 	return $req;
 	
 }      
@@ -69,7 +71,7 @@ $this->error = 'affiliate_company : '.$errors[2];}
   //=============Affiliate=company=category============================================
     
 
-   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_category, id_affiliate_company) VALUES ( :id_category, :id_affiliate_company)');
+  /* $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_category, id_affiliate_company) VALUES ( :id_category, :id_affiliate_company)');
         $req->execute(array(
             'id_category' => $affiliate_company['id_category'],
             'id_affiliate_company' => $id_affiliate_company             
@@ -84,7 +86,7 @@ $this->error = 'affiliate_company : '.$errors[2];}
 } else {
     $errors = $req->errorInfo();
     
-$this->error = 'affiliate_company : '.$errors[2];}
+$this->error = 'affiliate_company : '.$errors[2];} */
 
 
    //=================Type=TRAFFIC==========================================
@@ -105,10 +107,10 @@ $this->error = 'affiliate_company : '.$errors[2];}
    
 }
 
-  //=================Type=type=AFFILATE==========================================
+  //=================Type=type=AFFILIATE==========================================
 
 
-   $req = $this->bdd->prepare('INSERT INTO affiliate_company_type_affilate(  id_affiliate_company, id_type_affiliate) VALUES ( :id_affiliate_company, :id_type_affiliate)');
+   $req = $this->bdd->prepare('INSERT INTO affiliate_company_type_affiliate(  id_affiliate_company, id_type_affiliate) VALUES ( :id_affiliate_company, :id_type_affiliate)');
         $req->execute(array(
             'id_affiliate_company' => $id_affiliate_company,
              'id_type_affiliate' => $affiliate_company['id_type_affiliate']

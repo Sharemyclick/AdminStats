@@ -2,7 +2,7 @@
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/advertiser.class.php');
-include('class/category.class.php');
+include('class/categoryproduct.class.php');
 include('class/country.class.php');
 
 
@@ -25,9 +25,9 @@ $viewAdvertiser = new Advertiser(); //objet = instance de classe
 $viewAdvertiser->getAdvertisers($filters);
 $_SESSION['advertiser'] = $viewAdvertiser->advertisers;
 
-$objCategory = new Category();
-$result = $objCategory->getCategoriesList();
-
+$objCategoryProduct = new CategoryProduct();
+$result = $objCategoryProduct->getCategoriesList();
+ 
 $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
 
@@ -202,8 +202,8 @@ $resultCountry = $objCountry->getCountryList();
                             
                             <span class="field">
                                 <select name="id_category_product" id="id_category_product" class="status">
-                                        <?php foreach($objCategory->categories_list as $indCat => $valCat){?>
-                                <option value="<?php echo $indCat; ?>" <?php if($viewAdvertiser->advertisers[0]['category_product'] == $indCat){?> selected <?php } ?> ><?php echo $valCat['name']; ?></option>
+                                        <?php foreach($objCategoryProduct->categories_list as $indCat => $valCat){?>
+                                <option value="<?php echo $indCat; ?>" <?php if($viewAdvertiser->advertisers[0]['id_category_product'] == $indCat){?> selected <?php } ?> ><?php echo $valCat['name']; ?></option>
                                 <?php } ?>
                                 </select>
                             </span>  

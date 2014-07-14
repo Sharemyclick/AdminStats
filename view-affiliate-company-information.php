@@ -1,4 +1,4 @@
-<?php
+ <?php
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/affiliatecompany.class.php');

@@ -38,12 +38,12 @@ class CategoryProduct
               
 	  while ($row = $categories_sql->fetch()) 
 		{
-                $categories_list[$row['id_category']]['id'] = $row['id_category'];
-		$categories_list[$row['id_category']]['name'] = $row['name_category'];
-                // type = 0 if mother category, idd of mother category otherwise
-                if(isset($categories_list[$row['id_category']]['type']) && $categories_list[$row['id_category']]['type'] == 1){
+                $categories_list[$row['id_category_product']]['id'] = $row['id_category_product'];
+		$categories_list[$row['id_category_product']]['name'] = $row['name_category'];
+                // type = 0 if mother category, id of mother category otherwise
+                if(isset($categories_list[$row['id_category_product']]['type']) && $categories_list[$row['id_category_product']]['type'] == 1){
                 }else
-                 $categories_list[$row['id_category']]['type'] = 0;
+                 $categories_list[$row['id_category_product']]['type'] = 0;
                // loop into mothers categories only
                 if($row['mother_category'] == 0){ 
                     // get list categories in order to retrieve its children
@@ -51,12 +51,12 @@ class CategoryProduct
                     while ($row2 = $categories_sql2->fetch()) 
                     {
                         // if mother category corresponds to category we are looping => we found a child
-                        if($row2['mother_category'] == $row['id_category']){
+                        if($row2['mother_category'] == $row['id_category_product']){
                             // we fill the result array
-                            $categories_list[$row2['id_category']]['id'] = $row2['id_category'];
-                            $categories_list[$row2['id_category']]['name'] = $row2['name_category'];
+                            $categories_list[$row2['id_category_product']]['id'] = $row2['id_category_product'];
+                            $categories_list[$row2['id_category_product']]['name'] = $row2['name_category'];
                             // type = 1 means its a child
-                            $categories_list[$row2['id_category']]['type'] = 1;                       
+                            $categories_list[$row2['id_category_product']]['type'] = 1;                       
                         }
                         //echo $row['id_category']." ".$row2['id_category']." <br />";
                     }

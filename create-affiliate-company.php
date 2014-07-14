@@ -2,7 +2,6 @@
 
 include('conf.php');
 include('class/affiliatecompany.class.php');
-include('class/category.class.php');
 include('class/country.class.php');
 
 session_start();  
@@ -23,8 +22,8 @@ $resultTraffic = $objTraffic->getAffiliateCompanyTrafficList();
 $objTypeAffiliate = new AffiliateCompany();
 $resultTraffic = $objTypeAffiliate ->getAffiliateCompanyTypeAffiliateList();
 
-$objCategory = new Category();
-$result = $objCategory->getCategoriesList();
+//$objCategory = new Category();
+//$result = $objCategory->getCategoriesList();
 
  if(isset($_POST['submit_affiliate_company'])){
      
@@ -164,7 +163,7 @@ $result = $objCategory->getCategoriesList();
                             <label> Type of Affiliate *</label>
                             <span class="field">
                                 
-                                 <select name="type_affiliate" id="type_affiliate" class="status">
+                                 <select name="id_type_affiliate" id="type_affiliate" class="status">
                                         <?php 
                                         foreach($objTypeAffiliate->affiliate_companies_type_affiliate_list as $indTypeAffiliate => $valTypeAffiliate){?>
                                         

@@ -151,19 +151,19 @@ public function updateAdvertiser($advertiser)
 {
     $id_advertiser=$advertiser['id_advertiser'];
   
-   $req = $this->bdd->query('SELECT id_invoice_contact, id_management_contact,id_stats_validation FROM advertiser WHERE id_advertiser =' .$id_advertiser);
+   $req = $this->bdd->query('SELECT id_invoice_contact, id_management_contact,id_stats_validation, id_category_product FROM advertiser WHERE id_advertiser =' .$id_advertiser);
    $res = $req->fetch();
     $id_management_contact=$res['id_management_contact'];
     $id_invoice_contact=$res['id_invoice_contact'];
     $id_stats_validation=$res['id_stats_validation'];
+    $id_category_product=$res['id_category_product'];
     
     
     
-   $req = $this->bdd->prepare('UPDATE advertiser SET company_name=:company_name, websites=:websites, category_product=:category_product, country=:country , logo=:logo , status=:status , address=:address , company_type=:company_type , telephone_company=:telephone_company  WHERE id_advertiser =' .$id_advertiser);
+   $req = $this->bdd->prepare('UPDATE advertiser SET company_name=:company_name, websites=:websites, country=:country , logo=:logo , status=:status , address=:address , company_type=:company_type , telephone_company=:telephone_company  WHERE id_advertiser =' .$id_advertiser);
    $req->execute(array( 
        'company_name' => $advertiser['company_name'],
                 'websites'=> $advertiser['websites'],
-		'category_product' => $advertiser['category_product'],
                 'country' => $advertiser['country'],
                 'logo' => $advertiser['logo']['name'],
 		'status' => $advertiser['status'],
@@ -185,9 +185,6 @@ public function updateAdvertiser($advertiser)
        )) ;
        
 
-
-
-
    $req = $this->bdd->prepare('UPDATE stats_validation SET  url=:url, username=:username, password=:password, validation_delay=:validation_delay WHERE id_stats_validation =' .$id_stats_validation);
   $req->execute(array(
              'url' => $advertiser['url'],
@@ -197,16 +194,19 @@ public function updateAdvertiser($advertiser)
       )) ;
 
 
-
-
-
    $req = $this->bdd->prepare('UPDATE management_contact SET name=:name, email=:email, telephone=:telephone,skype=:skype, conversation_language=:conversation_language WHERE id_management_contact =' .$id_management_contact);
    $req->execute(array(    
              'name' => $advertiser['name_management_contact'],
              'email' => $advertiser['email_management_contact'],
             'telephone' => $advertiser['telephone'],
             'skype' => $advertiser['skype'],
-            'conversation_language' => $advertiser['conversation_language'] 
+            'conversation_language' => $advertiser['conversation_language']));
+           
+           
+    $req = $this->bdd->prepare('UPDATE advertiser_category SET id_advertiser=:id_advertiser, id_category_product=:id_category_product WHERE id_advertiser =' .$id_advertiser);
+   $req->execute(array(    
+             'id_advertiser' => $advertiser['id_advertiser'],
+             'id_category_product' => $advertiser['id_category_product']
 
 )) or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
  if($req->errorCode() == 0) {

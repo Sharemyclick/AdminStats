@@ -10,7 +10,7 @@ public function CategorySql(){
 
 public function SelectCategoriesList($mainCategory = false){
 
-	$req = $this->bdd->query('SELECT id_category, name_category, mother_category FROM category_product ORDER BY mother_category');
+	$req = $this->bdd->query('SELECT id_category_product, name_category, mother_category FROM category_product ORDER BY mother_category');
 	return $req;
 }
 
@@ -21,8 +21,8 @@ return $req;}
 
 
 
-public function selectCategoryNameFromId($id_category){
-$req = $this->bdd->query('SELECT name_category FROM  category_product WHERE id_category = '.$id_category);
+public function selectCategoryNameFromId($id_category_product){
+$req = $this->bdd->query('SELECT name_category FROM  category_product WHERE id_category_product = '.$id_category_product);
 return $req;
 
 }
