@@ -93,7 +93,7 @@ class AffiliateCompany
 	  $affiliate_companies_type_affiliate_list= $affiliate_companySql->selectAffiliateCompanyTypeAffiliateList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  $this->setAffiliateCompanyTypeAffiliateList($affiliate_companies_type_affiliate_list);
+	  $this->setAffiliateCompaniesTypeAffiliateList($affiliate_companies_type_affiliate_list);
           return true;
 	  }
           public function getAffiliateCompanyCategoryList(){
@@ -102,7 +102,7 @@ class AffiliateCompany
 	  $affiliate_companies_list= $affiliate_company_categorySql->selectAffiliateCompanyCategoryList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  return $this->setAffiliateCompaniesTypeAffiliateList($affiliate_companies_list);
+	  return $this->setAffiliateCompaniesCategoryList($affiliate_companies_list);
 	  }
 	/*
   =============================SETTERS======================================
