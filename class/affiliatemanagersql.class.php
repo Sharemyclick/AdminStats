@@ -63,7 +63,7 @@ public function insertAffiliateManager($affiliate_manager)
              'id_affiliate_company' => $affiliate_manager['id_affiliate_company']
              )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          
-   $id_affiliate_manager = $this->bdd->lastInsertId();
+  
          
  if($req->errorCode() == 0) {
    

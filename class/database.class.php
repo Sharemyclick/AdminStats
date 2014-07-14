@@ -18,7 +18,7 @@ class Database{
     
     private $databases_list = array();
     
-    
+ //==========================GET=====================================   
     public function getId_database() {
         return $this->id_database;
     }
@@ -42,7 +42,7 @@ class Database{
     public function getStatus() {
         return $this->status;
     }
-    
+  //=================================GET=LIST================================  
      public function getDatabasesList(){
 	  $databaseSql = new DatabaseSql();
 	  $databases_sql= $databaseSql->SelectDatabaseList();
@@ -52,7 +52,7 @@ class Database{
 	  }
 	
 	/*
-  SETTERS
+  ======================================SETTERS================================
   */
     public function setId_database($id_database) {
         $this->id_database = $id_database;
@@ -77,12 +77,12 @@ class Database{
     public function setStatus($status) {
         $this->status = $status;
     }
-    
+  //=================================SET=LIST====================================  
      public function setDatabasesList($databases_list)
   {
    $this->databases_list = $databases_list;
   } 
     /*
-  METHODS
+  =========================================METHODS================================
   */
 }

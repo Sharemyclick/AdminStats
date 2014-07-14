@@ -14,7 +14,90 @@ public function SelectDatabasesList($database = false){
 	return $req;
 	
 }
+ //======================INSERT========================
+  
+        
+public function insertDatabase($database)
+        
+          //====================DATABASE===============================
+   
+{$req = $this->bdd->prepare('INSERT INTO database(  name, collect_url, volume, campaign_performance, status ) VALUES ( :name, :collect_url, :volume, :campaign_performance, :status)');
+        $req->execute(array(
+            'name' => $database['name'],
+             'collect_url' => $database['collect_url'],
+            'volume' => $database['volume'],
+             'campaign_performance' => $database['campaign_performance'],
+            'status' => $database['status']
+           )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         
+   $id_database = $this->bdd->lastInsertId();
+         
+ if($req->errorCode() == 0) {
+   
+    
+} else {
+    $errors = $req->errorInfo();
+    
+    $this->error = 'database : '.$errors[2];
+   
+      //====================MANAGER_DATABASE===============================
+    
+   $req = $this->bdd->prepare('INSERT INTO affiliate_manager_database(  id_affiliate_manager, id_database) VALUES ( :id_affiliate_manager, :id_database)');
+        $req->execute(array(
+            'id_database' => $id_database,
+             'id_affiliate_manager' => $database['id_affiliate_manager']
+             )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         
 
+         
+ if($req->errorCode() == 0) {
+   
+    
+} else {
+    $errors = $req->errorInfo();
+    
+    $this->error = 'affiliate_manager_database : '.$errors[2];
+   
+      //====================DATABASE_COUNTRY===============================
+    
+   $req = $this->bdd->prepare('INSERT INTO database_country(  id_database,id_country) VALUES ( :id_database, :id_country)');
+        $req->execute(array(
+            'id_database' => $id_database,
+             'id_country' => $affiliate_manager['id_country']    
+                
+                 )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         
+  
+ if($req->errorCode() == 0) {
+   
+    
+} else {
+    $errors = $req->errorInfo();
+    
+    $this->error = 'database : '.$errors[2];
+   
+      //====================DATABASE_TYPE===============================
+    
+   $req = $this->bdd->prepare('INSERT INTO database_display(  id_type, id_database) VALUES ( :id_type, :id_database)');
+        $req->execute(array(
+            'id_database' => $id_database,
+             'id_type' => $database['id_type']
+                )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+ if($req->errorCode() == 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'type : '.$errors[2];
+    return false;
+   
+}
+
+}
+}
+}
+          
 }
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -22,3 +105,4 @@ public function SelectDatabasesList($database = false){
  * and open the template in the editor.
  */
 
+}
