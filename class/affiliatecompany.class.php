@@ -98,10 +98,11 @@ class AffiliateCompany
 	  }
           public function getAffiliateCompanyCategoryList(){
 	  $affiliate_company_categorySql = new AffiliateCompanySql();
+          
 	  $affiliate_companies_list= $affiliate_company_categorySql->selectAffiliateCompanyCategoryList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  return $this->setAffiliateCompanyCategoryList($affiliate_companies_list);
+	  return $this->setAffiliateCompaniesTypeAffiliateList($affiliate_companies_list);
 	  }
 	/*
   =============================SETTERS======================================
