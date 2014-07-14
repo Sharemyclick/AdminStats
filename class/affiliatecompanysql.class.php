@@ -16,7 +16,7 @@ public function SelectAffiliateCompanyCategoryList(){
 	
 }
 
-public function SelectAffiliateCompanyList($mainCategory = false){
+public function selectAffiliateCompanyList($mainCategory = false){
 
 	$req = $this->bdd->query('SELECT * FROM affiliate_company a '
                 . 'LEFT JOIN country c ON a.id_country = c.id_country '
