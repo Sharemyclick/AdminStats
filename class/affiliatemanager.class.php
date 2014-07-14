@@ -12,8 +12,9 @@ class AffiliateManager
   private $id_affiliate_company;
   private $date_birth;
   private $status;        
-  
-  private $affiliatecompanies_list = array();
+public $affiliate_managers_list =array();
+public $affiliate_manager_category_list =array();
+public $affiliate_manager_country_list =array();
 
 //==================================GET=======================================
  public  function getId_affiliate_manager() {
@@ -55,12 +56,27 @@ return $this->status;
   // get categories list
 	public function getAffiliateManagersList(){
 	  $affiliatemanagerSql = new AffiliateManagerSql();
-	  $affiliatemanagers_sql= $affiliatemanagerSql->SelectAffiliateManagerList();
+	  $affiliatemanagers_sql= $affiliatemanagerSql->selectAffiliateManagerList();
 	  //TODO setup $affiliatemanagers_list from query results
 	  // structure of $affiliatemanager_list : Array('id','name')
 	  return $this->setAffiliateManagersList($affiliatemanagers_list);
 	  }
-	
+	public function getAffiliateCompanyCategoryList(){
+	  $affiliate_manager_categorySql = new AffiliateManagerSql();
+          
+	  $affiliate_managers_list= $affiliate_manager_categorySql->selectAffiliateManagerCategoryList();
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  return $this->setAffiliateManagersCategoryList($affiliate_managers_list);
+	  }
+          public function getAffiliateCompanyCountryList(){
+	  $affiliate_manager_countrySql = new AffiliateManagerSql();
+          
+	  $affiliate_managers_list= $affiliate_manager_countrySql->selectAffiliateManagerCountryList();
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  return $this->setAffiliateManagersCountryList($affiliate_managers_list);
+	  }
 	/*
   ==========================SETTERS===================================
   */
@@ -100,11 +116,19 @@ public function setDate_birth($date_birth) {
 public function setStatus($status) {
     $this->status = $status;
 }
+//==================SET=LIST====================
 
-public function setAffiliateManagersList($affiliatemanagers_list)
+public function setAffiliateManagersList($affiliate_managers_list)
   {
-   $this->affiliatemanagers_list = $affiliatemanagers_list;
+   $this->affiliate_managers_list = $affiliate_managers_list;
   } 
+  public function setAffiliateManagersCategoryList($affiliate_manager_category_list) {
+     $this->affiliate_manager_category_list = $affiliate_manager_category_list;
+ }  
+public function setAffiliateManagersCountryList($affiliate_manager_country_list) {
+     $this->affiliate_manager_country_list = $affiliate_manager_country_list;
+ }  
+
     /*
   ==============================METHODS==================================
   */

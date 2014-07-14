@@ -7,13 +7,19 @@ public function AffiliateManagerSql(){
 	// On se connecte à la base de données.
 	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
 }
-public function SelectAffiliateManagerCategoryList(){
+public function selectAffiliateManagerCategoryList(){
 
 	$req = $this->bdd->query('SELECT * FROM affiliate_company_category');
-	return $req;
-	
+return $req;
+
 }
-public function SelectAffiliateManagerList($mainAffiliateManager = false){
+
+public function selectAffiliateManagerCountryList(){
+
+	$req = $this->bdd->query('SELECT * FROM affiliate_manager_country');
+	return $req;
+}
+public function selectAffiliateManagerList($mainAffiliateManager = false){
 
 	$req = $this->bdd->query('SELECT * FROM affiliate_manager m '
                 . 'LEFT JOIN country c ON m.id_country = c.id_country');
@@ -51,11 +57,26 @@ public function insertAffiliateManager($affiliate_manager)
     
     $this->error = 'affiliate_company : '.$errors[2];
    
-   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_affiliate_manager, id_country) VALUES ( :id_affiliate_manager, :id_country)');
+   $req = $this->bdd->prepare('INSERT INTO affiliate_company_category(  id_affiliate_manager, id_affiliate_company) VALUES ( :id_affiliate_manager, :id_affiliate_company)');
         $req->execute(array(
             'id_affiliate_manager' => $id_affiliate_manager,
-             'id_country' => $affiliate_manager['id_country']
-                
+             'id_affiliate_company' => $affiliate_manager['id_affiliate_company']
+             )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         
+   $id_affiliate_manager = $this->bdd->lastInsertId();
+         
+ if($req->errorCode() == 0) {
+   
+    
+} else {
+    $errors = $req->errorInfo();
+    
+    $this->error = 'affiliate_company : '.$errors[2];
+   
+   $req = $this->bdd->prepare('INSERT INTO affiliate_manager_country(  id_affiliate_manager,id_country) VALUES ( :id_affiliate_manager, :id_country)');
+        $req->execute(array(
+            'id_affiliate_manager' => $id_affiliate_manager,
+             'id_country' => $affiliate_manager['id_country']    
                 
                 )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
  if($req->errorCode() == 0) {
@@ -69,6 +90,7 @@ public function insertAffiliateManager($affiliate_manager)
    
 }
 
+}
 }
 }
 
