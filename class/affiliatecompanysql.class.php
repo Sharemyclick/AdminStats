@@ -90,6 +90,24 @@ $this->error = 'affiliate_company : '.$errors[2];}
                 
                 )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
  if($req->errorCode() == 0) {
+    
+} else {
+    $errors = $req->errorInfo();
+    
+    $this->error = 'category : '.$errors[2];
+   
+}
+
+  //=================Type=type=AFFILATE==========================================
+
+
+   $req = $this->bdd->prepare('INSERT INTO affiliate_company_type_affilate(  id_affiliate_company, id_type_affiliate) VALUES ( :id_affiliate_company, :id_type_affiliate)');
+        $req->execute(array(
+            'id_affiliate_company' => $id_affiliate_company,
+             'id_type_affiliate' => $affiliate_company['id_type_affiliate']
+                
+                )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+ if($req->errorCode() == 0) {
      $req->closeCursor();
      return true;
 } else {
@@ -98,7 +116,6 @@ $this->error = 'affiliate_company : '.$errors[2];}
     $this->error = 'category : '.$errors[2];
     return false;
 }
-
 
 }
 
