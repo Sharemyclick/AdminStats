@@ -4,20 +4,23 @@ include "affiliatecompanysql.class.php";
 
 class AffiliateCompany
 {
-  private $id_affiliate_company;
-  private $company_name;
-  private $address;
-  private $id_country;
-  private $websites;
-  private $id_hq;
-  private $type_of_affiliate;
-  public $affiliate_companies_list = array ();
-  private $status;  
-  public $affiliate_companySql = array();
-  public $affiliate_company_category_list = array();
-  public $affiliate_companies_traffic_list = array ();
-  public $affiliate_companies_type_affiliate_list = array();
-public $affiliate_hq = array();
+    private $id_affiliate_company;
+    private $company_name;
+    private $address;
+    private $id_country;
+    private $websites;
+    private $id_hq;
+    private $type_of_affiliate;
+    private $status;  
+    
+    public $affiliate_company = array();  
+    public $affiliate_companies_list = array ();
+    public $affiliate_companySql = array();
+    //public $affiliate_company_category_list = array();
+    public $affiliate_companies_traffic_list = array ();
+    public $affiliate_companies_type_affiliate_list = array();
+    public $affiliate_hq = array();
+    public $type_affiliate_list = array();
    /*
    =============================GETTERS==================================
    */
@@ -55,9 +58,10 @@ public $affiliate_hq = array();
   public function getIdHq()
   {
     return $this->id_hq;
-    
-    
-	}	
+}	
+  public function getAffiliateCompany() {
+      return $this->affiliate_company;
+  }
 	
 	   // get status
   public function getTypeOfAffiliate()
@@ -103,6 +107,15 @@ public $affiliate_hq = array();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
 	  return $this->setAffiliateCompaniesCategoryList($affiliate_companies_list);
+	  }
+          
+           public function getTypeAffiliateList(){
+	  $type_affiliateSql = new AffiliateCompanySql();
+          
+	  $type_affiliate_list= $type_affiliateSql->selectTypeAffiliateList();
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  return $this->setTypeAffiliateList($type_affiliate_list);
 	  }
           public function getHQ(){
 	  $affiliate_companySql = new AffiliateCompanySql();
@@ -161,6 +174,11 @@ public $affiliate_hq = array();
    public function setAffiliateCompaniesHQList($affiliate_hq)
   {
    $this->affiliate_hq = $affiliate_hq;
+  }
+  
+   public function setTypeAffiliateList($type_affiliate_list)
+  {
+   $this->type_affiliate_list = $type_affiliate_list;
   }
  public function setAffiliateCompaniesTrafficList($affiliate_companies_traffic_list)
   {

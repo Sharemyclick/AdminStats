@@ -16,7 +16,7 @@ class Advertiser
   private $address;
   private $company_type;
   private $telephone_company;
-     public $advertisers = array();  
+  public $advertisers = array();  
   public function Advertiser(){
       
   }

@@ -2,7 +2,8 @@
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/affiliatecompany.class.php');
-include('class/category.class.php');
+include('class/country.class.php');
+
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
 session_start();  
@@ -12,13 +13,18 @@ if(!isset($_SESSION['login'])) {
 }
 $filters['field'] = 'id_company';
 $filters['value'] = $_GET['id'];
-$id_affcom = $_GET['id'];
+$id_affiliate_compqny = $_GET['id'];
 
 
-$viewAdvertiser = new Advertiser();
-$viewAdvertiser->getAdvertisers($filters);
-$viewCategory = new Category();
-$viewCategory->getCategory($id_adv);
+$viewAffiliateCompany = new AffiliateCompany();
+$viewAffiliateCompany->getAffiliateCompany();
+
+$viewHq = new AffiliateCompany();
+$viewHq->getHq();
+
+$viewCountry = new Country();
+$viewCountry->getCountry($filters['value']);
+
 ?>
 
 <!DOCTYPE html>
@@ -92,34 +98,28 @@ $viewCategory->getCategory($id_adv);
             <div class="contentinner">
 			<div class="widgetcontent">
 			
-            	<h4 class="widgettitle nomargin shadowed">Advertiser informations</h4>
+            	<h4 class="widgettitle nomargin shadowed">Affiliate Company informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form name="form_advertiser" class="stdform stdform2" method="post" action="update-advertiser.php" enctype="multipart/form-data">
+                    <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate.php" enctype="multipart/form-data">
                         
-                        <input type="hidden" name="id_advertiser" value="<?php echo $filters['value'] ;?>">
-                        
+                        <input type="hidden" name="id" value="<?php echo $filters['value'] ;?>">
+                         <?php //echo '<pre>', var_dump($viewAffiliateCompany), '</pre>'; ?>
                         <p>
-                            <label>Company name *</label>
-                            <span class="field"><input type="text" value="<?php echo $viewAdvertiser->advertisers[0]['company_name']; ?>" name="company_name" class="input-xxlarge" readonly="readonly" /></span>
+                            <label>Affiliate Company name *</label>
+                            <span class="field"><input type="text" value="<?php echo $viewAffiliateCompany->afffiliate_company['company_name']; ?>" name="affiliate_company_name" class="input-xxlarge" readonly="readonly" /></span>
                         </p>
 
                         <p>
                             <label>Address *</label>
-                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['address']; ?>" readonly="readonly"/></span>
+                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_companies_list['address']; ?>" readonly="readonly"/></span>
                         </p>
                         
-                        <p>
-                            <label>Telephone Company</label>
-                        <span class="field"><input type="text" name="telephone_company" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['telephone_company']; ?>" readonly="readonly"/></span>
-                        </p>
-
                         <p>
                             <label>Country *</label>
                             
                             <span class="field">
-                                
-                                    <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['country']; ?>" readonly="readonly"/>
+                            <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewCountry->country_select['name_country']; ?>" readonly="readonly"/>
                             </span>
                             
                         </p>
@@ -127,123 +127,24 @@ $viewCategory->getCategory($id_adv);
                                                             
                         <p>
                             <label> Website *</label>
-                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['websites']; ?>" readonly="readonly"/></span>
+                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_companies_list['websites']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
-                           <label>Logo</label>
-                           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-                           <span class="field"><img src="<?php echo 'http://localhost/campaigns/img/logo/'.$viewAdvertiser->advertisers[0]['logo'] ?>" height="180" width="98"></span>
-			</p>
-                        
-                        <p>
-                            <label> Company type</label>
-                                <span class="field"><input type="url" name="company_type" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['company_type']; ?>" readonly="readonly"/></span>
+                            <label> Headquarter</label>
+                                <span class="field"><input type="url" name="hq" class="input-xxlarge" value="<?php echo $viewHq->affiliate_hq['company_name']; ?>" readonly="readonly"/></span>
                             </span>  
                         </p>
                         
 						<p>
-                            <label>Category Product</label>
+                            <label>Status</label>
                             
                             <span class="field">
-                               <input type="text" name="company_product" class="input-xxlarge" value="<?php echo $viewCategory->categoryselect['name_category']."-".$viewCategory->categoryselect['mother_category'] ?>" readonly="readonly"/>
+                               <input type="text" name="status" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_companies_list['status'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
                         
-                                               
-                        <h4 class="widgettitle nomargin shadowed"> Stats validation </h4>
-                        
-                        <p>
-                            <label>URL of the platform *</label>
-                            <span class="field"><input type="url" name="url" id="url" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['url']; ?>" readonly="readonly"/></span>
-                        </p>
-                        
-                        <p>
-                            <label>Username *</label>
-                            <span class="field"><input type="text" name="username" id="username" class="input-xxlarge"  value="<?php echo $viewAdvertiser->advertisers[0]['username']; ?>" readonly="readonly"/></span>
-                        </p>
-							
-                        <p>
-                            <label>Password *</label>
-                            <span class="field"><input type="text" name="password" id="password" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['password']; ?>" readonly="readonly"/></span>
-                        </p>
-                        
-                         <p>
-                            <label>Validation delay</label>
-                            <span class="field"><input type="text" name="validation_delay" id="validation_delay" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['validation_delay']; ?>" readonly="readonly"/></span>
-                        </p>
-						
-                        <h4 class="widgettitle nomargin shadowed">Invoice contact </h4>
-						
-                        <p>
-                            <label>Name</label>
-                            <span class="field"><input type="text" name="name_invoice_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['invoice_name']; ?>" readonly="readonly"/></span>
-                        </p>
-                        
-                        <p>
-                            <label>Email</label>
-                            <span class="field"><input type="email" name="email_invoice_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['invoice_email']; ?>" readonly="readonly" /></span>
-                        </p>
-                        
-                        <p>
-                            <label>VAT *</label>
-                            <span class="field"><input type="text" name="vat" class="input-xxlarge" readonly="readonly"/></span>
-                        </p>
-                        
-                        <p>
-                            <label>IBAN *</label>
-                            <span class="field"><input type="text" name="iban" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['iban']; ?>" readonly="readonly"/></span>
-                        </p>
-                        
-                        <p>
-                            <label>SWIFT *</label>
-                            <span class="field"><input type="text" name="swift" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['swift']; ?>" readonly="readonly" /></span>
-                        </p>
-                        
-                        <p>
-                            <label>Invoicing period *</label>    
-                            
-                            <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['invoicing_contact']; ?>" readonly="readonly"/></span>
-                            
-                        </p>
-                        
-                        <h4 class="widgettitle nomargin shadowed">Management contact</h4>
-                        
-                        
-                        <p>
-                            <label>Name *</label>
-                            <span class="field"><input type="text" name="name_management_contact" class="input-xxlarge"value="<?php echo $viewAdvertiser->advertisers[0]['management_name']; ?>" readonly="readonly" /></span>
-                        </p>
-                        
-                        <p>
-                            <label>Email *</label>
-                            <span class="field"><input type="email" name="email_management_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['management_email']; ?>" readonly="readonly"/></span>
-                        </p>
-                        
-                        <p>
-                            <label>Telephone Management contact *</label>
-                            <span class="field"><input type="tel" name="telephone_management_contact" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['telephone']; ?>" readonly="readonly"/></span>
-                        </p>
-                        
-                        <p>
-                            <label>Skype</label>
-                            <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['skype']; ?>" readonly="readonly"/></span>
-                        </p>
-                        
-                        <p>
-                            <label>Language</label>
-                           
-                            
-                           <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['conversation_language']; ?>" readonly="readonly"/></span>
-                            
-                        </p>
-                        
-                        <p>
-                            <label>Status *</label>
-                           <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['status']; ?>" readonly="readonly"/></span>                        
-                        </p>
-                            
                         <p class="stdformbutton">
                             <button type="submit" name="update_advertiser" id="update_advertiser" class="btn btn-primary"> Update informations</button>
                             
