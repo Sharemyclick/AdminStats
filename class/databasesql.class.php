@@ -19,9 +19,9 @@ public function SelectDatabasesList($database = false){
 	return $req;
 	
 }
-public function selectDataseCountryList(){
+public function selectDatabaseCountryList(){
 
-	$req = $this->bdd->query('SELECT * FROM dbase');
+	$req = $this->bdd->query('SELECT * FROM database_country');
 	return $req;
 }
  //======================INSERT========================

@@ -9,20 +9,20 @@ public function AffiliateManagerSql(){
 }
 public function selectAffiliateManagerCategoryList(){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_company_category');
+	$req = $this->bdd->query('SELECT * FROM affiliate_company_category acc LEFT JOIN ');
 return $req;
 
 }
 
 public function selectAffiliateManagerCountryList(){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_manager_country');
+	$req = $this->bdd->query('SELECT * FROM affiliate_manager_country m'
+                 . 'LEFT JOIN country c ON m.id_country = c.id_country');
 	return $req;
 }
 public function selectAffiliateManagerList($mainAffiliateManager = false){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_manager m '
-                . 'LEFT JOIN country c ON m.id_country = c.id_country');
+	$req = $this->bdd->query('SELECT * FROM affiliate_manager  ');
 	return $req;
 	
 }

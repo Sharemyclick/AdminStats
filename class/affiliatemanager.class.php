@@ -56,10 +56,10 @@ return $this->status;
   // get categories list
 	public function getAffiliateManagersList(){
 	  $affiliatemanagerSql = new AffiliateManagerSql();
-	  $affiliatemanagers_sql= $affiliatemanagerSql->selectAffiliateManagerList();
+	  $affiliate_managers_list= $affiliatemanagerSql->selectAffiliateManagerList();
 	  //TODO setup $affiliatemanagers_list from query results
 	  // structure of $affiliatemanager_list : Array('id','name')
-	  return $this->setAffiliateManagersList($affiliatemanagers_list);
+	  return $this->setAffiliateManagersList($affiliate_managers_list);
 	  }
 	public function getAffiliateManagerCategoryList(){
 	  $affiliate_manager_categorySql = new AffiliateManagerSql();
