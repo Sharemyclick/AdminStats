@@ -16,8 +16,8 @@ class Database{
     private $status;
     
     
-    private $databases_list = array();
-    
+    public $databases_list = array();
+    public $database_country_list = array();
  //==========================GET=====================================   
     public function getId_database() {
         return $this->id_database;
@@ -50,7 +50,14 @@ class Database{
 	  // structure of $database_list : Array('id','name')
 	  return $this->setDatabasesList($databases_list);
 	  }
-	
+	 public function getDatabaseCountryList(){
+	  $database_countrySql = new DatabaseSql();
+          
+	  $databases_list= $database_countrySql->selectDatabaseCountryList();
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  return $this->setDatabasesCountryList($databases_list);
+	  }
 	/*
   ======================================SETTERS================================
   */
@@ -82,7 +89,24 @@ class Database{
   {
    $this->databases_list = $databases_list;
   } 
+  
+  public function setDatabasesCountryList($database_country_list) {
+     $this->database_country_list = $database_country_list;
+ }  
+ 
     /*
   =========================================METHODS================================
   */
+  
+   public function createDatabase($database)
+ { $databaseSql = new DatabaseSql();
+ 
+ //if($this->downloadLogo($advertiser['logo']))
+   $result = $databaseSql->insertDatabase($database);
+  if(!$result)
+  {return($databaseSql->error);}
+  else{
+         return 'A <database has been created';
+  } 
+ }
 }
