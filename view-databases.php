@@ -2,7 +2,7 @@
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/database.class.php');
-
+include('class/affiliatemanager.class.php');
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
 session_start();  
 if(!isset($_SESSION['login'])) {  
@@ -12,6 +12,8 @@ if(!isset($_SESSION['login'])) {
 $viewDatabase = new Database();
 $viewDatabase->getDatabasesList();
 
+$objManager = new AffiliateManager();
+$resultManager = $objManager->getAffiliateManagersList($id_affiliate_manager);
 ?>
 
 <!DOCTYPE html>
@@ -103,12 +105,13 @@ $viewDatabase->getDatabasesList();
                     </thead>
                     
 					<tbody>
-                                                <?php foreach($viewDatabase->$databases_list as $list => $database){?>         					
+                                                <?php foreach($viewDatabase->databases_list as $list => $database){?>         					
 						
                                                         <tr>
                                                             <td class="centeralign"><a href="view-database-information.php?id=<?php echo $database['id_database']; ?>" ><?php echo $database['name'] ?></a></td>
                                                         <td class="centeralign"><?php echo $database['collect_url'] ?></td>
 							<td class="centeralign"><?php echo $database['volume'] ?></td> 
+                                                        <td class="centeralign"><?php echo $database['campaign_performance'] ?></td>
                                                         <td class="centeralign"><a href="view-affiliate-manager-information.php?id=<?php echo $database['id_affiliate_manager'] ?>" ><?php echo $database['name'] ?> </a></td>
                                                         <td class="centeralign"><?php echo $database['status'] ?> </td>
 							</tr>

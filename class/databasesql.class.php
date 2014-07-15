@@ -24,6 +24,12 @@ public function selectDatabaseCountryList(){
 	$req = $this->bdd->query('SELECT * FROM database_country');
 	return $req;
 }
+
+public function selectDatabaseTypeList(){
+
+	$req = $this->bdd->query('SELECT * FROM type_display_db');
+	return $req;
+}
  //======================INSERT========================
   //====================================================
         

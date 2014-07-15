@@ -18,6 +18,7 @@ class Database{
     
     public $databases_list = array();
     public $database_country_list = array();
+   public $database_types_list = array();
  //==========================GET=====================================   
     public function getId_database() {
         return $this->id_database;
@@ -45,11 +46,20 @@ class Database{
   //=================================GET=LIST================================  
      public function getDatabasesList(){
 	  $databaseSql = new DatabaseSql();
-	  $databases_sql= $databaseSql->SelectDatabaseList();
+	  $databases_list= $databaseSql->SelectDatabasesList();
 	  //TODO setup $databases_list from query results
 	  // structure of $database_list : Array('id','name')
 	  return $this->setDatabasesList($databases_list);
 	  }
+          
+           public function getDatabaseTypesList(){
+	  $databaseSql = new DatabaseSql();
+	  $database_types_list= $databaseSql->SelectDatabaseTypeList();
+	  //TODO setup $databases_list from query results
+	  // structure of $database_list : Array('id','name')
+	  return $this->setDatabaseTypesList($database_types_list);
+	  }
+          
 	 public function getDatabaseCountryList(){
 	  $database_countrySql = new DatabaseSql();
           
@@ -88,6 +98,11 @@ class Database{
      public function setDatabasesList($databases_list)
   {
    $this->databases_list = $databases_list;
+  } 
+  
+   public function setDatabaseTypesList($database_types_list)
+  {
+   $this->database_types_list = $database_types_list;
   } 
   
   public function setDatabasesCountryList($database_country_list) {
