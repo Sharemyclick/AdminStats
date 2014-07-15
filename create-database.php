@@ -23,6 +23,9 @@ $resultCountry = $objCountry->getCountryList();
 $objManager = new AffiliateManager();
 $resultManager = $objManager->getAffiliateManagersList();
 
+$objType = new Database();
+$resultType = $objType->getDatabaseTypesList();
+
 if(isset($_POST['submit_database'])){
     
     
@@ -127,12 +130,25 @@ if(isset($_POST['submit_database'])){
                             <label>Volume</label>
                         <span class="field"><input type="text" name="volume" class="input-xxlarge" /></span>
                         </p>
+                        <p>
+                            <label>Type *</label>
+                        <span class="field">
+                                <select name="type_database" id="type_database" class="status">
+                                        <?php 
+                                        foreach($objType->database_types_list as $indType => $valType){?>
+                                        
+                                    <option value="<?php echo $indType['id_type']; ?>"  ><?php echo $valType['type']; ?> </option>
+                                            </option>
+                                <?php } ?>
+                                </select>
+                            </span>
+                        </p>
 
                         <p>
                             <label>Manager *</label>
                             <span class="field">
                                 <select name="affiliate_manager" id="manager" class="status">
-                                        <?php echo var_dump($objManager);
+                                        <?php 
                                         foreach($objManager->affiliate_managers_list as $indManager => $valManager){?>
                                         
                                     <option value="<?php echo $indManager['id_affiliate_manager']; ?>"  ><?php echo $valManager['name']; ?> </option>
@@ -147,7 +163,20 @@ if(isset($_POST['submit_database'])){
                             <label>Campaign Performance</label>
                         <span class="field"><input type="text" name="campaign_performance" class="input-xxlarge" /></span>
                         </p>
-                                                       
+                        <p>
+                            <label>Country *</label>
+                            <span class="field">
+                                <select name="country" id="country" class="status">
+                                        <?php 
+                                        foreach($objCountry->countryselect as $indCountry => $valCountry){?>
+                                        
+                                    <option value="<?php echo $valCountry['id_country']; ?>"  ><?php echo $valCountry['name_country']; ?> </option>
+                                            </option>
+                                <?php } ?>
+                                </select>
+                            </span>
+                            
+                        </p>                              
                         <p>
                             <label>Status *</label>
                             <span class="field">

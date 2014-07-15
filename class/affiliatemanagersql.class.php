@@ -20,9 +20,9 @@ public function selectAffiliateManagerCountryList(){
                  . 'LEFT JOIN country c ON m.id_country = c.id_country');
 	return $req;
 }
-public function selectAffiliateManagerList($mainAffiliateManager = false){
+public function selectAffiliateManagerList(){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_manager  ');
+	$req = $this->bdd->query('SELECT * FROM affiliate_manager ');
 	return $req;
 	
 }
