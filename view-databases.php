@@ -1,6 +1,7 @@
 <?php
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
+include('class/database.class.php');
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
 session_start();  
@@ -8,6 +9,9 @@ if(!isset($_SESSION['login'])) {
   echo '<script>document.location.href="dashboard.php"</script>';  
   exit;  
 }
+$viewDatabase = new Database();
+$viewDatabase->getDatabasesList();
+
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +73,7 @@ if(!isset($_SESSION['login'])) {
             </ul>
         </div><!--breadcrumbwidget-->
       <div class="pagetitle">
-        	<h1>View Databases</h1> <span><strong><?php echo ucfirst($_SESSION['login']); ?></strong> , please see all the details for your existing Databases.</span>
+        	<h1>View Partners</h1> <span><strong><?php echo ucfirst($_SESSION['login']); ?></strong> , please see all the details for your existing Partners.</span>
         </div><!--pagetitle-->
         
         <div class="maincontent">
@@ -82,30 +86,33 @@ if(!isset($_SESSION['login'])) {
                         <col class="con1" />
                         <col class="con0" />
 						<col class="con1" />
+                        <col class="con0" />
+						<col class="con1" />
+                        <col class="con0" />
                     </colgroup>
                     <thead>
                         <tr>
-							<th class="centeralign">Database</th>
-							<th class="centeralign">Url</th>
-							<th class="centeralign">status</th>
-							<th class="centeralign">volume</th>
+							<th class="centeralign">Database name</th>
+							<th class="centeralign">Collect URL</th>
+							<th class="centeralign">Volume</th>
+							<th class="centeralign">Campaign Performance</th>
+							<th class="centeralign"> Manager</th>
+                                                        <th class="centeralign"> Status</th>
+							
 						</tr>
                     </thead>
                     
 					<tbody>
-						<?php
-					// On recupere tout le contenu de la table 'database'
-					$reponse = $bdd->query('SELECT * FROM database') or die(print_r($bdd->errorInfo())); 
-					// On affiche chaque entree une a  une et cela  tant qu'il y en a
-					while ($donnees = $reponse->fetch())
-						{
-                        echo '<tr>';
-                            echo '<td class="centeralign">'.$donnees['name'].'</td>';
-                            echo '<td class="centeralign">'.$donnees['collect_url'].'</td>';
-                            echo '<td class="centeralign">'.$donnees['status'].'</td>';
-							echo '<td class="centeralign">'.$donnees['volume'].'</td>';
-                        echo '</tr>';
-						}
+                                                <?php foreach($viewDatabase->$databases_list as $list => $database){?>         					
+						
+                                                        <tr>
+                                                            <td class="centeralign"><a href="view-database-information.php?id=<?php echo $database['id_database']; ?>" ><?php echo $database['name'] ?></a></td>
+                                                        <td class="centeralign"><?php echo $database['collect_url'] ?></td>
+							<td class="centeralign"><?php echo $database['volume'] ?></td> 
+                                                        <td class="centeralign"><a href="view-affiliate-manager-information.php?id=<?php echo $database['id_affiliate_manager'] ?>" ><?php echo $database['name'] ?> </a></td>
+                                                        <td class="centeralign"><?php echo $database['status'] ?> </td>
+							</tr>
+						<?php }
 					?>
                     </tbody>
 				</table>
@@ -113,7 +120,7 @@ if(!isset($_SESSION['login'])) {
 				// dynamic table
 				jQuery('#dbase').dataTable({
 				   "sPaginationType": "full_numbers",
-				   "aaSortingFixed": [[2,'asc']],
+				   "aaSortingFixed": [[4,'asc']],
 				   "fnDrawCallback": function(oSettings) {
 					  jQuery.uniform.update();
 				   }
