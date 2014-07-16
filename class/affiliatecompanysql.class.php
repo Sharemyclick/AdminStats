@@ -16,14 +16,26 @@ public function selectAffiliateCompanyCategoryList(){
 	
 }
 
-public function selectAffiliateCompanyList($mainCategory = false){
-
+public function selectAffiliateCompanyList($id_affiliate_company = false){
+        
 	$req = $this->bdd->query('SELECT * FROM affiliate_company a '
                 . 'LEFT JOIN country c ON a.id_country = c.id_country '
                 . 'LEFT JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
                 . 'LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   '
                 . ' LEFT JOIN affiliate_company_type_affiliate acta ON acta.id_affiliate_company = a.id_affiliate_company'
                 . ' LEFT JOIN type_affiliate ta ON ta.id_type_affiliate = acta.id_type_affiliate ');
+	return $req;
+	
+}
+
+public function selectAffiliateCompany($id_affiliate_company = false){
+        
+	$req = $this->bdd->query('SELECT * FROM affiliate_company a '
+                . 'LEFT JOIN country c ON a.id_country = c.id_country '
+                . 'LEFT JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
+                . 'LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   '
+                . ' LEFT JOIN affiliate_company_type_affiliate acta ON acta.id_affiliate_company = a.id_affiliate_company'
+                . ' LEFT JOIN type_affiliate ta ON ta.id_type_affiliate = acta.id_type_affiliate WHERE id_affiliate_company='.$id_affiliate_company);
 	return $req;
 	
 }
@@ -43,10 +55,16 @@ public function selectAffiliateCompanyTrafficList($mainCategory = false){
 }
   public function selectAffiliateCompanyTypeAffiliateList($id_affiliate_company = false){
 
-	$req = $this->bdd->query('SELECT * FROM type_affiliate WHERE id_affiliate_company = '.$id_affiliate_company);
+	$req = $this->bdd->query('SELECT * FROM affiliate_company_type_affiliate acta LEFT JOIN type_affiliate ta ON ta.id_affiliate_company =acta.id_affiliate_company WHERE id_affiliate_company = '.$id_affiliate_company);
 	return $req;
 	
 }      
+
+  public function selectTypeAffiliateList($id_affiliate_company = false){
+
+	$req = $this->bdd->query('SELECT * FROM type_affiliate' );
+	return $req;
+  }
 //=====================================INSERT======================================= 
 //================================================================================
 

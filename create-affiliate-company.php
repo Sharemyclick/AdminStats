@@ -20,7 +20,7 @@ $objTraffic = new AffiliateCompany();
 $resultTraffic = $objTraffic->getAffiliateCompanyTrafficList(); 
 
 $objTypeAffiliate = new AffiliateCompany();
-$resultTraffic = $objTypeAffiliate ->getAffiliateCompanyTypeAffiliateList();
+$resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
 
 //$objCategory = new Category();
 //$result = $objCategory->getCategoriesList();
@@ -147,13 +147,14 @@ $resultTraffic = $objTypeAffiliate ->getAffiliateCompanyTypeAffiliateList();
                             
                             <span class="field">
                                 <select name="id_hq" id="id_hq" class="status">
-                                        <?php 
                                         
-                                      
+                                    <option value="" ></option>
+                                                 
+                                    
+                                    <?php 
                                         foreach($objHeadquarter->affiliate_companies_list as $indCompany => $nameCompany){?>
                                                  <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name']; ?></option>
-                                                 </option>
-                                <?php }   ?>
+                                                                         <?php }   ?>
                                 </select>
                             </span>  
                             
@@ -165,11 +166,10 @@ $resultTraffic = $objTypeAffiliate ->getAffiliateCompanyTypeAffiliateList();
                                 
                                  <select name="id_type_affiliate" id="type_affiliate" class="status">
                                         <?php 
-                                        foreach($objTypeAffiliate->affiliate_companies_type_affiliate_list as $indTypeAffiliate => $valTypeAffiliate){?>
+                                        foreach($objTypeAffiliate->type_affiliate_list as $indTypeAffiliate => $valTypeAffiliate){?>
                                         
-                                    <option value="<?php echo $valTypeAffiliate['id_type_affiliate']; ?>"  ><?php echo $valTypeAffiliate['type_affiliate']; ?> </option>
-                                            </option>
-                                <?php } ?>
+                                    <option value="<?php echo $valTypeAffiliate['id_type_affiliate']; ?>"> <?php echo $valTypeAffiliate['type_affiliate']; ?> </option>
+                                                                      <?php } ?>
                                 </select>
                             </span>
                             </p>
