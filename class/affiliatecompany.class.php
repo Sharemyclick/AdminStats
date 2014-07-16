@@ -84,6 +84,16 @@ class AffiliateCompany
 	  $this->setAffiliateCompaniesList($affiliate_companies_list);
           return true;
 	  }
+      
+          public function getAffiliateCompanyInformation($id){
+	  $affiliate_companySql = new AffiliateCompanySql();
+	  $affiliate_company= $affiliate_companySql->selectAffiliateCompany($id);
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  $this->setAffiliateCompanyInformation($affiliate_company);
+          return true;
+	  }
+          
 	public function getAffiliateCompanyTrafficList(){
 	  $affiliate_companySql = new AffiliateCompanySql();
 	  $affiliate_companies_traffic_list= $affiliate_companySql->selectAffiliateCompanyTrafficList();
@@ -187,6 +197,11 @@ class AffiliateCompany
   public function setAffiliateCompaniesTypeAffiliateList($affiliate_companies_type_affiliate_list)
   {
    $this->affiliate_companies_type_affiliate_list = $affiliate_companies_type_affiliate_list;
+  } 
+  
+   public function setAffiliateCompanyInformation($affiliate_company)
+  {
+   $this->affiliate_company = $affiliate_company;
   } 
     /*
  ========================= METHODS==================================

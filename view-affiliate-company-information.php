@@ -13,17 +13,17 @@ if(!isset($_SESSION['login'])) {
 }
 $filters['field'] = 'id_company';
 $filters['value'] = $_GET['id'];
-$id_affiliate_compqny = $_GET['id'];
+$id_affiliate_company = $_GET['id'];
+
+
+echo $filters['value'] ;
 
 
 $viewAffiliateCompany = new AffiliateCompany();
-$viewAffiliateCompany->getAffiliateCompany();
+$viewAffiliateCompany->getAffiliateCompanyInformation($id_affiliate_company);
 
 $viewHq = new AffiliateCompany();
 $viewHq->getHq();
-
-$viewCountry = new Country();
-$viewCountry->getCountry($filters['value']);
 
 ?>
 
@@ -104,22 +104,22 @@ $viewCountry->getCountry($filters['value']);
                     <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate.php" enctype="multipart/form-data">
                         
                         <input type="hidden" name="id" value="<?php echo $filters['value'] ;?>">
-                         <?php //echo '<pre>', var_dump($viewAffiliateCompany), '</pre>'; ?>
+                         <?php //echo '<pre>', var_dump($viewAffiliateCompany->affiliate_company), '</pre>'; ?>
                         <p>
                             <label>Affiliate Company name *</label>
-                            <span class="field"><input type="text" value="<?php echo $viewAffiliateCompany->afffiliate_company['company_name']; ?>" name="affiliate_company_name" class="input-xxlarge" readonly="readonly" /></span>
+                            <span class="field"><input type="text" value="<?php echo $viewAffiliateCompany->affiliate_company['company_name']; ?>" name="company_name" class="input-xxlarge" readonly="readonly" /></span>
                         </p>
 
                         <p>
                             <label>Address *</label>
-                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_companies_list['address']; ?>" readonly="readonly"/></span>
+                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['address']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>Country *</label>
                             
                             <span class="field">
-                            <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewCountry->country_select['name_country']; ?>" readonly="readonly"/>
+                            <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['name_country'] ?>" readonly="readonly"/>
                             </span>
                             
                         </p>
@@ -127,26 +127,44 @@ $viewCountry->getCountry($filters['value']);
                                                             
                         <p>
                             <label> Website *</label>
-                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_companies_list['websites']; ?>" readonly="readonly"/></span>
+                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['websites']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label> Headquarter</label>
-                                <span class="field"><input type="url" name="hq" class="input-xxlarge" value="<?php echo $viewHq->affiliate_hq['company_name']; ?>" readonly="readonly"/></span>
-                            </span>  
+                              <span class="field"> <input type="url" name="hq" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['hq']; ?>" readonly="readonly"/>     </span>
+                            
                         </p>
                         
-						<p>
+                        <p>
                             <label>Status</label>
                             
                             <span class="field">
-                               <input type="text" name="status" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_companies_list['status'] ?>" readonly="readonly"/>
+                               <input type="text" name="status" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['status'] ?>" readonly="readonly"/>
+                            </span>  
+                            
+                        </p>
+                        
+                        <p>
+                            <label>Traffic</label>
+                            
+                            <span class="field">
+                               <input type="text" name="traffic" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['traffic'] ?>" readonly="readonly"/>
+                            </span>  
+                            
+                        </p>
+                        
+                        <p>
+                            <label>Type of Affiliate</label>
+                            
+                            <span class="field">
+                               <input type="text" name="type_affiliate" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['type_affiliate'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
                         
                         <p class="stdformbutton">
-                            <button type="submit" name="update_advertiser" id="update_advertiser" class="btn btn-primary"> Update informations</button>
+                            <button type="submit" name="update_affiliate_company" id="update_advertiser" class="btn btn-primary"> Update informations</button>
                             
                         </p>
                         

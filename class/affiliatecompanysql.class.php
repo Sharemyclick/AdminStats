@@ -30,15 +30,18 @@ public function selectAffiliateCompanyList($id_affiliate_company = false){
 
 public function selectAffiliateCompany($id_affiliate_company = false){
         
-	$req = $this->bdd->query('SELECT * FROM affiliate_company a '
+	$req = $this->bdd->query('SELECT a.*, c.name_country, t.traffic, ta.type_affiliate, ac2.company_name AS hq FROM affiliate_company a '
                 . 'LEFT JOIN country c ON a.id_country = c.id_country '
                 . 'LEFT JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
+                . 'LEFT JOIN affiliate_company ac2 ON ac2.id_affiliate_company=a.id_hq '
                 . 'LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   '
                 . ' LEFT JOIN affiliate_company_type_affiliate acta ON acta.id_affiliate_company = a.id_affiliate_company'
-                . ' LEFT JOIN type_affiliate ta ON ta.id_type_affiliate = acta.id_type_affiliate WHERE id_affiliate_company='.$id_affiliate_company);
-	return $req;
+                . ' LEFT JOIN type_affiliate ta ON ta.id_type_affiliate = acta.id_type_affiliate WHERE a.id_affiliate_company= '.$id_affiliate_company);
+	$res = $req->fetch();
+        
+        return $res;
 	
-}
+} 
 public function selectAffiliateCompanyHQList($mainCategory = false){
 
 	$req = $this->bdd->query('SELECT * FROM affiliate_company ');
@@ -163,13 +166,11 @@ public function updateAffiliateCompany($affiliate_company)
    $req = $this->bdd->prepare('UPDATE affiliate_company SET company_name=:company_name, address=:address, id_country=:id_country, websites=:websites, id_hq=:id_hq, type_of_affiliate=:type_of_affiliate,  status=:status WHERE id_affiliate_company =' .$id_affiliate_company);
    $req->execute(array(    
          'company_name' => $affiliate_company['company_name'],
-             'address' => $affiliate_company['address'],
+            'address' => $affiliate_company['address'],
             'id_country' => $affiliate_company['id_country'],
-             'websites' => $affiliate_company['websites'],
+            'websites' => $affiliate_company['websites'],
             'id_hq' => $affiliate_company['id_hq'],
-         
             'type_of_affiliate' => $affiliate_company['type_of_affiliate'],   
-           
             'status' => $affiliate_company['status']
 
 )) or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
