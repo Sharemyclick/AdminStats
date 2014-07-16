@@ -12,8 +12,7 @@ if(!isset($_SESSION['login'])) {
 $viewDatabase = new Database();
 $viewDatabase->getDatabasesList();
 
-$objManager = new AffiliateManager();
-$resultManager = $objManager->getAffiliateManagersList($id_affiliate_manager);
+
 ?>
 
 <!DOCTYPE html>
@@ -108,12 +107,12 @@ $resultManager = $objManager->getAffiliateManagersList($id_affiliate_manager);
                                                 <?php foreach($viewDatabase->databases_list as $list => $database){?>         					
 						
                                                         <tr>
-                                                            <td class="centeralign"><a href="view-database-information.php?id=<?php echo $database['id_database']; ?>" ><?php echo $database['name'] ?></a></td>
-                                                        <td class="centeralign"><?php echo $database['collect_url'] ?></td>
+                                                            <td class="centeralign"><a href="view-database-information.php?id=<?php echo $database['id_database']; ?>" ><?php echo $database['database_name'] ?></a></td>
+                                                        <td class="centeralign"><a href="<?php echo $database['collect_url'] ?>" title="<?php echo $database['collect_url'] ?>" ><?php echo substr($database['collect_url'],0,30); ?></a></td>
 							<td class="centeralign"><?php echo $database['volume'] ?></td> 
                                                         <td class="centeralign"><?php echo $database['campaign_performance'] ?></td>
                                                         <td class="centeralign"><a href="view-affiliate-manager-information.php?id=<?php echo $database['id_affiliate_manager'] ?>" ><?php echo $database['name'] ?> </a></td>
-                                                        <td class="centeralign"><?php echo $database['status'] ?> </td>
+                                                        <td class="centeralign"><?php echo $database['database_status'] ?> </td>
 							</tr>
 						<?php }
 					?>

@@ -108,8 +108,7 @@ if(isset($_POST['submit_database'])){
                 
                 <?php
                      if(isset($_POST['submit_database'])){
-                         ?>   <h4 class='confirmation' style="text-align: center" ">The Database has been created </h4> </br> <?php ;}
-                ?>
+                         ?>   <h4 class='confirmation' style="text-align: center" >The Database has been created </h4> </br> <?php } ?>
 			<div class="widgetcontent">
 			
             	<h4 class="widgettitle nomargin shadowed">Database informations</h4>
@@ -118,7 +117,7 @@ if(isset($_POST['submit_database'])){
                     <form name="form_advertiser" class="stdform stdform2" method="post" action="" enctype="multipart/form-data">
                         <p>
                             <label>Database name *</label>
-                            <span class="field"><input type="text" name="name" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="text" name="database_name" class="input-xxlarge" required="required" /></span>
                         </p>
 
                         <p>
@@ -133,7 +132,7 @@ if(isset($_POST['submit_database'])){
                         <p>
                             <label>Type *</label>
                         <span class="field">
-                                <select name="type_database" id="type_database" class="status">
+                                <select name="id_type" id="id_type" class="status">
                                         <?php 
                                         foreach($objType->database_types_list as $indType => $valType){?>
                                         
@@ -147,7 +146,7 @@ if(isset($_POST['submit_database'])){
                         <p>
                             <label>Manager *</label>
                             <span class="field">
-                                <select name="affiliate_manager" id="manager" class="status">
+                                <select name="id_affiliate_manager" id="id_affiliate_manager" class="status">
                                         <?php 
                                         foreach($objManager->affiliate_managers_list as $indManager => $valManager){?>
                                         
@@ -166,7 +165,7 @@ if(isset($_POST['submit_database'])){
                         <p>
                             <label>Country *</label>
                             <span class="field">
-                                <select name="country" id="country" class="status">
+                                <select name="id_country" id="id_country" class="status">
                                         <?php 
                                         foreach($objCountry->countryselect as $indCountry => $valCountry){?>
                                         
@@ -180,7 +179,7 @@ if(isset($_POST['submit_database'])){
                         <p>
                             <label>Status *</label>
                             <span class="field">
-                                <select name="status" id="status" class="status" required="required">
+                                <select name="database_status" id="database_status" class="status" required="required">
                                         <option value="active"> Active</option>
                                         <option value="non active"> Non active</option>
                                         <option value="prospect adviser"> Prospect adviser</option>

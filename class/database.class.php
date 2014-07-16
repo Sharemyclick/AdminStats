@@ -14,8 +14,8 @@ class Database{
     private $volume;
     private $company_performance;
     private $status;
-    
-    
+   
+    public $databases_view = array();
     public $databases_list = array();
     public $database_country_list = array();
    public $database_types_list = array();
@@ -52,6 +52,15 @@ class Database{
 	  return $this->setDatabasesList($databases_list);
 	  }
           
+            public function getDatabasesView(){
+	  $databaseSql = new DatabaseSql();
+	  $databases_view= $databaseSql->SelectDatabasesView($database['id_database']);
+	  //TODO setup $databases_list from query results
+	  // structure of $database_list : Array('id','name')
+	  return $this->setDatabasesView($databases_view);
+	  }
+          
+          
            public function getDatabaseTypesList(){
 	  $databaseSql = new DatabaseSql();
 	  $database_types_list= $databaseSql->SelectDatabaseTypeList();
@@ -63,10 +72,10 @@ class Database{
 	 public function getDatabaseCountryList(){
 	  $database_countrySql = new DatabaseSql();
           
-	  $databases_list= $database_countrySql->selectDatabaseCountryList();
+	  $databases_country_list= $database_countrySql->selectDatabaseCountryList();
 	  //TODO setup $categories_list from query results
 	  // structure of $categories_list : Array('id','name')
-	  return $this->setDatabasesCountryList($databases_list);
+	  return $this->setDatabasesCountryList($databases_country_list);
 	  }
 	/*
   ======================================SETTERS================================
@@ -100,6 +109,11 @@ class Database{
    $this->databases_list = $databases_list;
   } 
   
+       public function setDatabasesView($databases_view)
+  {
+   $this->databases_view = $databases_view;
+  } 
+  
    public function setDatabaseTypesList($database_types_list)
   {
    $this->database_types_list = $database_types_list;
@@ -119,7 +133,9 @@ class Database{
  //if($this->downloadLogo($advertiser['logo']))
    $result = $databaseSql->insertDatabase($database);
   if(!$result)
-  {return($databaseSql->error);}
+  {return($databaseSql->error);
+  
+  }
   else{
          return 'A <database has been created';
   } 

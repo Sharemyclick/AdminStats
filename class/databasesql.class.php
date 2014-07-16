@@ -2,6 +2,7 @@
 class DatabaseSql
 {
 private $bdd;
+public $error;
 
 public function DatabaseSql(){
 	// On se connecte à la base de données.
@@ -16,6 +17,17 @@ public function SelectDatabasesList($database = false){
                 . 'LEFT JOIN country c ON c.id_country = dc.id_country '
                 . 'LEFT JOIN database_type dt ON dt.id_database = d.id_database '
                 . 'LEFT JOIN type_display_db tdt ON tdt.id_type = dt.id_type');
+	return $req;
+	
+}
+public function SelectDatabasesView($database = false){
+
+	$req = $this->bdd->query('SELECT * FROM dbase d LEFT JOIN affiliate_manager_database amd ON amd.id_database = d.id_database '
+                . 'LEFT JOIN affiliate_manager am ON amd.id_affiliate_manager = am.id_affiliate_manager '
+                . 'LEFT JOIN database_country dc ON dc.id_database = d.id_database '
+                . 'LEFT JOIN country c ON c.id_country = dc.id_country '
+                . 'LEFT JOIN database_type dt ON dt.id_database = d.id_database '
+                . 'LEFT JOIN type_display_db tdt ON tdt.id_type = dt.id_type WHERE id_database='.$database);
 	return $req;
 	
 }
@@ -37,13 +49,13 @@ public function insertDatabase($database)
         
           //====================DATABASE===============================
    
-{$req = $this->bdd->prepare('INSERT INTO dbase(  name, collect_url, volume, campaign_performance, status ) VALUES ( :name, :collect_url, :volume, :campaign_performance, :status)');
+{$req = $this->bdd->prepare('INSERT INTO dbase(  database_name, collect_url, volume, campaign_performance, database_status ) VALUES ( :database_name, :collect_url, :volume, :campaign_performance, :database_status)');
         $req->execute(array(
-            'name' => $database['name'],
+            'database_name' => $database['database_name'],
              'collect_url' => $database['collect_url'],
             'volume' => $database['volume'],
              'campaign_performance' => $database['campaign_performance'],
-            'status' => $database['status']
+            'database_status' => $database['database_status']
            )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          
    $id_database = $this->bdd->lastInsertId();
@@ -55,7 +67,7 @@ public function insertDatabase($database)
     $errors = $req->errorInfo();
     
     $this->error = 'database : '.$errors[2];
-   
+}
       //====================MANAGER_DATABASE===============================
     
    $req = $this->bdd->prepare('INSERT INTO affiliate_manager_database(  id_affiliate_manager, id_database) VALUES ( :id_affiliate_manager, :id_database)');
@@ -73,13 +85,13 @@ public function insertDatabase($database)
     $errors = $req->errorInfo();
     
     $this->error = 'affiliate_manager_database : '.$errors[2];
-   
+}
       //====================DATABASE_COUNTRY===============================
     
    $req = $this->bdd->prepare('INSERT INTO database_country(  id_database,id_country) VALUES ( :id_database, :id_country)');
         $req->execute(array(
             'id_database' => $id_database,
-             'id_country' => $affiliate_manager['id_country']    
+             'id_country' => $id_database['id_country']    
                 
                  )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          
@@ -91,10 +103,10 @@ public function insertDatabase($database)
     $errors = $req->errorInfo();
     
     $this->error = 'database : '.$errors[2];
-   
+}
       //====================DATABASE_TYPE===============================
     
-   $req = $this->bdd->prepare('INSERT INTO database_display(  id_type, id_database) VALUES ( :id_type, :id_database)');
+   $req = $this->bdd->prepare('INSERT INTO database_type(  id_type, id_database) VALUES ( :id_type, :id_database)');
         $req->execute(array(
             'id_database' => $id_database,
              'id_type' => $database['id_type']
@@ -111,14 +123,13 @@ public function insertDatabase($database)
 }
 
 }
-}
+
 }
           
-}
+
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-}
