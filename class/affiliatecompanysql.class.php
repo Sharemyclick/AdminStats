@@ -18,10 +18,11 @@ public function selectAffiliateCompanyCategoryList(){
 
 public function selectAffiliateCompanyList($id_affiliate_company = false){
         
-	$req = $this->bdd->query('SELECT * FROM affiliate_company a '
-                . 'LEFT JOIN country c ON a.id_country = c.id_country '
-                . 'LEFT JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
-                . 'LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   '
+	$req = $this->bdd->query('SELECT  a.id_affiliate_company, a.company_name, a.address, a.websites, c.name_country, t.traffic, ta.type_affiliate, ta.status, hq.company_name AS hq_company_name FROM affiliate_company a '
+                . ' LEFT JOIN country c ON a.id_country = c.id_country '
+                . ' LEFT JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
+                . ' LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   '
+                . ' LEFT JOIN affiliate_company hq ON hq.id_affiliate_company = a.id_hq'
                 . ' LEFT JOIN affiliate_company_type_affiliate acta ON acta.id_affiliate_company = a.id_affiliate_company'
                 . ' LEFT JOIN type_affiliate ta ON ta.id_type_affiliate = acta.id_type_affiliate ');
 	return $req;
@@ -42,9 +43,9 @@ public function selectAffiliateCompany($id_affiliate_company = false){
         return $res;
 	
 } 
-public function selectAffiliateCompanyHQList($mainCategory = false){
+public function selectAffiliateCompanyHQ($hq = false){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_company ');
+	$req = $this->bdd->query('SELECT company_name FROM affiliate_company WHERE id_affiliate_company='.$hq  );
 	return $req;
 	
 }

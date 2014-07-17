@@ -131,10 +131,19 @@ $resultCountry = $objCountry->getCountryList();
                 
                          <span class="field" >
                              <div class="widgetcontent">
-                             <a href="update-advertiser-globalview.php" >   
-                                 <input type="button" value="Return to all advertiser"> 
-                             </a>
-                             </div>
+                                 
+                                 <p class="stdformbutton" style="text-align: center">
+                                      <a href="update-advertiser-globalview.php" >
+                                        <button type="button" name="return_all_advertiser" id="return_all_advertiser" class="btn btn-primary" >Update another advertiser </button>
+                                      </a>
+                                     <a href="view-advertiser.php" >
+                                        <button type="button" name="view_all_advertiser" id="view_all_advertiser" class="btn btn-primary" >View all advertisers </button>
+                                      </a>
+                                </p>
+                                
+                                
+                                 
+                            </div>
                          </span>
                 <?php ;}
                 else {?>
@@ -186,7 +195,7 @@ $resultCountry = $objCountry->getCountryList();
                         
                         <p>
                            <label>Logo</label>
-                           <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                           <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
                            <span class="field"><img src="<?php echo 'http://localhost/campaigns/img/logo/'.$viewAdvertiser->advertisers[0]['logo']; ?>" height="180" width="98"></span>
                            <span class="field"><input type="file" name="logo" id="logo" /></span>
                            <input type="hidden" name="path" id="path" value="<?php echo $viewAdvertiser->advertisers[0]['logo']; ?>" />	

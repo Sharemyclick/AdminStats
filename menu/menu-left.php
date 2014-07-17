@@ -44,7 +44,7 @@
                 	<ul>
                     	<li><a href="view-affiliate-company.php">View all Affiliates companies</a></li>
                         <li><a href="create-affiliate-company.php">Create Affiliate company</a></li>
-                        <li><a href="update-affiliate-company.php">Modify Affiliate company</a></li>
+                        <li><a href="update-affiliate-company-globalview.php">Modify Affiliate company</a></li>
                     </ul>
                 </li>
                 

@@ -127,12 +127,11 @@ class AffiliateCompany
 	  // structure of $categories_list : Array('id','name')
 	  return $this->setTypeAffiliateList($type_affiliate_list);
 	  }
-          public function getHQ(){
+          public function getHQ($hq){
 	  $affiliate_companySql = new AffiliateCompanySql();
-	  $affiliate_hq= $affiliate_companySql->selectAffiliateCompanyHQList();
-	  //TODO setup $categories_list from query results
-	  // structure of $categories_list : Array('id','name')
-	  $this->setAffiliateCompaniesHQList($affiliate_hq);
+	  $affiliate_hq= $affiliate_companySql->selectAffiliateCompanyHQ($hq);
+	  
+	  $this->setAffiliateCompanyHQ($affiliate_hq);
           return true;
 	  }
 	/*
@@ -181,10 +180,11 @@ class AffiliateCompany
   {
    $this->affiliate_companies_list = $affiliate_companies_list;
   } 
-   public function setAffiliateCompaniesHQList($affiliate_hq)
+   public function setAffiliateCompanyHQ($affiliate_hq)
   {
    $this->affiliate_hq = $affiliate_hq;
   }
+  
   
    public function setTypeAffiliateList($type_affiliate_list)
   {
