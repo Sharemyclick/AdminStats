@@ -108,8 +108,9 @@ public function insertDatabase($database)
     
    $req = $this->bdd->prepare('INSERT INTO database_type(  id_type, id_database) VALUES ( :id_type, :id_database)');
         $req->execute(array(
-            'id_database' => $id_database,
-             'id_type' => $database['id_type']
+           'id_type' => $database['id_type'],
+                'id_database' => $id_database
+             
                 )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
  if($req->errorCode() == 0) {
      $req->closeCursor();
@@ -126,10 +127,3 @@ public function insertDatabase($database)
 
 }
           
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
