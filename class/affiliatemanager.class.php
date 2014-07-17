@@ -61,6 +61,14 @@ return $this->status;
 	  // structure of $affiliatemanager_list : Array('id','name')
 	  return $this->setAffiliateManagersList($affiliate_managers_list);
 	  }
+           public function getAffiliateManagerInformation($id){
+	  $affiliate_managerSql = new AffiliateManagerSql();
+	  $affiliate_manager= $affiliate_managerSql->selectAffiliateManager($id);
+	  //TODO setup $categories_list from query results
+	  // structure of $categories_list : Array('id','name')
+	  $this->setAffiliateManagerInformation($affiliate_manager);
+          return true;
+	  }
 	public function getAffiliateManagerCategoryList(){
 	  $affiliate_manager_categorySql = new AffiliateManagerSql();
           
@@ -128,7 +136,10 @@ public function setAffiliateManagersList($affiliate_managers_list)
 public function setAffiliateManagersCountryList($affiliate_manager_country_list) {
      $this->affiliate_manager_country_list = $affiliate_manager_country_list;
  }  
-
+ public function setAffiliateManagerInformation($affiliate_manager)
+  {
+   $this->affiliate_manager = $affiliate_manager;
+  } 
     /*
   ==============================METHODS==================================
   */
