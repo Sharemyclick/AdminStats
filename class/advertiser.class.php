@@ -294,7 +294,7 @@ if(!isset($error)) //S'il n'y a pas d'erreur, on upload
   'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
    //$file = preg_replace('/([^.a-z0-9]+)/i', '-', $upload_file);
 
-if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $upload_file)) // Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+if(move_uploaded_file($logo['tmp_name'], $folder . $upload_file)) // Si la fonction renvoie TRUE, c'est que ça a fonctionné...
     {
 
  foreach($_POST as $indPost => $valPost){
@@ -302,10 +302,10 @@ if(move_uploaded_file($_FILES['logo']['tmp_name'], $folder . $upload_file)) // S
   if($checkpos !== false)
    $result = $valPost;
  }
- }
-  
+ }else return false;
+  return true;
 }
-return true;
+return false;
 
  }
  //Get historical information

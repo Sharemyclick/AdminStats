@@ -215,7 +215,7 @@ if(isset($_POST['submit_advertiser'])){
 							
                         <p>
                             <label>Password *</label>
-                            <span class="field"><input type="text" name="password" id="password" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="password" name="password" id="password" class="input-xxlarge" required="required" /></span>
                         </p>
                         
                          <p>

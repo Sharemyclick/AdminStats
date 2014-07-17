@@ -1,4 +1,4 @@
- <?php
+<?php
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/affiliatecompany.class.php');
@@ -11,19 +11,29 @@ if(!isset($_SESSION['login'])) {
   echo '<script>document.location.href="dashboard.php"</script>';  
   exit;  
 }
-$filters['field'] = 'id_company';
-$filters['value'] = $_GET['id'];
-$id_affiliate_company = $_GET['id'];
-
-
-echo $filters['value'] ;
-
+$filters['field'] = 'id_affiliate_company';
+if(isset($_POST['id_affiliate_company']) || isset($_GET['id']))
+$filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id_affiliate_company'];
+/*
+ if($_GET['id']) 
+    $filters['value'] = $_GET['id'];
+ else
+  $filters['value'] = $_POST['id'];
+ */
 
 $viewAffiliateCompany = new AffiliateCompany();
-$viewAffiliateCompany->getAffiliateCompanyInformation($id_affiliate_company);
+$viewAffiliateCompany->getAffiliateCompanyInformation($filters['value']);
+
+$hq=$viewAffiliateCompany->affiliate_company['id_hq'];
 
 $viewHq = new AffiliateCompany();
-$viewHq->getHq();
+$viewHq->getHq($hq);
+
+$objCountry = new Country();
+$resultCountry = $objCountry->getCountryList();
+
+$objTypeAffiliate = new AffiliateCompany();
+$resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
 
 ?>
 
@@ -52,7 +62,9 @@ $viewHq->getHq();
 
 	
 	<?php include ('./menu/menu-left.php');
-        
+        if(isset($_POST['submit_advertiser'])){
+        echo  "Result : ".$message;
+     }
         ?>
     
     <!-- START OF RIGHT PANEL -->
@@ -88,15 +100,39 @@ $viewHq->getHq();
             </ul>
         </div><!--breadcrumbwidget-->
         <div class="pagetitle">
-        	<h1> Affiliate company's informations</h1> <span><?php echo $_SESSION['login']; ?> , here the informations of the company.</span>
+        	<h1> Advertiser's information</h1> <span><?php echo $_SESSION['login']; ?> , here the informations of the company.</span>
         </div><!--pagetitle-->
         
         <div class="maincontent">
 		
             <div class="contentinner">
+                
+                <?php
+                     if(isset($_POST['submit_update'])){
+                         ?>   <h4 class='confirmation' style="text-align: center" ">Informations have been updated. </h4> </br> 
+                
+                         <span class="field" >
+                             <div class="widgetcontent">
+                                 
+                                 <p class="stdformbutton" style="text-align: center">
+                                      <a href="update-advertiser-globalview.php" >
+                                        <button type="button" name="return_all_advertiser" id="return_all_advertiser" class="btn btn-primary" >Update another advertiser </button>
+                                      </a>
+                                     <a href="view-advertiser.php" >
+                                        <button type="button" name="view_all_advertiser" id="view_all_advertiser" class="btn btn-primary" >View all advertisers </button>
+                                      </a>
+                                </p>
+                                
+                                
+                                 
+                            </div>
+                         </span>
+                <?php ;}
+                else {?>
+                
 			<div class="widgetcontent">
 			
-            	<h4 class="widgettitle nomargin shadowed">Affiliate Company informations</h4>
+            	<h4 class="widgettitle nomargin shadowed">Advertiser informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
                     <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate.php" enctype="multipart/form-data">
@@ -105,19 +141,28 @@ $viewHq->getHq();
                          <?php //echo '<pre>', var_dump($viewAffiliateCompany->affiliate_company), '</pre>'; ?>
                         <p>
                             <label>Affiliate Company name *</label>
-                            <span class="field"><input type="text" value="<?php echo $viewAffiliateCompany->affiliate_company['company_name']; ?>" name="company_name" class="input-xxlarge" readonly="readonly" /></span>
+                            <span class="field"><input type="text" value="<?php echo $viewAffiliateCompany->affiliate_company['company_name']; ?>" name="company_name" class="input-xxlarge" /></span>
                         </p>
 
                         <p>
                             <label>Address *</label>
-                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['address']; ?>" readonly="readonly"/></span>
+                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['address']; ?>" /></span>
                         </p>
                         
                         <p>
                             <label>Country *</label>
                             
                             <span class="field">
-                            <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['name_country'] ?>" readonly="readonly"/>
+                            
+                            <select name="country" id="country" class="status">
+                                        <?php 
+                                        foreach($objCountry->countryselect as $indCountry => $valCountry){?>
+                                        
+                                    <option value="<?php echo $valCountry['id_country']; ?>" <?php if($viewAffiliateCompany->affiliate_company['name_country'] == $valCountry['name_country']){?> selected <?php } ?>  ><?php echo $valCountry['name_country']; ?> </option>
+                                            </option>
+                                <?php }; ?>
+                                </select>
+                            
                             </span>
                             
                         </p>
@@ -125,12 +170,12 @@ $viewHq->getHq();
                                                             
                         <p>
                             <label> Website *</label>
-                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['websites']; ?>" readonly="readonly"/></span>
+                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['websites']; ?>" /></span>
                         </p>
                         
                         <p>
                             <label> Headquarter</label>
-                              <span class="field"> <input type="url" name="hq" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['hq']; ?>" readonly="readonly"/>     </span>
+                              <span class="field"> <input type="url" name="hq" class="input-xxlarge" value="<?php //echo $viewHq->affiliate_hq['company_name'] ?>" />     </span>
                             
                         </p>
                         
@@ -138,7 +183,7 @@ $viewHq->getHq();
                             <label>Status</label>
                             
                             <span class="field">
-                               <input type="text" name="status" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['status'] ?>" readonly="readonly"/>
+                               <input type="text" name="status" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['status'] ?>" />
                             </span>  
                             
                         </p>
@@ -147,7 +192,7 @@ $viewHq->getHq();
                             <label>Traffic</label>
                             
                             <span class="field">
-                               <input type="text" name="traffic" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['traffic'] ?>" readonly="readonly"/>
+                               <input type="text" name="traffic" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['traffic'] ?>" />
                             </span>  
                             
                         </p>
@@ -156,25 +201,24 @@ $viewHq->getHq();
                             <label>Type of Affiliate</label>
                             
                             <span class="field">
-                               <input type="text" name="type_affiliate" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['type_affiliate'] ?>" readonly="readonly"/>
+                                                           
+                               <select name="id_type_affiliate" id="type_affiliate" class="status">
+                            
+                                        <?php foreach($objTypeAffiliate->type_affiliate_list as $indTypeAffiliate => $valTypeAffiliate){?>
+                                                                          
+                                        <option value="<?php echo $valTypeAffiliate['id_type_affiliate']; ?>" <?php if($viewAffiliateCompany->affiliate_company['type_affiliate'] == $valTypeAffiliate['type_affiliate']){?> selected <?php } ?>  ><?php echo $valTypeAffiliate['type_affiliate']; ?> </option> <?php } ?>
+                                </select>
+                            
                             </span>  
                             
                         </p>
                         
                         <p class="stdformbutton" style="text-align: center">
-                            <button type="submit" name="update_affiliate_company" id="update_advertiser" class="btn btn-primary"> Update informations</button>
-                            <a href="view-affiliate-company.php"
-                                <button type="button" name="view_all_affiliate_company" id="view_all_affiliate_company" class="btn btn-primary"> View all affiliate companies</button>
-                            </a>
+                            <button type="submit" name="submit_update" id="submit_update" class="btn btn-primary"> Update informations</button>
+                            
                         </p>
-                        
-                       
-                            
-                            
-                            
-                       
-                        
-                        
+                <?php }; ?>
+                                        
                         </form>
                     </div>				
                 </div><!--contentinner-->

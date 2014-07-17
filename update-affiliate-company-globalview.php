@@ -111,11 +111,11 @@ $viewAffiliateCompany->getAffiliateCompanyList();
                                                 foreach($viewAffiliateCompany->affiliate_companies_list as $list => $affiliate){ ?>         					
 						
                                                         <tr>
-                                                        <td class="centeralign"><a href="view-affiliate-company-information.php?id=<?php echo $affiliate['id_affiliate_company']; ?>" ><?php echo $affiliate['company_name'] ?></a></td>
+                                                        <td class="centeralign"><a href="update-affiliate-company.php?id=<?php echo $affiliate['id_affiliate_company']; ?>" ><?php echo $affiliate['company_name'] ?></a></td>
                                                         <td class="centeralign"><?php echo $affiliate['address'] ;?>  </td>
                                                         <td class="centeralign"><?php echo $affiliate['name_country'] ?></td>
                                                         <td class="centeralign"><a href="<?php echo $affiliate['websites'] ?>" title="<?php echo $affiliate['websites'] ?>" ><?php echo substr($affiliate['websites'],0,30); ?></a></td> 
-                                                        <td class="centeralign"><?php echo $affiliate['hq_company_name'] ?></td>
+                                                        <td class="centeralign"><?php echo $affiliate['id_hq'] ?></td>
                                                         <td class="centeralign"><?php echo $affiliate['type_affiliate'] ?> </td>
                                                         <td class="centeralign"><?php echo $affiliate['status'] ?> </td>
 </tr>
