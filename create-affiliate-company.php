@@ -103,9 +103,19 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
             <div class="contentinner">
                 
                 <?php
-                     if(isset($_POST['submit_affiliate_company'])){
-                         ?>   <h4 class='confirmation' style="text-align: center" ">The Affiliate company has been created </h4> </br> <?php ;}
-                ?>
+                     if(isset($_POST['submit_affiliate_company']))
+                         {
+                         ?>   <h4 class='confirmation' style="text-align: center" ">The Affiliate company has been created </h4> </br> 
+                         <p class="stdformbutton" style="text-align: center">
+                             <a href="create-affiliate-company.php"
+                             <button type="button" name="create_affiliate_company_redirection" id="create_affiliate_company_redirection" class="btn btn-primary" >Create another affiliate company </button>
+                             </a>
+                             <a href="view-affiliate-company.php"
+                            <button type="button" name="view_affiliate_company" id="view_affiliate_company" class="btn btn-primary">View affiliates companies </button>
+                             </a>
+                        </p>
+                    <?php ;}
+                Else { ?>
 			<div class="widgetcontent">
 			
             	<h4 class="widgettitle nomargin shadowed">Affiliate Company informations</h4>
@@ -153,7 +163,7 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
                                     
                                     <?php 
                                         foreach($objHeadquarter->affiliate_companies_list as $indCompany => $nameCompany){?>
-                                                 <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name']; ?></option>
+                                                 <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name']; echo $nameCompany['id_affiliate_company'] ?></option>
                                                                          <?php }   ?>
                                 </select>
                             </span>  
@@ -210,7 +220,7 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
                         </form>
                     </div>				
                 </div><!--contentinner-->
-            </div><!--contentinner-->
+                </div><!--contentinner--> <?php }; ?>
         </div><!--maincontent-->
         
     </div><!--rightpanel-->

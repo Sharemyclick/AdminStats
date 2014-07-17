@@ -131,10 +131,19 @@ $resultCountry = $objCountry->getCountryList();
                 
                          <span class="field" >
                              <div class="widgetcontent">
-                             <a href="update-advertiser-globalview.php" >   
-                                 <input type="button" value="Return to all advertiser"> 
-                             </a>
-                             </div>
+                                 
+                                 <p class="stdformbutton" style="text-align: center">
+                                      <a href="update-advertiser-globalview.php" >
+                                        <button type="button" name="return_all_advertiser" id="return_all_advertiser" class="btn btn-primary" >Update another advertiser </button>
+                                      </a>
+                                     <a href="view-advertiser.php" >
+                                        <button type="button" name="view_all_advertiser" id="view_all_advertiser" class="btn btn-primary" >View all advertisers </button>
+                                      </a>
+                                </p>
+                                
+                                
+                                 
+                            </div>
                          </span>
                 <?php ;}
                 else {?>

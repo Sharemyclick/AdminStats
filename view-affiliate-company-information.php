@@ -163,10 +163,19 @@ $viewHq->getHq();
                             
                         </p>
                         
-                        <p class="stdformbutton">
+                        <p class="stdformbutton" style="text-align: center">
                             <button type="submit" name="update_affiliate_company" id="update_advertiser" class="btn btn-primary"> Update informations</button>
-                            
+                            <a href="view-affiliate-company.php"
+                                <button type="button" name="view_all_affiliate_company" id="view_all_affiliate_company" class="btn btn-primary"> View all advertisers</button>
+                            </a>
                         </p>
+                        
+                       
+                            
+                            
+                            
+                       
+                        
                         
                         </form>
                     </div>				

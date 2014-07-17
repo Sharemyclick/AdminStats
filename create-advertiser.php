@@ -103,8 +103,17 @@ if(isset($_POST['submit_advertiser'])){
                 
                 <?php
                      if(isset($_POST['submit_advertiser'])){
-                         ?>   <h4 class='confirmation' style="text-align: center" ">The Advertiser has been created </h4> </br> <?php ;}
-                ?>
+                         ?>   <h4 class='confirmation' style="text-align: center" ">The Advertiser has been created </h4> </br>
+                                    <p class="stdformbutton" style="text-align: center">
+                                      <a href="create-advertiser.php" >
+                                        <button type="button" name="create_another_advertiser" id="create_another_advertiser" class="btn btn-primary" >Create another advertiser </button>
+                                      </a>
+                                     <a href="view-advertiser.php" >
+                                        <button type="button" name="view_all_advertiser" id="view_all_advertiser" class="btn btn-primary" >View all advertisers </button>
+                                      </a>
+                                </p>
+                <?php ;}
+                Else {?>
 			<div class="widgetcontent">
 			
             	<h4 class="widgettitle nomargin shadowed">Company informations</h4>
@@ -314,7 +323,7 @@ if(isset($_POST['submit_advertiser'])){
                         
                         </form>
                     </div>				
-                </div><!--contentinner-->
+                </div><!--contentinner--> <?php }; ?>
             </div><!--contentinner-->
         </div><!--maincontent-->
         

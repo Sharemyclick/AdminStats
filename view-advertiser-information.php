@@ -242,9 +242,12 @@ $viewCategory->getCategory($id_adv);
                            <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAdvertiser->advertisers[0]['status']; ?>" readonly="readonly"/></span>                        
                         </p>
                             
-                        <p class="stdformbutton">
+                        <p class="stdformbutton" style="text-align: center">
                             <button type="submit" name="update_advertiser" id="update_advertiser" class="btn btn-primary"> Update informations</button>
                             
+                            <a href="view-advertiser.php"
+                                <button type="button" name="view_all_advertiser" id="view_all_advertiser" class="btn btn-primary"> View all advertisers</button>
+                            </a>
                         </p>
                         
                         </form>
