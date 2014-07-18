@@ -12,6 +12,7 @@ if(!isset($_SESSION['login'])) {
   exit;  
 }
 $filters['field'] = 'id_affiliate_manager';
+$filters['value'] = '';
 if(isset($_POST['id_affiliate_manager']) || isset($_GET['id']))
 {$filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id_affiliate_manager'];}
 /*
