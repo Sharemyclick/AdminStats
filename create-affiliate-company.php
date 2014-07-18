@@ -163,7 +163,7 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
                                     
                                     <?php 
                                         foreach($objHeadquarter->affiliate_companies_list as $indCompany => $nameCompany){?>
-                                                 <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name']; echo $nameCompany['id_affiliate_company'] ?></option>
+                                                 <option value="<?php echo $nameCompany['id_affiliate_company']; ?>" ><?php  echo $nameCompany['company_name'];?></option>
                                                                          <?php }   ?>
                                 </select>
                             </span>  

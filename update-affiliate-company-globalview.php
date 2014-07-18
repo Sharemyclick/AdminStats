@@ -91,6 +91,7 @@ $viewAffiliateCompany->getAffiliateCompanyList();
                         <col class="con0" />
                         <col class="con1" />
                         <col class="con0" />
+                        <col class="con1" />
                         
                     </colgroup>
                     <thead>
@@ -102,6 +103,7 @@ $viewAffiliateCompany->getAffiliateCompanyList();
 							<th class="centeralign"> Headquarter</th>
                                                         <th class="centeralign"> Type of Affiliate</th>
                                                         <th class="centeralign"> Status</th>
+                                                        <th class="centeralign"> Traffic</th>
 							
 						</tr>
                     </thead>
@@ -115,10 +117,11 @@ $viewAffiliateCompany->getAffiliateCompanyList();
                                                         <td class="centeralign"><?php echo $affiliate['address'] ;?>  </td>
                                                         <td class="centeralign"><?php echo $affiliate['name_country'] ?></td>
                                                         <td class="centeralign"><a href="<?php echo $affiliate['websites'] ?>" title="<?php echo $affiliate['websites'] ?>" ><?php echo substr($affiliate['websites'],0,30); ?></a></td> 
-                                                        <td class="centeralign"><?php echo $affiliate['id_hq'] ?></td>
-                                                        <td class="centeralign"><?php echo $affiliate['type_affiliate'] ?> </td>
+                                                        <td class="centeralign"><?php echo $affiliate['hq_company_name'] ?></td>                                                        <td class="centeralign"><?php echo $affiliate['type_affiliate'] ?> </td>
                                                         <td class="centeralign"><?php echo $affiliate['status'] ?> </td>
-</tr>
+                                                        <td class="centeralign"><?php echo $affiliate['traffic'] ?> </td>
+                                                        
+                                                        </tr>
 						<?php }
 					?>
                     </tbody>

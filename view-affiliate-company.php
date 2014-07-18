@@ -91,6 +91,7 @@ $viewAffiliateCompany->getAffiliateCompanyList();
                         <col class="con0" />
                         <col class="con1" />
                         <col class="con0" />
+                        <col class="con1" />
                         
                     </colgroup>
                     <thead>
@@ -102,6 +103,7 @@ $viewAffiliateCompany->getAffiliateCompanyList();
 							<th class="centeralign"> Headquarter</th>
                                                         <th class="centeralign"> Type of Affiliate</th>
                                                         <th class="centeralign"> Status</th>
+                                                        <th class="centeralign"> Traffic</th>
 							
 						</tr>
                     </thead>
@@ -118,6 +120,7 @@ $viewAffiliateCompany->getAffiliateCompanyList();
                                                         <td class="centeralign"><?php echo $affiliate['hq_company_name'] ?></td>
                                                         <td class="centeralign"><?php echo $affiliate['type_affiliate'] ?> </td>
                                                         <td class="centeralign"><?php echo $affiliate['status'] ?> </td>
+                                                        <td class="centeralign"><?php echo $affiliate['traffic'] ?> </td>
 </tr>
 						<?php }
 					?>

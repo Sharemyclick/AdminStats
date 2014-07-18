@@ -13,7 +13,7 @@ if(!isset($_SESSION['login'])) {
 }
 $filters['field'] = 'id_affiliate_company';
 if(isset($_POST['id_affiliate_company']) || isset($_GET['id']))
-$filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id_affiliate_company'];
+{$filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id_affiliate_company'];}
 /*
  if($_GET['id']) 
     $filters['value'] = $_GET['id'];
@@ -21,11 +21,15 @@ $filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id_affiliate_compan
   $filters['value'] = $_POST['id'];
  */
 
+//echo $filters['value'];
+
 $viewAffiliateCompany = new AffiliateCompany();
 $viewAffiliateCompany->getAffiliateCompanyInformation($filters['value']);
 
-$hq=$viewAffiliateCompany->affiliate_company['id_hq'];
+$objHq = new AffiliateCompany();
+$resultHeadquarter = $objHq->getAffiliateCompanyList();
 
+$hq=$viewAffiliateCompany->affiliate_company['id_hq'];
 $viewHq = new AffiliateCompany();
 $viewHq->getHq($hq);
 
@@ -34,6 +38,16 @@ $resultCountry = $objCountry->getCountryList();
 
 $objTypeAffiliate = new AffiliateCompany();
 $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
+
+$objTraffic = new AffiliateCompany();
+$resultTraffic = $objTraffic->getAffiliateCompanyTrafficList(); 
+
+if(isset($_POST['submit_update']))
+    {
+         $updateAffiliateCompany= new AffiliateCompany();
+        $updateAffiliateCompany->updateAffiliateCompany($filters['value'],$_POST);
+    }
+
 
 ?>
 
@@ -115,11 +129,11 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
                              <div class="widgetcontent">
                                  
                                  <p class="stdformbutton" style="text-align: center">
-                                      <a href="update-advertiser-globalview.php" >
-                                        <button type="button" name="return_all_advertiser" id="return_all_advertiser" class="btn btn-primary" >Update another advertiser </button>
+                                     <a href="update-affiliate-company-globalview.php" >
+                                        <button type="button" name="return_all_advertiser" id="return_all_affiliate_company" class="btn btn-primary" >Update another affiliate company </button>
                                       </a>
-                                     <a href="view-advertiser.php" >
-                                        <button type="button" name="view_all_advertiser" id="view_all_advertiser" class="btn btn-primary" >View all advertisers </button>
+                                     <a href="view-affiliate-company.php" >
+                                        <button type="button" name="view_all_affiliate" id="view_all_affiliate_company" class="btn btn-primary" >View all affiliate company </button>
                                       </a>
                                 </p>
                                 
@@ -135,9 +149,9 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
             	<h4 class="widgettitle nomargin shadowed">Advertiser informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate.php" enctype="multipart/form-data">
+                    <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate-company.php" enctype="multipart/form-data">
                         
-                        <input type="hidden" name="id" value="<?php echo $filters['value'] ;?>">
+                        <input type="hidden" name="id_affiliate_company" value="<?php echo $filters['value'] ;?>">
                          <?php //echo '<pre>', var_dump($viewAffiliateCompany->affiliate_company), '</pre>'; ?>
                         <p>
                             <label>Affiliate Company name *</label>
@@ -154,7 +168,7 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
                             
                             <span class="field">
                             
-                            <select name="country" id="country" class="status">
+                            <select name="id_country" id="country" class="status">
                                         <?php 
                                         foreach($objCountry->countryselect as $indCountry => $valCountry){?>
                                         
@@ -175,15 +189,33 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
                         
                         <p>
                             <label> Headquarter</label>
-                              <span class="field"> <input type="url" name="hq" class="input-xxlarge" value="<?php //echo $viewHq->affiliate_hq['company_name'] ?>" />     </span>
-                            
+                          <span class="field">
+                              <select name="id_hq" id="hq" class="status">
+                                        <?php 
+                                        if(($viewAffiliateCompany->affiliate_company['hq_company_name'] === NULL)){ echo '<option value="" selected></option>' ;} 
+                                        Else { echo '<option value="" ></option>' ;}
+                                        foreach($objHq->affiliate_companies_list as $indHq => $valHq){?>
+                                    <option value="<?php echo $valHq['id_affiliate_company']; ?>" <?php if($viewAffiliateCompany->affiliate_company['hq_company_name'] === $valHq['company_name']){?> selected <?php } ?>  ><?php echo $valHq['company_name']; ?> </option>
+                                            </option>
+                                <?php }; ?>
+                                </select>
+                          </span>
+                              
                         </p>
                         
                         <p>
                             <label>Status</label>
                             
                             <span class="field">
-                               <input type="text" name="status" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['status'] ?>" />
+                            
+                            <select name="status" id="status" class="status">
+                                        <option value="Opportunity" <?php if($viewAffiliateCompany->affiliate_company['status']==='Opportunity'){ echo 'selected';}  ?>> Opportunity</option>
+                                        <option value="Delete" <?php if($viewAffiliateCompany->affiliate_company['status']==='Delete'){ echo 'selected';}  ?>> Delete</option>
+                                        <option value="In contact"<?php if($viewAffiliateCompany->affiliate_company['status']==='In contact'){ echo 'selected';}  ?>> In contact</option>
+                                        <option value="In business"<?php if($viewAffiliateCompany->affiliate_company['status']==='In business'){ echo 'selected';}  ?>> In business</option>
+
+                            </select>  
+                            
                             </span>  
                             
                         </p>
@@ -192,7 +224,15 @@ $resultTypeAffiliate = $objTypeAffiliate ->getTypeAffiliateList();
                             <label>Traffic</label>
                             
                             <span class="field">
-                               <input type="text" name="traffic" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['traffic'] ?>" />
+                               <select name="id_traffic" id="id_traffic" class="status">
+                                        <?php 
+                                        foreach($objTraffic->affiliate_companies_traffic_list as $indTraffic => $valTraffic){?>
+                                        
+                                    <option value="<?php echo $valTraffic['id_traffic']; ?>" <?php if($viewAffiliateCompany->affiliate_company['traffic'] == $valTraffic['traffic']){?> selected <?php } ?>  ><?php echo $valTraffic['traffic']; ?> </option>
+                                            </option>
+                                <?php } ?>
+                                </select>
+                            
                             </span>  
                             
                         </p>
