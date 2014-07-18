@@ -21,6 +21,7 @@ class AffiliateCompany
     public $affiliate_companies_type_affiliate_list = array();
     public $affiliate_hq = array();
     public $type_affiliate_list = array();
+    public $affiliate_company_table = array();
    /*
    =============================GETTERS==================================
    */
@@ -127,13 +128,23 @@ class AffiliateCompany
 	  // structure of $categories_list : Array('id','name')
 	  return $this->setTypeAffiliateList($type_affiliate_list);
 	  }
-          public function getHQ($hq){
+         
+          
+          public function getHQ($id){
 	  $affiliate_companySql = new AffiliateCompanySql();
-	  $affiliate_hq= $affiliate_companySql->selectAffiliateCompanyHQ($hq);
+	  $affiliate_hq= $affiliate_companySql->selectAffiliateCompanyHQ($id);
 	  
 	  $this->setAffiliateCompanyHQ($affiliate_hq);
           return true;
 	  }
+          public function getAffiliateCompanyTable($id){
+	  $affiliate_companySql = new AffiliateCompanySql();
+	  $affiliate_company_table= $affiliate_companySql->selectAffiliateCompanyTable($id);
+	  
+	  $this->setAffiliateCompanyTable($affiliate_company_table);
+          return true;
+	  }
+          
 	/*
   =============================SETTERS======================================
   */
@@ -203,6 +214,11 @@ class AffiliateCompany
   {
    $this->affiliate_company = $affiliate_company;
   } 
+  
+  public function setAffiliateCompanyTable($affiliate_company)
+  {
+   $this->affiliate_company_table = $affiliate_company_table;
+  } 
     /*
  ========================= METHODS==================================
   */
@@ -220,8 +236,7 @@ class AffiliateCompany
    public function updateAffiliateCompany($affiliate_company)
  { $affiliate_companySql = new AdffiliateCompanySql();
  
- //if($this->downloadLogo($advertiser['logo']))
-   $result = $affiliate_companySql->updateAffiliateCompany($affiliate_company);
+  $result = $affiliate_companySql->updateAffiliateCompany($affiliate_company);
   if(!$result)
   {return($affiliate_managerSql->error);}
   else{
