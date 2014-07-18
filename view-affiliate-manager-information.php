@@ -18,9 +18,9 @@ $id_affiliate_manager = $_GET['id'];
 
 
 
-
+//echo $filters['value'];
 $viewAffiliateManager = new AffiliateManager();
-$viewAffiliateManager->getAffiliateManagerInformation($id_affiliate_manager);
+$viewAffiliateManager->getAffiliateManagerInformation($filters['value']);
 
 
 ?>
@@ -102,10 +102,11 @@ $viewAffiliateManager->getAffiliateManagerInformation($id_affiliate_manager);
                     <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate.php" enctype="multipart/form-data">
                         
                         <input type="hidden" name="id" value="<?php echo $filters['value'] ;?>">
-                         <?php echo '<pre>', var_dump($viewAffiliateManager->affiliate_manager), '</pre>'; ?>
+                      
+                        
                         <p>
                             <label>Affiliate Manager Name *</label>
-                            <span class="field"><input type="text" value="<?php echo $viewAffiliateManager->affiliate_manager['name']; ?>" name="name" class="input-xxlarge" readonly="readonly" /></span>
+                            <span class="field"><input type="text" name="name" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['name']; ?>" /></span>
                         </p>
 
                         <p>

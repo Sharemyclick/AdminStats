@@ -15,6 +15,7 @@ class AffiliateManager
 public $affiliate_managers_list =array();
 public $affiliate_manager_category_list =array();
 public $affiliate_manager_country_list =array();
+public $affiliate_manager = array();
 
 //==================================GET=======================================
  public  function getId_affiliate_manager() {

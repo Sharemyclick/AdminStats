@@ -29,9 +29,9 @@ public function selectAffiliateManagerList(){
 }
 public function selectAffiliateManager($id_affiliate_manager=false){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_manager am 
-                 LEFT JOIN affiliate_company ac ON am.id_affiliate_company = ac.id_affiliate_company WHERE am.id_affiliate_manager= '.$id_affiliate_manager);
-	return $req;
+	$req = $this->bdd->query('SELECT * FROM affiliate_manager am LEFT JOIN affiliate_company ac ON am.id_affiliate_company = ac.id_affiliate_company WHERE am.id_affiliate_manager= '.$id_affiliate_manager);
+	$res=$req->fetch();
+        return $res;
 	
 }
 
@@ -42,7 +42,7 @@ public function insertAffiliateManager($affiliate_manager)
         
         
         
-{$req = $this->bdd->prepare('INSERT INTO affiliate_manager(  name, surname, email, skype, telephone, id_affiliate_company, date_birth, status ) VALUES ( :name, :surname, :email, :skype, :telephone, :id_affiliate_company, :date_birth, :status)');
+{$req = $this->bdd->prepare('INSERT INTO affiliate_manager(  name, surname, email, skype, telephone, id_affiliate_company, date_birth, manager_status ) VALUES ( :name, :surname, :email, :skype, :telephone, :id_affiliate_company, :date_birth, :manager_status)');
         $req->execute(array(
             'name' => $affiliate_manager['name'],
              'surname' => $affiliate_manager['surname'],
@@ -52,7 +52,7 @@ public function insertAffiliateManager($affiliate_manager)
          
             'id_affiliate_company' => $affiliate_manager['id_affiliate_company'],   
             'date_birth' => $affiliate_manager['date_birth']   ,
-            'status' => $affiliate_manager['status']
+            'manager_status' => $affiliate_manager['manager_status']
      )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          
    $id_affiliate_manager = $this->bdd->lastInsertId();
