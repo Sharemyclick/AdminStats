@@ -96,9 +96,9 @@ $viewHq->getHq($filters['value']);
             	<h4 class="widgettitle nomargin shadowed">Affiliate Company informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate.php" enctype="multipart/form-data">
+                    <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate-company.php" enctype="multipart/form-data">
                         
-                        <input type="hidden" name="id" value="<?php echo $filters['value'] ;?>">
+                        <input type="hidden" name="id_affiliate_company" value="<?php echo $filters['value'] ;?>">
                          <?php //echo '<pre>', var_dump($viewAffiliateCompany->affiliate_company), '</pre>'; ?>
                         <p>
                             <label>Affiliate Company name *</label>
