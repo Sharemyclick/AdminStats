@@ -11,12 +11,12 @@ if(!isset($_SESSION['login'])) {
   echo '<script>document.location.href="dashboard.php"</script>';  
   exit;  
 }
-$filters['field'] = 'id_company';
+$filters['field'] = 'id_manager';
 $filters['value'] = $_GET['id'];
 $id_affiliate_manager = $_GET['id'];
 
 
-echo $filters['value'] ;
+
 
 
 $viewAffiliateManager = new AffiliateManager();
@@ -102,22 +102,22 @@ $viewAffiliateManager->getAffiliateManagerInformation($id_affiliate_manager);
                     <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate.php" enctype="multipart/form-data">
                         
                         <input type="hidden" name="id" value="<?php echo $filters['value'] ;?>">
-                         <?php //echo '<pre>', var_dump($viewAffiliateCompany->affiliate_company), '</pre>'; ?>
+                         <?php echo '<pre>', var_dump($viewAffiliateManager->affiliate_manager), '</pre>'; ?>
                         <p>
                             <label>Affiliate Manager Name *</label>
-                            <span class="field"><input type="text" value="<?php echo $viewAffiliateManager->affiliate_manager['name']; ?>" name="company_name" class="input-xxlarge" readonly="readonly" /></span>
+                            <span class="field"><input type="text" value="<?php echo $viewAffiliateManager->affiliate_manager['name']; ?>" name="name" class="input-xxlarge" readonly="readonly" /></span>
                         </p>
 
                         <p>
                             <label>Affiliate Manager Surname *</label>
-                        <span class="field"><input type="text" id="address"  name="address" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['surname']; ?>" readonly="readonly"/></span>
+                        <span class="field"><input type="text" id="surname"  name="surname" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['surname']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>Email *</label>
                             
                             <span class="field">
-                            <input type="text" name="country" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['email'] ?>" readonly="readonly"/>
+                            <input type="text" name="email" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['email'] ?>" readonly="readonly"/>
                             </span>
                             
                         </p>
@@ -125,19 +125,19 @@ $viewAffiliateManager->getAffiliateManagerInformation($id_affiliate_manager);
                                                             
                         <p>
                             <label> Skype *</label>
-                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['skype']; ?>" readonly="readonly"/></span>
+                            <span class="field"><input type="url" name="skype" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['skype']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label> Telephone</label>
-                              <span class="field"> <input type="url" name="hq" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['telephone']; ?>" readonly="readonly"/>     </span>
+                              <span class="field"> <input type="url" name="telephone" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['telephone']; ?>" readonly="readonly"/>     </span>
                             
                         </p>
                           <p>
                             <label>Affiliate Company</label>
                             
                             <span class="field">
-                               <input type="text" name="traffic" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['affiiliate_company'] ?>" readonly="readonly"/>
+                               <input type="text" name="company_name" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['company_name'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
@@ -146,7 +146,7 @@ $viewAffiliateManager->getAffiliateManagerInformation($id_affiliate_manager);
                             <label>Date of Birth</label>
                             
                             <span class="field">
-                               <input type="text" name="traffic" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['date_birth'] ?>" readonly="readonly"/>
+                               <input type="text" name="date_birth" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['date_birth'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
@@ -154,7 +154,7 @@ $viewAffiliateManager->getAffiliateManagerInformation($id_affiliate_manager);
                             <label>Status</label>
                             
                             <span class="field">
-                               <input type="text" name="status" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['status'] ?>" readonly="readonly"/>
+                               <input type="text" name="manager_status" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['manager_status'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
