@@ -145,7 +145,7 @@ public function setAffiliateManagersCountryList($affiliate_manager_country_list)
   ==============================METHODS==================================
   */
     public function createAffiliateManager($affiliate_manager)
- { $affiliate_managerSql = new AdffiliateManagerSql();
+ { $affiliate_managerSql = new AffiliateManagerSql();
  
  //if($this->downloadLogo($advertiser['logo']))
    $result = $affiliate_managerSql->insertAffiliateManager($affiliate_manager);
@@ -155,11 +155,10 @@ public function setAffiliateManagersCountryList($affiliate_manager_country_list)
          return 'An affiliate manager has been created';
   } 
  }
-   public function updateAffiliateManager($affiliate_manager)
+   public function updateAffiliateManager($affiliate_manager,$values)
  { $affiliate_managerSql = new AdffiliateManagerSql();
- 
- //if($this->downloadLogo($advertiser['logo']))
-   $result = $affiliate_managerSql->updateAffiliateManager($affiliate_manager);
+
+   $result = $affiliate_managerSql->updateAffiliateManager($affiliate_manager,$values);
   if(!$result)
   {return($affiliate_managerSql->error);}
   else{

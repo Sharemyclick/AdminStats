@@ -140,10 +140,16 @@ $resultCountry = $objCountry->getCountryList();
                             </span>
                             
                         </p>
-                                                            
+                             <p>
+                            <label>Skype *</label>
+                            <span class="field">
+                               <input type="text" id="skype"  name="skype" class="input-xxlarge" required="required" />
+                            </span>
+                            
+                        </p>                                 
                         <p>
                             <label> Telephone *</label>
-                            <span class="field"><input type="tel" name="websites" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="tel" name="telephone" class="input-xxlarge" required="required" /></span>
                         </p>
                                          
 			<p>
@@ -181,14 +187,14 @@ $resultCountry = $objCountry->getCountryList();
                             <label> Date of Birth *</label>
                             <span class="field">
                                 
-                                <input type="date" name="dateÇ_birth" class="status" required="required" />
+                                <input type="date" name="date_birth" class="status" required="required" />
                             </span>
                             </p>
                         
                         <p>
                             <label> Status</label>
                             <span class="field">
-                                <select name="status" id="status" class="status">
+                                <select name="manager_status" id="status" class="status">
                                         <option value="Opportunity"> Opportunity</option>
                                         <option value="Delete"> Delete</option>
                                         <option value="In contact"> In contact</option>
