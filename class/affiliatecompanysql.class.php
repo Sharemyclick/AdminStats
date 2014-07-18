@@ -22,7 +22,7 @@ public function selectAffiliateCompanyList($id_affiliate_company = false){
                 . ' LEFT JOIN country c ON a.id_country = c.id_country '
                 . ' LEFT JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
                 . ' LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   '
-                . ' LEFT JOIN affiliate_company hq ON hq.id_affiliate_company = a.id_hq'
+                . ' LEFT JOIN affiliate_company hq ON a.id_hq = hq.id_affiliate_company'
                 . ' LEFT JOIN affiliate_company_type_affiliate acta ON acta.id_affiliate_company = a.id_affiliate_company'
                 . ' LEFT JOIN type_affiliate ta ON ta.id_type_affiliate = acta.id_type_affiliate ');
 	return $req;
