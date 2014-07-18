@@ -137,9 +137,9 @@ class AffiliateCompany
 	  $this->setAffiliateCompanyHQ($affiliate_hq);
           return true;
 	  }
-          public function getAffiliateCompanyTable($id){
+          public function getAffiliateCompanyTable(){
 	  $affiliate_companySql = new AffiliateCompanySql();
-	  $affiliate_company_table= $affiliate_companySql->selectAffiliateCompanyTable($id);
+	  $affiliate_company_table= $affiliate_companySql->selectAffiliateCompanyTable();
 	  
 	  $this->setAffiliateCompanyTable($affiliate_company_table);
           return true;
@@ -215,7 +215,7 @@ class AffiliateCompany
    $this->affiliate_company = $affiliate_company;
   } 
   
-  public function setAffiliateCompanyTable($affiliate_company)
+  public function setAffiliateCompanyTable($affiliate_company_table)
   {
    $this->affiliate_company_table = $affiliate_company_table;
   } 
