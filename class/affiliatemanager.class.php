@@ -156,7 +156,7 @@ public function setAffiliateManagersCountryList($affiliate_manager_country_list)
   } 
  }
    public function updateAffiliateManager($affiliate_manager,$values)
- { $affiliate_managerSql = new AdffiliateManagerSql();
+ { $affiliate_managerSql = new AffiliateManagerSql();
 
    $result = $affiliate_managerSql->updateAffiliateManager($affiliate_manager,$values);
   if(!$result)

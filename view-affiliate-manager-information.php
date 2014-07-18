@@ -99,7 +99,7 @@ $viewAffiliateManager->getAffiliateManagerInformation($filters['value']);
             	<h4 class="widgettitle nomargin shadowed">Affiliate Manager informations</h4>
 					
                 <div class="widgetcontent bordered shadowed nopadding">
-                    <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate.php" enctype="multipart/form-data">
+                    <form name="form_affiliate_company" class="stdform stdform2" method="post" action="update-affiliate-manager.php" enctype="multipart/form-data">
                         
                         <input type="hidden" name="id" value="<?php echo $filters['value'] ;?>">
                       

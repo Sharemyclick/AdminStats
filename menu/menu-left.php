@@ -52,7 +52,7 @@
                 	<ul>
                     	<li><a href="view-affiliate-manager.php">View all Affiliate manager</a></li>
 						<li><a href="create-affiliate-manager.php">Create Affiliates manager</a></li>
-						<li><a href="update-affiliate-manager.php">Modify Affiliates manager</a></li>
+						<li><a href="update-affiliate-manager-globalview.php">Modify Affiliates manager</a></li>
                     </ul>
                 </li>
 				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> INVOICING</a>

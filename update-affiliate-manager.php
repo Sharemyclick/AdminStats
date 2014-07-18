@@ -2,6 +2,7 @@
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
 include('class/affiliatemanager.class.php');
+include('class/affiliatecompany.class.php');
 include('class/country.class.php');
 
 
@@ -12,7 +13,7 @@ if(!isset($_SESSION['login'])) {
   exit;  
 }
 $filters['field'] = 'id_affiliate_manager';
-$filters['value'] = '';
+
 if(isset($_POST['id_affiliate_manager']) || isset($_GET['id']))
 {$filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id_affiliate_manager'];}
 /*
@@ -22,7 +23,7 @@ if(isset($_POST['id_affiliate_manager']) || isset($_GET['id']))
   $filters['value'] = $_POST['id'];
  */
 
-//echo $filters['value'];
+
 
 $viewAffiliateManager = new AffiliateManager();
 $viewAffiliateManager->getAffiliateManagerInformation($filters['value']);
@@ -31,7 +32,8 @@ $viewAffiliateManager->getAffiliateManagerInformation($filters['value']);
 $objCountry = new Country();
 $resultCountry = $objCountry->getCountryList();
 
-
+$objCompany = new AffiliateCompany();
+$resultCompany = $objCompany->getAffiliateCompanyTable();
 
 
 if(isset($_POST['submit_update']))
@@ -154,7 +156,33 @@ if(isset($_POST['submit_update']))
                             <label>Affiliate Manager surname *</label>
                         <span class="field"><input type="text" id="surname"  name="surname" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['surname']; ?>" /></span>
                         </p>
-                        
+                         <p>
+                            <label> Email *</label>
+                            <span class="field"><input type="email" name="email" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['email']; ?>" /></span>
+                        </p>
+                         <p>
+                            <label> Skype *</label>
+                            <span class="field"><input type="text" name="skype" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['skype']; ?>" /></span>
+                        </p>
+                         <p>
+                            <label> Telephone *</label>
+                            <span class="field"><input type="tel" name="telephone" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['telephone']; ?>" /></span>
+                        </p>
+                         <p>
+                            <label> Affiliate_company</label>
+                          <span class="field">
+                              <select name="id_affiliate_company" id="id_affiliate_company" class="status">
+                                        <?php 
+                                        if(($viewAffiliateManager->affiliate_manager['id_affiliate_company'] === NULL)){ echo '<option value="" selected></option>' ;} 
+                                        Else { echo '<option value="" ></option>' ;}
+                                        foreach($objCompany->affiliate_company_table as $indHq => $valHq){?>
+                                    <option value="<?php echo $valHq['id_affiliate_company']; ?>" <?php if($viewAffiliateManager->affiliate_manager['id_affiliate_company'] === $valHq['company_name']){?> selected <?php } ?>  ><?php echo $valHq['company_name']; ?> </option>
+                                            </option>
+                                <?php }; ?>
+                                </select>
+                          </span>
+                              
+                        </p>
                         <p>
                             <label>Country *</label>
                             
@@ -175,36 +203,22 @@ if(isset($_POST['submit_update']))
                             
                                                             
                         <p>
-                            <label> Website *</label>
-                            <span class="field"><input type="url" name="websites" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['websites']; ?>" /></span>
+                            <label> Date of Birth *</label>
+                            <span class="field"><input type="date" name="date_birth" class="status" value="<?php echo $viewAffiliateManager->affiliate_manager['date_birth']; ?>" /></span>
                         </p>
                         
-                        <p>
-                            <label> Headquarter</label>
-                          <span class="field">
-                              <select name="id_hq" id="hq" class="status">
-                                        <?php 
-                                        if(($viewAffiliateCompany->affiliate_manager['hq_company_name'] === NULL)){ echo '<option value="" selected></option>' ;} 
-                                        Else { echo '<option value="" ></option>' ;}
-                                        foreach($objHq->affiliate_companies_list as $indHq => $valHq){?>
-                                    <option value="<?php echo $valHq['id_affiliate_company']; ?>" <?php if($viewAffiliateManager->affiliate_manager['hq_company_name'] === $valHq['company_name']){?> selected <?php } ?>  ><?php echo $valHq['company_name']; ?> </option>
-                                            </option>
-                                <?php }; ?>
-                                </select>
-                          </span>
-                              
-                        </p>
+                        
                         
                         <p>
                             <label>Status</label>
                             
                             <span class="field">
                             
-                            <select name="status" id="status" class="status">
-                                        <option value="Opportunity" <?php if($viewAffiliateManager->affiliate_manager['status']==='Opportunity'){ echo 'selected';}  ?>> Opportunity</option>
-                                        <option value="Delete" <?php if($viewAffiliateManager->affiliate_manager['status']==='Delete'){ echo 'selected';}  ?>> Delete</option>
-                                        <option value="In contact"<?php if($viewAffiliateManager->affiliate_manager['status']==='In contact'){ echo 'selected';}  ?>> In contact</option>
-                                        <option value="In business"<?php if($viewAffiliateManager->affiliate_manager['status']==='In business'){ echo 'selected';}  ?>> In business</option>
+                            <select name="manager_status" id="manager_status" class="status">
+                                        <option value="Opportunity" <?php if($viewAffiliateManager->affiliate_manager['manager_status']==='Opportunity'){ echo 'selected';}  ?>> Opportunity</option>
+                                        <option value="Delete" <?php if($viewAffiliateManager->affiliate_manager['manager_status']==='Delete'){ echo 'selected';}  ?>> Delete</option>
+                                        <option value="In contact"<?php if($viewAffiliateManager->affiliate_manager['manager_status']==='In contact'){ echo 'selected';}  ?>> In contact</option>
+                                        <option value="In business"<?php if($viewAffiliateManager->affiliate_manager['manager_status']==='In business'){ echo 'selected';}  ?>> In business</option>
 
                             </select>  
                             
@@ -212,38 +226,7 @@ if(isset($_POST['submit_update']))
                             
                         </p>
                         
-                        <p>
-                            <label>Traffic</label>
-                            
-                            <span class="field">
-                               <select name="id_traffic" id="id_traffic" class="status">
-                                        <?php 
-                                        foreach($objTraffic->affiliate_companies_traffic_list as $indTraffic => $valTraffic){?>
-                                        
-                                    <option value="<?php echo $valTraffic['id_traffic']; ?>" <?php if($viewAffiliateManager->affiliate_manager['traffic'] == $valTraffic['traffic']){?> selected <?php } ?>  ><?php echo $valTraffic['traffic']; ?> </option>
-                                            </option>
-                                <?php } ?>
-                                </select>
-                            
-                            </span>  
-                            
-                        </p>
-                        
-                        <p>
-                            <label>Type of Affiliate</label>
-                            
-                            <span class="field">
-                                                           
-                               <select name="id_type_affiliate" id="type_affiliate" class="status">
-                            
-                                        <?php foreach($objTypeAffiliate->type_affiliate_list as $indTypeAffiliate => $valTypeAffiliate){?>
-                                                                          
-                                        <option value="<?php echo $valTypeAffiliate['id_type_affiliate']; ?>" <?php if($viewAffiliateManager->affiliate_manager['type_affiliate'] == $valTypeAffiliate['type_affiliate']){?> selected <?php } ?>  ><?php echo $valTypeAffiliate['type_affiliate']; ?> </option> <?php } ?>
-                                </select>
-                            
-                            </span>  
-                            
-                        </p>
+                    
                         
                         <p class="stdformbutton" style="text-align: center">
                             <button type="submit" name="submit_update" id="submit_update" class="btn btn-primary"> Update informations</button>

@@ -16,7 +16,7 @@ return $req;
 
 public function selectAffiliateManagerCountryList(){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_manager_country m'
+	$req = $this->bdd->query('SELECT * FROM affiliate_manager_country m '
                  . 'LEFT JOIN country c ON m.id_country = c.id_country');
 	return $req;
 }
@@ -77,9 +77,9 @@ public function insertAffiliateManager($affiliate_manager)
 //========================UPDATE===================================
 
 
-public function updateAffiliateManager($affiliate_manager,$values)
+public function updateAffiliateManager($id_affiliate_manager,$values)
 {
-   $req = $this->bdd->prepare('UPDATE affiliate_manager SET name=:name, surname=:surname, email=:email,skype=:skype, telephone=:telephone, id_affiliate_company=:id_affiliate_company, date_birth=:date_birth, manager_status=:manager_status WHERE id_affiliate_manager =' .$id_affiliate_manager);
+   $req = $this->bdd->prepare('UPDATE affiliate_manager SET name=:name, surname=:surname, email=:email, skype=:skype, id_country=:id_country, telephone=:telephone, id_affiliate_company=:id_affiliate_company, date_birth=:date_birth, manager_status=:manager_status WHERE id_affiliate_manager =' .$id_affiliate_manager);
    $req->execute(array(    
             'name' => $values['name'],
             'surname' => $values['surname'],
@@ -92,7 +92,7 @@ public function updateAffiliateManager($affiliate_manager,$values)
             'manager_status' => $values['manager_status']
 
 )) or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
- if($req->errorCode() == 0) {
+ if($req->errorCode() === 0) {
      $req->closeCursor();
      return true;
 } else {
