@@ -233,10 +233,10 @@ class AffiliateCompany
          return 'An affiliate company has been created';
   } 
  }
-   public function updateAffiliateCompany($affiliate_company)
- { $affiliate_companySql = new AdffiliateCompanySql();
+   public function updateAffiliateCompany($affiliate_company,$values)
+ { $affiliate_companySql = new AffiliateCompanySql();
  
-  $result = $affiliate_companySql->updateAffiliateCompany($affiliate_company);
+  $result = $affiliate_companySql->updateAffiliateCompany($affiliate_company,$values);
   if(!$result)
   {return($affiliate_managerSql->error);}
   else{

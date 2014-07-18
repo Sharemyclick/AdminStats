@@ -16,14 +16,11 @@ $filters['value'] = $_GET['id'];
 $id_affiliate_company = $_GET['id'];
 
 
-echo $filters['value'] ;
-
-
 $viewAffiliateCompany = new AffiliateCompany();
 $viewAffiliateCompany->getAffiliateCompanyInformation($id_affiliate_company);
 
 $viewHq = new AffiliateCompany();
-$viewHq->getHq();
+$viewHq->getHq($filters['value']);
 
 ?>
 
@@ -130,7 +127,7 @@ $viewHq->getHq();
                         
                         <p>
                             <label> Headquarter</label>
-                              <span class="field"> <input type="url" name="hq" class="input-xxlarge" value="<?php echo $viewAffiliateCompany->affiliate_company['hq']; ?>" readonly="readonly"/>     </span>
+                              <span class="field"> <input type="url" name="hq" class="input-xxlarge" value="<?php if (!isset($viewAffiliateCompany->affiliate_company['hq'])){echo 'No Headquarter';} Else {echo $viewAffiliateCompany->affiliate_company['hq'];} ?>" readonly="readonly"/>     </span>
                             
                         </p>
                         

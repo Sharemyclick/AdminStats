@@ -168,18 +168,31 @@ $this->error = 'affiliate_company : '.$errors[2];} */
 //==================================================================================
 
 
-public function updateAffiliateCompany($affiliate_company)
+public function updateAffiliateCompany($affiliate_company,$values)
 {
-   $req = $this->bdd->prepare('UPDATE affiliate_company SET company_name=:company_name, address=:address, id_country=:id_country, websites=:websites, id_hq=:id_hq,  status=:status WHERE id_affiliate_company =' .$id_affiliate_company);
+   $req = $this->bdd->prepare('UPDATE affiliate_company SET company_name=:company_name, address=:address, id_country=:id_country, websites=:websites, id_hq=:id_hq,  status=:status WHERE id_affiliate_company =' .$affiliate_company);
    $req->execute(array(    
-         'company_name' => $affiliate_company['company_name'],
-            'address' => $affiliate_company['address'],
-            'id_country' => $affiliate_company['id_country'],
-            'websites' => $affiliate_company['websites'],
-            'id_hq' => $affiliate_company['id_hq'],
-            'status' => $affiliate_company['status']
+         'company_name' => $values['company_name'],
+            'address' => $values['address'],
+            'id_country' => $values['id_country'],
+            'websites' => $values['websites'],
+            'id_hq' => $values['id_hq'],
+            'status' => $values['status']
 
-)) or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
+))  ;
+    
+     $req = $this->bdd->prepare('UPDATE affiliate_company_traffic SET id_traffic=:id_traffic WHERE id_affiliate_company =' .$affiliate_company);
+    $req->execute(array( 
+                'id_traffic'=> $values['id_traffic']
+                
+           ));
+    
+    $req = $this->bdd->prepare('UPDATE affiliate_company_type_affiliate SET id_type_affiliate=:id_type_affiliate WHERE id_affiliate_company =' .$affiliate_company);
+    $req->execute(array( 
+                'id_type_affiliate'=> $values['id_type_affiliate']
+           ))
+
+ or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
  if($req->errorCode() == 0) {
      $req->closeCursor();
      return true;
