@@ -142,7 +142,14 @@ $viewAffiliateManager->getAffiliateManagerInformation($filters['value']);
                             </span>  
                             
                         </p>
-                        
+                        <p>
+                            <label>Country</label>
+                            
+                            <span class="field">
+                               <input type="text" name="company_name" class="input-xxlarge" value="<?php echo $viewAffiliateManager->affiliate_manager['name_country'] ?>" readonly="readonly"/>
+                            </span>  
+                            
+                        </p>
                           <p>
                             <label>Date of Birth</label>
                             

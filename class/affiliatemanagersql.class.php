@@ -29,7 +29,7 @@ public function selectAffiliateManagerList(){
 }
 public function selectAffiliateManager($id_affiliate_manager=false){
 
-	$req = $this->bdd->query('SELECT * FROM affiliate_manager am LEFT JOIN affiliate_company ac ON am.id_affiliate_company = ac.id_affiliate_company WHERE am.id_affiliate_manager= '.$id_affiliate_manager);
+	$req = $this->bdd->query('SELECT * FROM affiliate_manager am LEFT JOIN affiliate_company ac ON am.id_affiliate_company = ac.id_affiliate_company LEFT JOIN country c ON c.id_country=am.id_country WHERE am.id_affiliate_manager= '.$id_affiliate_manager);
 	$res=$req->fetch();
         return $res;
 	
