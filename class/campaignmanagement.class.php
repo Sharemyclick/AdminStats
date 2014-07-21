@@ -2,7 +2,7 @@
 include "campaignmanagementsql.class.php";
 
 
-class user{
+class CampaignManagement{
     
     private $id_campaign_management;
     private $name;
@@ -48,7 +48,7 @@ public function getThumbnail() {
 
   public function getCampaignManagementsList(){
 	  $campaign_managementSql = new CampaignManagementSql();
-	  $campaign_managements_sql= $campaign_managementSql->SelectCampaignManagementList();
+	  $campaign_managements_list= $campaign_managementSql->SelectCampaignManagementsList();
 	  //TODO setup $campaign_managements_list from query results
 	  // structure of $campaign_management_list : Array('id','name')
 	  return $this->setCampaignManagementsList($campaign_managements_list);
@@ -92,5 +92,15 @@ public function setThumbnail($thumbnail) {
     /*
   METHODS
   */
-
+ public function createCampaignManagement($campaign_managements_list)
+ { $affiliate_campaign_managementSql = new CampaignManagementSql();
+ 
+ //if($this->downloadLogo($advertiser['logo']))
+   $result = $affiliate_campaign_managementSql->insertCampaignManagement($campaign_managements_list);
+  if(!$result)
+  {return($affiliate_campaign_managementSql->error);}
+  else{
+         return 'A campaign management has been created';
+  } 
+ }
 }

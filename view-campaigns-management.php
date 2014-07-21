@@ -11,8 +11,8 @@ if(!isset($_SESSION['login'])) {
   echo '<script>document.location.href="dashboard.php"</script>';  
   exit;  
 }
-$viewAffiliateManager = new AffiliateManager();
-$viewAffiliateManager->getAffiliateManagersList();
+$viewCampaignManagement = new CampaignManagement();
+$viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList();
 
 ?>
 
@@ -96,28 +96,28 @@ $viewAffiliateManager->getAffiliateManagersList();
                     <thead>
                         <tr>
 							<th class="centeralign">Name</th>
-							<th class="centeralign">Surname</th>
-							<th class="centeralign">email</th>
-							<th class="centeralign">Skype</th>
-							<th class="centeralign"> Telephone</th>
-                                                        <th class="centeralign"> Affiliate Company</th>
-                                                        <th class="centeralign"> Status</th>
-							
+							<th class="centeralign">Payout For Affiliate</th>
+							<th class="centeralign">Payout For SMC</th>
+							<th class="centeralign">Type Of Payout</th>
+							<th class="centeralign"> Country</th>
+                                                        <th class="centeralign"> Allowed</th>
+                                                        <th class="centeralign"> Category</th>
+							<th class="centeralign"> Thumbnail</th>
 						</tr>
                     </thead>
                     
 					<tbody>
                                                 <?php                                                 
-                                                foreach($viewAffiliateManager->affiliate_managers_list as $list => $affiliate){ ?>         					
+                                                foreach($viewCampaignManagement->campaign_managements_list as $list => $affiliate){ ?>         					
 						
                                                         <tr>
                                                         <td class="centeralign"><a href="view-affiliate-manager-information.php?id=<?php echo $affiliate['id_affiliate_manager']; ?>" ><?php echo $affiliate['name'] ?></a></td>
-                                                        <td class="centeralign"><?php echo $affiliate['surname'] ;?>  </td>
-                                                        <td class="centeralign"><?php echo $affiliate['email'] ?></td>
-                                                        <td class="centeralign"><?php echo $affiliate['skype'] ?></td> 
-                                                        <td class="centeralign"><?php echo $affiliate['telephone'] ?></td>
-                                                        <td class="centeralign"><?php echo $affiliate['company_name'] ?> </td>
-                                                        <td class="centeralign"><?php echo $affiliate['manager_status'] ?> </td>
+                                                        <td class="centeralign"><?php echo $affiliate['payout_smc'] ;?>  </td>
+                                                        <td class="centeralign"><?php echo $affiliate['type_payout'] ?></td>
+                                                        <td class="centeralign"><?php echo $affiliate['name_country'] ?></td> 
+                                                        <td class="centeralign"><?php echo $affiliate['allowed'] ?></td>
+                                                        <td class="centeralign"><?php echo $affiliate['name_category'] ?> </td>
+                                                        <td class="centeralign"><?php echo $affiliate['thumbnail'] ?> </td>
 </tr>
 						<?php }
 					?>

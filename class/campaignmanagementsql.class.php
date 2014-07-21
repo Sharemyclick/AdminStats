@@ -9,6 +9,8 @@
 class CampaignManagementSql
 {
 private $bdd;
+public $error;
+public $errors;
 
 public function CampaignManagementSql(){
 	// On se connecte à la base de données.
@@ -20,6 +22,89 @@ public function SelectCampaignManagementsList($campaign_management = false){
 	$req = $this->bdd->query('SELECT * FROM campaign_management');
 	return $req;
 	
+}
+//==========================INSERT====================================
+
+
+public function insertCampaignManagement($campaign_management)
+        
+        
+        
+{$req = $this->bdd->prepare('INSERT INTO campaign_management(  name, payout_affiliate, payout_smc, type_payout, allowed, id_country,  thumbnail ) VALUES ( :name,  :payout_affiliate, :payout_smc, :type_payout, :allowed, :id_country, :thumbnail)');
+        $req->execute(array(
+            'name' => $campaign_management['name'],
+           
+            'payout_affiliate' => $campaign_management['payout_affiliate'],
+             'payout_smc' => $campaign_management['payout_smc'],
+            'type_payout' => $campaign_management['type_payout'],
+            'allowed' => $campaign_management['allowed'],
+              'id_country' => $campaign_management['id_country'],
+           
+            'thumbnail' => $campaign_management['thumbnail']
+     )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         
+   $id_campaign_management = $this->bdd->lastInsertId();
+         
+ if($req->errorCode() == 0) {
+   
+    
+} else {
+    $errors = $req->errorInfo();
+}
+  $req = $this->bdd->prepare('INSERT INTO campaign_management_category(  id_category, id_campaigns_management ) VALUES ( :id_category,  :id_campaigns_management)');
+        $req->execute(array(
+            
+           
+            'id_category' => $campaign_management['id_category']   ,
+             'id_campaigns_management' => $id_campaign_management
+                
+                  )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
+         
+   $id_camapign_management = $this->bdd->lastInsertId();
+         
+ if($req->errorCode() == 0) {
+   
+    
+} else {
+    echo fdgbsd;
+}
+  
+    $req->closeCursor();
+    $this->error = 'manager : '.$error[2];
+    return false;
+   
+}
+
+
+
+
+//========================UPDATE===================================
+
+
+public function updateAffiliateManager($id_affiliate_manager,$values)
+{
+   $req = $this->bdd->prepare('UPDATE affiliate_manager SET name=:name, surname=:surname, email=:email, skype=:skype, id_country=:id_country, telephone=:telephone, id_affiliate_company=:id_affiliate_company, date_birth=:date_birth, manager_status=:manager_status WHERE id_affiliate_manager =' .$id_affiliate_manager);
+   $req->execute(array(    
+            'name' => $values['name'],
+            'surname' => $values['surname'],
+            'email' => $values['email'],
+            'skype' => $values['skype'],
+            'telephone' => $values['telephone'],
+          'id_country' => $values['id_country'],
+            'id_affiliate_company' => $values['id_affiliate_company'],   
+            'date_birth' => $values['date_birth']   ,
+            'manager_status' => $values['manager_status']
+
+)) or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
+ if($req->errorCode() === 0) {
+     $req->closeCursor();
+     return true;
+} else {
+    $errors = $req->errorInfo();
+    $req->closeCursor();
+    $this->error = 'manager : '.$errors[2];
+    return false;
+}
 }
 
 }

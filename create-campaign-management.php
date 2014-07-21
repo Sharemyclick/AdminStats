@@ -12,8 +12,8 @@ if(!isset($_SESSION['login'])) {
   exit;  
 }
 
-//$objHeadquarter = new AffiliateManager();
-//$resultHeadquarter = $objHeadquarter->getAffiliateManagersList();
+$objCampaignManagement = new CampaignManagement();
+$resultCampaignManagement = $objCampaignManagement->getCampaignManagementsList();
 
 
 
@@ -26,9 +26,9 @@ $resultCountry = $objCountry->getCountryList();
 $objCategoryProduct = new CategoryProduct();
 $result = $objCategoryProduct->getCategoriesList();
 
- if(isset($_POST['submit_affiliate_manager'])){
+ if(isset($_POST['submit_campaign_management'])){
      
-       $message = $objHeadquarter->createAffiliateManager($_POST);
+       $message = $objCampaignManagement->createCampaignManagement($_POST);
      
  }
 
@@ -104,12 +104,12 @@ $result = $objCategoryProduct->getCategoriesList();
             <div class="contentinner">
                 
                 <?php
-                     if(isset($_POST['submit_affiliate_manager']))
+                     if(isset($_POST['submit_campaigns_management']))
                          {
                          ?>   <h4 class='confirmation' style="text-align: center" ">The Campaigns Management has been created </h4> </br> 
                          <p class="stdformbutton" style="text-align: center">
-                             <a href="create-affiliate-manager.php"
-                             <button type="button" name="create_affiliate_manager_redirection" id="create_affiliate_manager_redirection" class="btn btn-primary" >Create another affiliate manager </button>
+                             <a href="create-campaign-management.php"
+                             <button type="button" name="create_campaign management_redirection" id="create_campaigns-management_redirection" class="btn btn-primary" >Create another campaign management </button>
                              </a>
                              <a href="view-campaigns-management.php"
                             <button type="button" name="view-campaigns-management" id="view-campaigns-management" class="btn btn-primary">View Campaigns Management </button>
@@ -136,14 +136,20 @@ $result = $objCategoryProduct->getCategoriesList();
                         <p>
                             <label>Payout for SMC *</label>
                             <span class="field">
-                               <input type="payout_smc" id="email"  name="payout_smc" class="input-xxlarge" required="required" />
+                               <input type="text" id="email"  name="payout_smc" class="input-xxlarge" required="required" />
                             </span>
                             
                         </p>
                              <p>
                             <label>Type of Payout *</label>
                             <span class="field">
-                               <input type="text" id="skype"  name="skype" class="input-xxlarge" required="required" />
+                                <select name="type_payout" id="type_payout" class="status">
+                                        <option value="CPC"> CPC</option>
+                                        <option value="CPM"> CPM</option>
+                                        <option value="CPL">CPL</option>
+                                        <option value="CPL">CPI</option>
+
+                                </select>                        
                             </span>
                             
                         </p>                                 
@@ -156,7 +162,7 @@ $result = $objCategoryProduct->getCategoriesList();
                             <label>Category</label>
                             
                            <span class="field">
-                                <select name="id_category_product" id="id_category_product" class="status">
+                                <select name="id_category" id="id_category_product" class="status">
                                         <?php 
                                         foreach($objCategoryProduct->categories_list as $indCat => $valCat){?>
                                     
@@ -186,7 +192,7 @@ $result = $objCategoryProduct->getCategoriesList();
                             <label> Thumbnail *</label>
                             <span class="field">
                                 
-                                <input type="text" name="date_birth" class="status" required="required" />
+                                <input type="text" name="thumbnail" class="status" required="required" />
                             </span>
                             </p>
                         
@@ -194,7 +200,7 @@ $result = $objCategoryProduct->getCategoriesList();
                       
                         
                         <p class="stdformbutton">
-                            <button type="submit" name="submit_affiliate_manager" id="submit_affiliate_manager" class="btn btn-primary">Create </button>
+                            <button type="submit" name="submit_campaign_management" id="submit_campaign_management" class="btn btn-primary">Create </button>
                             <button type="reset" class="btn">Reset </button>
                         </p>
                         
