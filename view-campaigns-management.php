@@ -63,7 +63,7 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsL
         	<ul class="skins">
                 <li><a href="default" class="skin-color default"></a></li>
                 <li><a href="orange" class="skin-color orange"></a></li>
-				<li><a href="green" class="skin-color green"></a></li>
+		<li><a href="green" class="skin-color green"></a></li>
                 <li><a href="dark" class="skin-color dark"></a></li>
                 <li>&nbsp;</li>
                 <li class="fixed"><a href="" class="skin-layout fixed"></a></li>
