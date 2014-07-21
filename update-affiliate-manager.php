@@ -174,9 +174,9 @@ if(isset($_POST['submit_update']))
                               <select name="id_affiliate_company" id="id_affiliate_company" class="status">
                                         <?php 
                                         if(($viewAffiliateManager->affiliate_manager['id_affiliate_company'] === NULL)){ echo '<option value="" selected></option>' ;} 
-                                        Else { echo '<option value="" ></option>' ;}
+                                       
                                         foreach($objCompany->affiliate_company_table as $indHq => $valHq){?>
-                                    <option value="<?php echo $valHq['id_affiliate_company']; ?>" <?php if($viewAffiliateManager->affiliate_manager['id_affiliate_company'] === $valHq['company_name']){?> selected <?php } ?>  ><?php echo $valHq['company_name']; ?> </option>
+                                    <option value="<?php echo $valHq['id_affiliate_company']; ?>" <?php if($viewAffiliateManager->affiliate_manager['id_affiliate_company'] === $valHq['id_affiliate_company']){?> selected <?php } ?>  ><?php echo $valHq['company_name']; ?> </option>
                                             </option>
                                 <?php }; ?>
                                 </select>
@@ -192,7 +192,7 @@ if(isset($_POST['submit_update']))
                                         <?php 
                                         foreach($objCountry->countryselect as $indCountry => $valCountry){?>
                                         
-                                    <option value="<?php echo $valCountry['id_country']; ?>" <?php if($viewAffiliateManager->affiliate_manager['name_country'] == $valCountry['name_country']){?> selected <?php } ?>  ><?php echo $valCountry['name_country']; ?> </option>
+                                    <option value="<?php echo $valCountry['id_country']; ?>" <?php if($viewAffiliateManager->affiliate_manager['id_country'] == $valCountry['id_country']){?> selected <?php } ?>  ><?php echo $valCountry['name_country']; ?> </option>
                                             </option>
                                 <?php }; ?>
                                 </select>
