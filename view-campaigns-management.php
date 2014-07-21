@@ -111,8 +111,9 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsL
                                                 foreach($viewCampaignManagement->campaign_managements_list as $list => $affiliate){ ?>         					
 						
                                                         <tr>
-                                                        <td class="centeralign"><a href="view-affiliate-manager-information.php?id=<?php echo $affiliate['id_affiliate_manager']; ?>" ><?php echo $affiliate['name'] ?></a></td>
-                                                        <td class="centeralign"><?php echo $affiliate['payout_smc'] ;?>  </td>
+                                                        <td class="centeralign"><a href="view-campaign-management-information.php?id=<?php echo $affiliate['id_campaign_management']; ?>" ><?php echo $affiliate['name'] ?></a></td>
+                                                         <td class="centeralign"><?php echo $affiliate['payout_affiliate'] ;?>  </td>
+                                                         <td class="centeralign"><?php echo $affiliate['payout_smc'] ;?>  </td>
                                                         <td class="centeralign"><?php echo $affiliate['type_payout'] ?></td>
                                                         <td class="centeralign"><?php echo $affiliate['name_country'] ?></td> 
                                                         <td class="centeralign"><?php echo $affiliate['allowed'] ?></td>

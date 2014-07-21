@@ -9,7 +9,7 @@
 class CampaignManagementSql
 {
 private $bdd;
-public $error;
+public $error = 0;
 public $errors;
 
 public function CampaignManagementSql(){
@@ -19,7 +19,7 @@ public function CampaignManagementSql(){
 
 public function SelectCampaignManagementsList($campaign_management = false){
 
-	$req = $this->bdd->query('SELECT * FROM campaign_management');
+	$req = $this->bdd->query('SELECT * FROM campaign_management cm LEFT JOIN country c ON c.id_country=cm.id_country LEFT JOIN campaign_management_category cmc ON cmc.id_campaigns_management=cm.id_campaign_management LEFT JOIN category_product cp ON cp.id_category_product=cmc.id_category');
 	return $req;
 	
 }
@@ -44,11 +44,11 @@ public function insertCampaignManagement($campaign_management)
      )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          
    $id_campaign_management = $this->bdd->lastInsertId();
-         
+     
  if($req->errorCode() == 0) {
    
     
-} else {
+} else {echo fistnot;
     $errors = $req->errorInfo();
 }
   $req = $this->bdd->prepare('INSERT INTO campaign_management_category(  id_category, id_campaigns_management ) VALUES ( :id_category,  :id_campaigns_management)');
@@ -64,13 +64,15 @@ public function insertCampaignManagement($campaign_management)
          
  if($req->errorCode() == 0) {
    
-    
-} else {
-    echo fdgbsd;
+
+}
+
+else {
+    echo secondnotok;
 }
   
     $req->closeCursor();
-    $this->error = 'manager : '.$error[2];
+   
     return false;
    
 }

@@ -12,7 +12,7 @@ class CampaignManagement{
     private $allowed;
     private $thumbnail;
     
-     private $campaign_managements_list = array();
+     public $campaign_managements_list = array();
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
