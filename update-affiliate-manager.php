@@ -14,8 +14,8 @@ if(!isset($_SESSION['login'])) {
 }
 $filters['field'] = 'id_affiliate_manager';
 
-if(isset($_POST['id_affiliate_manager']) || isset($_GET['id']))
-{$filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id_affiliate_manager'];}
+if(isset($_POST['id']) || isset($_GET['id']))
+{$filters['value'] = (isset($_GET['id']))?$_GET['id']:$_POST['id'];}
 /*
  if($_GET['id']) 
     $filters['value'] = $_GET['id'];
@@ -123,11 +123,11 @@ if(isset($_POST['submit_update']))
                              <div class="widgetcontent">
                                  
                                  <p class="stdformbutton" style="text-align: center">
-                                     <a href="update-affiliate-company-globalview.php" >
-                                        <button type="button" name="return_all_advertiser" id="return_all_affiliate_company" class="btn btn-primary" >Update another affiliate manager </button>
+                                     <a href="update-affiliate-manager-globalview.php" >
+                                        <button type="button" name="return_all_advertiser" id="return_all_affiliate_manager" class="btn btn-primary" >Update another affiliate manager </button>
                                       </a>
-                                     <a href="view-affiliate-company.php" >
-                                        <button type="button" name="view_all_affiliate" id="view_all_affiliate_company" class="btn btn-primary" >View all affiliate manager </button>
+                                     <a href="view-affiliate-manager.php" >
+                                        <button type="button" name="view_all_affiliate" id="view_all_affiliate_manager" class="btn btn-primary" >View all affiliate manager </button>
                                       </a>
                                 </p>
                                 
@@ -145,7 +145,7 @@ if(isset($_POST['submit_update']))
                 <div class="widgetcontent bordered shadowed nopadding">
                     <form name="form_affiliate_manager" class="stdform stdform2" method="post" action="update-affiliate-manager.php" enctype="multipart/form-data">
                         
-                        <input type="hidden" name="id_affiliate_manager" value="<?php echo $filters['value'] ;?>">
+                        <input type="hidden" name="id" value="<?php echo $filters['value'] ;?>">
                          <?php //echo '<pre>', var_dump($viewAffiliateCompany->affiliate_company), '</pre>'; ?>
                         <p>
                             <label>Affiliate Manager name *</label>
