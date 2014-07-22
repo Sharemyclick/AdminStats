@@ -27,7 +27,8 @@ public function SelectCampaignManagementsList($campaign_management = false){
 public function SelectCampaignManagementsInfo($id_campaign_management = false){
 
 	$req = $this->bdd->query('SELECT * FROM campaign_management cm LEFT JOIN country c ON c.id_country=cm.id_country LEFT JOIN campaign_management_category cmc ON cmc.id_campaigns_management=cm.id_campaign_management LEFT JOIN category_product cp ON cp.id_category_product=cmc.id_category LEFT JOIN advertiser adv ON adv.id_advertiser=cm.id_advertiser WHERE id_campaign_management='.$id_campaign_management);
-	return $req;
+	$res=$req->fetch();
+        return $res;
 	
 }
 //==========================INSERT====================================

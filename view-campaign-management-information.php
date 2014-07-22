@@ -106,19 +106,19 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsI
                         
                         <p>
                             <label> Campaign Management Name *</label>
-                            <span class="field"><input type="text" name="name" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_list['name']; ?>" /></span>
+                            <span class="field"><input type="text" name="name" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['name']; ?>" /></span>
                         </p>
 
                         <p>
                             <label>Affiliate Manager Surname *</label>
-                        <span class="field"><input type="text" id="surname"  name="surname" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_list['surname']; ?>" readonly="readonly"/></span>
+                        <span class="field"><input type="text" id="surname"  name="surname" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['payout_affiliate']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label>Email *</label>
                             
                             <span class="field">
-                            <input type="text" name="email" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_list['email'] ?>" readonly="readonly"/>
+                            <input type="text" name="email" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['payout_smc'] ?>" readonly="readonly"/>
                             </span>
                             
                         </p>
@@ -126,19 +126,19 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsI
                                                             
                         <p>
                             <label> Skype *</label>
-                            <span class="field"><input type="url" name="skype" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_list['skype']; ?>" readonly="readonly"/></span>
+                            <span class="field"><input type="url" name="skype" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['skype']; ?>" readonly="readonly"/></span>
                         </p>
                         
                         <p>
                             <label> Telephone</label>
-                              <span class="field"> <input type="url" name="telephone" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_list['telephone']; ?>" readonly="readonly"/>     </span>
+                              <span class="field"> <input type="url" name="telephone" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['telephone']; ?>" readonly="readonly"/>     </span>
                             
                         </p>
                           <p>
                             <label>Affiliate Company</label>
                             
                             <span class="field">
-                               <input type="text" name="company_name" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_list['company_name'] ?>" readonly="readonly"/>
+                               <input type="text" name="company_name" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['company_name'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
@@ -146,7 +146,7 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsI
                             <label>Country</label>
                             
                             <span class="field">
-                               <input type="text" name="company_name" class="input-xxlarge" value="<?php echo $viewCampaignManagement->affiliate_manager['name_country'] ?>" readonly="readonly"/>
+                               <input type="text" name="company_name" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['name_country'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
@@ -154,7 +154,7 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsI
                             <label>Date of Birth</label>
                             
                             <span class="field">
-                               <input type="text" name="date_birth" class="input-xxlarge" value="<?php echo $viewCampaignManagement->affiliate_manager['date_birth'] ?>" readonly="readonly"/>
+                               <input type="text" name="date_birth" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['date_birth'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
@@ -162,7 +162,7 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsI
                             <label>Status</label>
                             
                             <span class="field">
-                               <input type="text" name="manager_status" class="input-xxlarge" value="<?php echo $viewCampaignManagement->affiliate_manager['manager_status'] ?>" readonly="readonly"/>
+                               <input type="text" name="manager_status" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['manager_status'] ?>" readonly="readonly"/>
                             </span>  
                             
                         </p>
