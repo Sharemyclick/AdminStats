@@ -16,7 +16,7 @@ public function AdvertiserSql(){
 	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
 }
 
-public function SelectAdvertisersList($advetiser = false){
+public function SelectAdvertisersList($advertiser = false){
 
 	$req = $this->bdd->query('SELECT * FROM advertiser ORDER BY "company_name"');
 	return $req;

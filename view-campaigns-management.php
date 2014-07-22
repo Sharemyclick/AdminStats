@@ -101,6 +101,8 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsL
 							<th class="centeralign">Type Of Payout</th>
 							<th class="centeralign"> Country</th>
                                                         <th class="centeralign"> Allowed</th>
+                                                        <th class="centeralign"> Conversion</th>
+                                                        <th class="centeralign"> Device</th>
                                                         <th class="centeralign"> Category</th>
 							<th class="centeralign"> Thumbnail</th>
 						</tr>
@@ -117,6 +119,8 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsL
                                                         <td class="centeralign"><?php echo $affiliate['type_payout'] ?></td>
                                                         <td class="centeralign"><?php echo $affiliate['name_country'] ?></td> 
                                                         <td class="centeralign"><?php echo $affiliate['allowed'] ?></td>
+                                                         <td class="centeralign"><?php echo $affiliate['conversion'] ?></td>
+                                                          <td class="centeralign"><?php echo $affiliate['device'] ?></td>
                                                         <td class="centeralign"><?php echo $affiliate['name_category'] ?> </td>
                                                         <td class="centeralign"><?php echo $affiliate['thumbnail'] ?> </td>
 </tr>

@@ -66,6 +66,7 @@
                 <li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> CAMPAIGNS MANAGEMENT</a>
                 	<ul>
                     	<li><a href="view-campaigns-management.php">View all Campaigns</a></li>
+                        <li><a href="view-campaign-management-filter.php">Campaigns Filters</a></li>
 						<li><a href="create-campaign-management.php">Create Campaign</a></li>
 						<li><a href="update-campaign-management.php">Modify Campaign</a></li>
                     </ul>

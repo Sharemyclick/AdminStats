@@ -21,7 +21,7 @@ $id_affiliate_manager = $_GET['id'];
 //echo $filters['value'];
 
 $viewCampaignManagement = new CampaignManagement();
-$viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList($filters['value']);
+$viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsInfo($filters['value']);
 
 ?>
 

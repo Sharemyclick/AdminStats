@@ -2,7 +2,7 @@
 
 include('conf.php');
 include('class/campaignmanagement.class.php');
-
+include('class/advertiser.class.php');
 include('class/categoryproduct.class.php');
 include('class/country.class.php');
 
@@ -15,7 +15,8 @@ if(!isset($_SESSION['login'])) {
 $objCampaignManagement = new CampaignManagement();
 $resultCampaignManagement = $objCampaignManagement->getCampaignManagementsList();
 
-
+$objAdvertiser = new Advertiser();
+$resultAdvertiser = $objAdvertiser->getAdvertisers();
 
 //$objCompany = new AffiliateCompany();
 //$resultCompany = $objCompany->getAffiliateCompanyTable();
@@ -127,6 +128,20 @@ $result = $objCategoryProduct->getCategoriesList();
                             <label> Name *</label>
                             <span class="field"><input type="text" name="name" class="input-xxlarge" required="required" /></span>
                         </p>
+                         <p>
+                            <label>Advertiser *</label>
+                            <span class="field">
+                                <select name="id_advertiser" id="id_advertiser" class="status">
+                                        <?php 
+                                        foreach($objAdvertiser->advertisers as $indAdvertiser => $valAdvertiser){?>
+                                        
+                                    <option value="<?php echo $valAdvertiser['id_advertiser']; ?>"  ><?php echo $valAdvertiser['company_name']; ?> </option>
+                                            </option>
+                                <?php } ?>
+                                </select>
+                            </span>
+                            
+                        </p>
 
                         <p>
                             <label>Payout for Affiliate *</label>
@@ -147,7 +162,9 @@ $result = $objCategoryProduct->getCategoriesList();
                                         <option value="CPC"> CPC</option>
                                         <option value="CPM"> CPM</option>
                                         <option value="CPL">CPL</option>
-                                        <option value="CPL">CPI</option>
+                                        <option value="CPA">CPA</option>
+                                        <option value="C2L">C2L</option>
+                                        <option value="CPV">CPV</option>
 
                                 </select>                        
                             </span>
@@ -155,9 +172,34 @@ $result = $objCategoryProduct->getCategoriesList();
                         </p>                                 
                         <p>
                             <label> Allowed *</label>
-                            <span class="field"><input type="text" name="allowed" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><select name="allowed" id="type_payout" class="status">
+                                        <option value=" Not Allowed"> Not Allowed</option>
+                                        <option value="Allowed"> Allowed</option>
+                                        <option value="Could be allowed in DOI">Could be allowed in DOI</option>
+                                        
+
+                                </select> </span>
                         </p>
-                                         
+                               <p>
+                            <label> Conversion *</label>
+                            <span class="field"><select name="conversion" id="type_payout" class="status">
+                                        <option value="On Purchase"> On Purchase</option>
+                                        <option value="Single Optin"> Single Optin</option>
+                                        <option value="Double Optin">Double Optin</option>
+                                          <option value="Single or Double Optin"> Single or Double Optin</option>
+
+                                </select> </span>
+                        </p>  
+                         <p>
+                            <label> Device *</label>
+                            <span class="field"><select name="device" id="type_payout" class="status">
+                                        <option value="Desktop"> Desktop</option>
+                                        <option value="Mobile"> Mobile</option>
+                                        <option value="Both">Both</option>
+                                        
+
+                                </select> </span>
+                        </p>
 			<p>
                             <label>Category</label>
                             

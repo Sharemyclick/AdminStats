@@ -10,9 +10,13 @@ class CampaignManagement{
     private $payout_smc;
     private $type_payout;
     private $allowed;
+    private $conversion;
+    private $device;
     private $thumbnail;
+    private $id_advertiser;
     
      public $campaign_managements_list = array();
+    public $campaign_managements_info= array();
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -45,6 +49,16 @@ public function getAllowed() {
 public function getThumbnail() {
     return $this->thumbnail;
 }
+public function getId_advertiser() {
+    return $this->id_advertiser;
+}
+public function getConversion() {
+    return $this->conversion;
+}
+
+public function getDevice() {
+    return $this->device;
+}
 
   public function getCampaignManagementsList(){
 	  $campaign_managementSql = new CampaignManagementSql();
@@ -53,7 +67,13 @@ public function getThumbnail() {
 	  // structure of $campaign_management_list : Array('id','name')
 	  return $this->setCampaignManagementsList($campaign_managements_list);
 	  }
-	
+ public function getCampaignManagementsInfo($id_campaign_management){
+	  $campaign_managementSql = new CampaignManagementSql();
+	  $campaign_managements_info= $campaign_managementSql->SelectCampaignManagementsInfo($id_campaign_management);
+	  //TODO setup $campaign_managements_list from query results
+	  // structure of $campaign_management_list : Array('id','name')
+	  return $this->setCampaignManagementsInfo($campaign_managements_info);
+	  }	
 	/*
   SETTERS
   */
@@ -84,10 +104,24 @@ public function setAllowed($allowed) {
 public function setThumbnail($thumbnail) {
     $this->thumbnail = $thumbnail;
 }
+public function setId_advertiser($id_advertiser) {
+    $this->id_advertiser = $id_advertiser;
+}
+public function setConversion($conversion) {
+    $this->conversion = $conversion;
+}
+
+public function setDevice($device) {
+    $this->device = $device;
+}
 
   public function setCampaignManagementsList($campaign_managements_list)
   {
    $this->campaign_managements_list = $campaign_managements_list;
+  } 
+   public function setCampaignManagementsInfo($campaign_managements_info)
+  {
+   $this->campaign_managements_info = $campaign_managements_info;
   } 
     /*
   METHODS

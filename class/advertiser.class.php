@@ -16,7 +16,8 @@ class Advertiser
   private $address;
   private $company_type;
   private $telephone_company;
-  public $advertisers = array();  
+  public $advertisers = array(); 
+  public $advertisers_list = array();
   public function Advertiser(){
       
   }
@@ -98,10 +99,10 @@ class Advertiser
 
     public function getAdvertisersList(){
 	  $advertiserSql = new AdvertiserSql();
-	  $advertisers_sql= $advertiserSql->SelectAdvertisersList();
+	  $advertisers_list= $advertiserSql->SelectAdvertisersList();
 	  //TODO setup $campaign_managements_list from query results
 	  // structure of $campaign_management_list : Array('id','name')
-	  return $this->setAdvertisersList($advertiser_list);
+	  return $this->setAdvertisersList($advertisers_list);
 	  }
        
   /*
@@ -179,8 +180,9 @@ class Advertiser
       $this->telephone_company = $telephone_company;
   }
 
-     // set address
- 
+    public function setAdvertisersList($advertisers_list)
+  {
+  $this->advertisers_list = $advertisers_list;}
   public function createAdvertiser($advertiser)
  { $advertiserSql = new AdvertiserSql();
  
