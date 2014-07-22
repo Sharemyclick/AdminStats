@@ -105,7 +105,7 @@ $result = $objCategoryProduct->getCategoriesList();
             <div class="contentinner">
                 
                 <?php
-                     if(isset($_POST['submit_campaigns_management']))
+                     if(isset($_POST['submit_campaign_management']))
                          {
                          ?>   <h4 class='confirmation' style="text-align: center" ">The Campaigns Management has been created </h4> </br> 
                          <p class="stdformbutton" style="text-align: center">
@@ -145,13 +145,13 @@ $result = $objCategoryProduct->getCategoriesList();
 
                         <p>
                             <label>Payout for Affiliate *</label>
-                        <span class="field"><input type="text" id="payout_affiliate"  name="payout_affiliate" class="input-xxlarge" required="required" /></span>
+                        <span class="field"><input type="text" id="payout_affiliate"  name="payout_affiliate" class="status" required="required" /></span>
                         </p>
                         
                         <p>
                             <label>Payout for SMC *</label>
                             <span class="field">
-                               <input type="text" id="email"  name="payout_smc" class="input-xxlarge" required="required" />
+                               <input type="text" id="email"  name="payout_smc" class="status" required="required" />
                             </span>
                             
                         </p>
