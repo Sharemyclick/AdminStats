@@ -93,21 +93,28 @@ else {
 //========================UPDATE===================================
 
 
-public function updateAffiliateManager($id_affiliate_manager,$values)
+public function updateCampaignManagement($id_campaign_management,$values)
 {
-   $req = $this->bdd->prepare('UPDATE affiliate_manager SET name=:name, surname=:surname, email=:email, skype=:skype, id_country=:id_country, telephone=:telephone, id_affiliate_company=:id_affiliate_company, date_birth=:date_birth, manager_status=:manager_status WHERE id_affiliate_manager =' .$id_affiliate_manager);
+   $req = $this->bdd->prepare('UPDATE campaign_management SET name=:name, id_advertiser=:id_advertiser, payout_affiliate=:payout_affiliate, payout_smc=:payout_smc, id_country=:id_country, type_payout=:type_payout, allowed=:allowed, conversion=:conversion, device=:device, thumbnail = :thumbnail WHERE id_campaign_management =' .$id_campaign_management);
    $req->execute(array(    
             'name' => $values['name'],
-            'surname' => $values['surname'],
-            'email' => $values['email'],
-            'skype' => $values['skype'],
-            'telephone' => $values['telephone'],
+            'id_advertiser' => $values['id_advertiser'],
+            'payout_affiliate' => $values['payout_affiliate'],
+            'payout_smc' => $values['payout_smc'],
+            'type_payout' => $values['type_payout'],
           'id_country' => $values['id_country'],
-            'id_affiliate_company' => $values['id_affiliate_company'],   
-            'date_birth' => $values['date_birth']   ,
-            'manager_status' => $values['manager_status']
+            'allowed' => $values['allowed'],   
+            'conversion' => $values['conversion']   ,
+       'device' => $values['device']   ,
+            'thumbnail' => $values['thumbnail']
 
-)) or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
+))  or die(print_r($req->errorInfo()));
+            $req = $this->bdd->prepare('UPDATE campaign_management_category SET id_category=:id_category WHERE  id_campaigns_management =' .$id_campaign_management);
+    $req->execute(array( 
+                'id_category'=> $values['id_category']
+                
+           ))
+           or die(print_r($req->errorInfo()));  // On traque l'erreur s'il y en a une
  if($req->errorCode() === 0) {
      $req->closeCursor();
      return true;

@@ -137,4 +137,14 @@ public function setDevice($device) {
          return 'A campaign management has been created';
   } 
  }
+  public function updateCampaignManagement($id_campaign_management,$values)
+ { $campaign_managementSql = new CampaignManagementSql();
+
+   $result = $campaign_managementSql->updateCampaignManagement($id_campaign_management,$values);
+  if(!$result)
+  {return($campaign_managementSql->error);}
+  else{
+         return 'Campaign has been updated';
+  } 
+ }   
 }
