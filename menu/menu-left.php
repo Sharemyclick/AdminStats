@@ -68,7 +68,7 @@
                     	<li><a href="view-campaigns-management.php">View all Campaigns</a></li>
                         <li><a href="view-campaign-management-filter.php">Campaigns Filters</a></li>
 						<li><a href="create-campaign-management.php">Create Campaign</a></li>
-						<li><a href="update-campaign-management.php">Modify Campaign</a></li>
+						<li><a href="update-campaign-management-globalview.php">Modify Campaign</a></li>
                     </ul>
                 </li>
                 
