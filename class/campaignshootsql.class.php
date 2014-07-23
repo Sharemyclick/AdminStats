@@ -13,8 +13,8 @@ public function CampaignShootSql(){
 
 public function SelectCampaignShootsList($campaign_shoot = false){
 
-	$req = $this->bdd->query('SELECT * FROM campaign_shoot cs LEFT JOIN campaign_management cm ON cs.id_campaign_management=cm.id_campaign_management '
-                . 'LEFT JOIN dbase d ON cs.id_db=d.id_database ');
+	$req = $this->bdd->query('SELECT * FROM campaign_shoot cs LEFT JOIN campaign_management cm ON cs.id_campaign_management=cm.id_campaign_management LEFT JOIN dbase d ON cs.id_database=d.id_database ');
+        
 	return $req;
 	
 }
@@ -30,13 +30,13 @@ public function SelectCampaignShootsInfo($campaign_shoot = false){
 //==========================INSERT====================================
 
 
-public function insertCampaignManagement($campaign_shoot)
+public function insertCampaignShoot($campaign_shoot)
         
         
         
-{$req = $this->bdd->prepare('INSERT INTO campaign_management(  date, id_database, price, id_campaign_management, type_payout, leads, impressions, clics ) VALUES ( :date, :id_database, :price, :id_campaign_management, :type_payout, :leads, :impressions, :clics)');
+{$req = $this->bdd->prepare('INSERT INTO campaign_shoot(  date_shoot, id_database, price, id_campaign_management, type_payout, leads, impressions, clics ) VALUES ( :date_shoot, :id_database, :price, :id_campaign_management, :type_payout, :leads, :impressions, :clics)');
         $req->execute(array(
-            'date' => $campaign_shoot['date'],
+            'date_shoot' => $campaign_shoot['date_shoot'],
            'id_database' => $campaign_shoot['id_database'],
             'price' => $campaign_shoot['price'],
              'id_campaign_management' => $campaign_shoot['id_campaign_management'],

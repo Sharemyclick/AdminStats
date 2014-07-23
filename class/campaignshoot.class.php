@@ -6,7 +6,7 @@ class CampaignShoot{
     
    private $id_campaign_shoot;
    private $id_db;
-   private $date;
+   private $date_shoot;
    private $price;
    private $type_payout;
    private $id_campaign_management;
@@ -29,10 +29,11 @@ class CampaignShoot{
        return $this->id_db;
    }
 
-   public function getDate() {
-       return $this->date;
+   public function getDate_shoot() {
+       return $this->date_shoot;
    }
 
+   
    public function getPrice() {
        return $this->price;
    }
@@ -86,10 +87,11 @@ class CampaignShoot{
        $this->id_db = $id_db;
    }
 
-   public function setDate($date) {
-       $this->date = $date;
+   public function setDate_shoot($date_shoot) {
+       $this->date_shoot = $date_shoot;
    }
 
+   
    public function setPrice($price) {
        $this->price = $price;
    }
@@ -117,11 +119,11 @@ class CampaignShoot{
 //===============================SET LIST====================================
    public function setCampaignShootsList($campaign_shoots_list)
   {
-   $this->campaign_managements_list = $campaign_managements_list;
+   $this->campaign_shoots_list = $campaign_shoots_list;
   } 
    public function setCampaignShootsInfo($campaign_shoots_info)
   {
-   $this->campaign_managements_info = $campaign_managements_info;
+   $this->campaign_shoots_info = $campaign_shoots_info;
   } 
    
    

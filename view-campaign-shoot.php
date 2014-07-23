@@ -112,7 +112,7 @@ $viewresultCampaignShoot = $viewCampaignShoot->getCampaignShootsList();
                                                 foreach($viewCampaignShoot->campaign_shoots_list as $list => $affiliate){ ?>         					
 						
                                                         <tr>
-                                                        <td class="centeralign"><?php echo $affiliate['date'] ?></a></td>
+                                                        <td class="centeralign"><?php echo $affiliate['date_shoot'] ?></a></td>
                                                          <td class="centeralign"><?php echo $affiliate['database_name'] ;?>  </td>
                                                          <td class="centeralign"><?php echo $affiliate['price'] ;?>  </td>
                                                         <td class="centeralign"><?php echo $affiliate['type_payout'] ?></td>

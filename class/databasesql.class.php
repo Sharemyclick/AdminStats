@@ -20,6 +20,14 @@ public function SelectDatabasesList($database = false){
 	return $req;
 	
 }
+
+public function SelectDatabasesListSimple($database = false){
+
+	$req = $this->bdd->query('SELECT * FROM dbase ');
+	return $req;
+	
+}
+
 public function SelectDatabasesView($database = false){
 
 	$req = $this->bdd->query('SELECT * FROM dbase d LEFT JOIN affiliate_manager_database amd ON amd.id_database = d.id_database '

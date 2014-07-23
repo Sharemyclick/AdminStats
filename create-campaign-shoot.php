@@ -3,6 +3,7 @@
 include('conf.php');
 include('class/campaignshoot.class.php');
 include('class/database.class.php');
+include('class/campaignmanagement.class.php');
 
 
 session_start();  
@@ -15,7 +16,7 @@ $objCampaignShoot = new CampaignShoot();
 $resultCampaignShoot = $objCampaignShoot->getCampaignShootsList();
 
 $objDatabase = new Database();
-$resultDatabase = $objDatabase->getDatabasesList();
+$resultDatabase = $objDatabase->getDatabasesListSimple();
 
 $viewCampaignManagement = new CampaignManagement();
 $resultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList();
@@ -23,8 +24,8 @@ $resultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList(
 
 
  if(isset($_POST['submit_campaign_shoot'])){
-     
-       $message = $objCampaignshoot->createCampaignShoot($_POST);
+     $createCampaignShoot = new CampaignShoot();
+       $message = $createCampaignShoot->createCampaignShoot($_POST);
      
  }
 
@@ -107,8 +108,8 @@ $resultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList(
                              <a href="create-campaign-shoot.php"
                              <button type="button" name="create_campaign shoot_redirection" id="create_campaigns-shoot_redirection" class="btn btn-primary" >Create another campaign shoot </button>
                              </a>
-                             <a href="view-campaigns-shoot.php"
-                            <button type="button" name="view-campaigns-shoot" id="view-campaigns-shoot" class="btn btn-primary">View Campaigns Shoot </button>
+                             <a href="view-campaign-shoot.php"
+                            <button type="button" name="view-campaign-shoot" id="view-campaigns-shoot" class="btn btn-primary">View Campaigns Shoot </button>
                              </a>
                         </p>
                     <?php ;}
@@ -121,7 +122,7 @@ $resultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList(
                     <form name="form_advertiser" class="stdform stdform2" method="post" action="" enctype="multipart/form-data">
                         <p>
                             <label> Date *</label>
-                            <span class="field"><input type="date" name="date" class="input-xxlarge" required="required" /></span>
+                            <span class="field"><input type="date" name="date_shoot" id="date_shoot" class="input-xxlarge" required="required" /></span>
                         </p>
                          <p>
                             <label>Database *</label>
@@ -146,7 +147,7 @@ $resultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList(
                        <p>
                             <label>Campaign Management *</label>
                             <span class="field">
-                                <select name="id_database" id="id_database" class="status">
+                                <select name="id_campaign_management" id="id_campaign_management" class="status">
                                         <?php 
                                         foreach($viewCampaignManagement->campaign_managements_list as $indAdvertiser => $valAdvertiser){?>
                                         
@@ -177,10 +178,10 @@ $resultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList(
                         <span class="field"><input type="text" id="leads"  name="leads" class="status" required="required" /></span>
                         </p>  <p>
                             <label>Impressions *</label>
-                        <span class="field"><input type="text" id="impressions"  name="price" class="status" required="required" /></span>
+                        <span class="field"><input type="text" id="impressions"  name="impressions" class="status" required="required" /></span>
                         </p>  <p>
                             <label>Clics *</label>
-                        <span class="field"><input type="text" id="clics"  name="price" class="status" required="required" /></span>
+                        <span class="field"><input type="text" id="clics"  name="clics" class="status" required="required" /></span>
                         </p>
                         
                       

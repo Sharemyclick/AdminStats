@@ -51,6 +51,13 @@ class Database{
 	  // structure of $database_list : Array('id','name')
 	  return $this->setDatabasesList($databases_list);
 	  }
+           public function getDatabasesListSimple(){
+	  $databaseSql = new DatabaseSql();
+	  $databases_list= $databaseSql->SelectDatabasesListSimple();
+	  //TODO setup $databases_list from query results
+	  // structure of $database_list : Array('id','name')
+	  return $this->setDatabasesListSimple($databases_list);
+	  }
           
             public function getDatabasesView(){
 	  $databaseSql = new DatabaseSql();
@@ -108,7 +115,10 @@ class Database{
   {
    $this->databases_list = $databases_list;
   } 
-  
+   public function setDatabasesListSimple($databases_list)
+  {
+   $this->databases_list = $databases_list;
+  } 
        public function setDatabasesView($databases_view)
   {
    $this->databases_view = $databases_view;
