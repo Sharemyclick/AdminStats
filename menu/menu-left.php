@@ -74,9 +74,9 @@
                 
 				<li id="li-registers" class="dropdown"><a href=""><span class="iconsweets-users"></span> CAMPAIGNS SHOOT</a>
                 	<ul>
-                    	<li><a href="view-campaigns3.php">View all Campaigns</a></li>
-						<li><a href="create-campaign.php">Create Campaign</a></li>
-						<li><a href="update-campaign.php">Modify Campaign</a></li>
+                    	<li><a href="view-campaign-shoot.php">View all Campaigns</a></li>
+						<li><a href="create-campaign-shoot.php">Create Campaign</a></li>
+						<li><a href="update-campaign-shoot.php">Modify Campaign</a></li>
                     </ul>
                 </li>
 				<li style="height:50px;border-bottom:none;"><a href="settings.php"><img src="img/gemicon/settings.png" alt="" style="width:32px;height:32px;display:inline-block;" />
