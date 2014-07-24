@@ -173,16 +173,7 @@ $resultCampaignManagement = $viewCampaignManagement->getCampaignManagementsList(
                             </span>
                             
                         </p>                                 
-                         <p>
-                            <label>Leads *</label>
-                        <span class="field"><input type="text" id="leads"  name="leads" class="status" required="required" /></span>
-                        </p>  <p>
-                            <label>Impressions *</label>
-                        <span class="field"><input type="text" id="impressions"  name="impressions" class="status" required="required" /></span>
-                        </p>  <p>
-                            <label>Clics *</label>
-                        <span class="field"><input type="text" id="clics"  name="clics" class="status" required="required" /></span>
-                        </p>
+                        
                         
                       
                         

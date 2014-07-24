@@ -23,53 +23,26 @@ $viewresultCampaignContract = $viewCampaignContract->getCampaignContractsList();
 <title>Sharemyclick admin platform V1.0</title>
 <link rel="stylesheet" href="css/style.default.css" type="text/css" />
 <link rel="stylesheet" href="prettify/prettify.css" type="text/css" />
+<link rel="stylesheet" href="css/datepicker.css" type="text/css" />
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.9.2.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-editable.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="js/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="prettify/prettify.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+<script src="js/main.js"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 </head>
 
 <body>
-    <script>
-        jQuery(document).ready(function (){
-jQuery('[id=add_dialog]').dialog({ autoOpen: false });
-jQuery('[id^=add_opener]').click(function() {
-var id = jQuery(this).attr('id').substring(10);
-jQuery('[id=add_dialog]').dialog( "open" );
-jQuery('[id=add_dialog]').dialog( "option", "height", 280 );
-jQuery('[id=add_dialog]').dialog( "option", "width", 700 );
-jQuery('[id=contract_id]').val( id );
-});
-});
-</script>
-<div id="add_dialog" title="q1" >
-<p>
-      <form name="form_campaign_contract" class="stdform stdform2" method="post" action="view-campaign-contract.php" enctype="multipart/form-data">
-    <label  class="col-lg-2 control-label" style="width:100px;" >Clics</label>
-			<div style="display:inline-block;float:left;" class="col-lg-3">
-                            <input style="width:100px;" type="text" value=""  class="form-control" name="clics" id="new_param_81" />
-                        </div><br><br>
-    <div style="display:inline-block;float:left;" class="col-lg-3">
-                        <label  class="col-lg-2 control-label" style="width:100px;" >Impressions </label>
-                       
-                            <input style="width:100px;" type="text" value=""  class="form-control" name="impressions" id="new_param_81" />
-                           </div><br><br>
-    <div style="display:inline-block;float:left;" class="col-lg-3">  
-                        <label  class="col-lg-2 control-label" style="width:100px;" >Leads </label>
-                       
-                            <input style="width:100px;" type="text" value=""  class="form-control" name="leads" id="new_param_81" />
-                            
-                            <input type="hidden" value=""  name="contract_id" id="contract_id" />
-                                  <input type="submit" id="submitAddPopup81" name="submitAddPopup81" value="Validate"></input>
-			</div></p>
-							</div>
+   
+
 <div class="mainwrapper">
 	
 	<?php include ('./menu/menu-left.php');?>
@@ -132,9 +105,11 @@ jQuery('[id=contract_id]').val( id );
 							<th class="centeralign">Price</th>
 							<th class="centeralign">Type Of Payout</th>
 							<th class="centeralign"> Campaign Management</th>
-                                                        <th class="centeralign"> Leads</th>
-                                                        <th class="centeralign"> Impressions</th>
-                                                        <th class="centeralign"> Clics</th>
+                                                        <th class="centeralign"> Total Leads</th>
+                                                        <th class="centeralign"> Total Impressions</th>
+                                                        <th class="centeralign"> Total Clics</th>
+                                                        <th class="centeralign"> ECPM Aff</th>
+                                                        <th class="centeralign"> Validated</th>
                                                         <th class="centeralign"> +</th>
                                                   
 						</tr>
@@ -142,18 +117,44 @@ jQuery('[id=contract_id]').val( id );
                     
 					<tbody>
                                                 <?php                                                 
-                                                foreach($viewCampaignContract->campaign_contracts_list as $list => $affiliate){ ?>         					
-						
+                                                foreach($viewCampaignContract->campaign_contracts_list as $list => $affiliate){
+                                                          					
+						$totlead="2"; 
+                                                $totimpressions="2";
+                                                $totclics="2";?>  
                                                         <tr>
-                                                        <td class="centeralign"><?php echo $affiliate['date_contract'] ?></a></td>
-                                                         <td class="centeralign"><?php echo $affiliate['database_name'] ;?>  </td>
-                                                         <td class="centeralign"><?php echo $affiliate['price'] ;?>  </td>
-                                                        <td class="centeralign"><?php echo $affiliate['type_payout'] ?></td>
-                                                        <td class="centeralign"><?php echo $affiliate['name'] ?></td> 
-                                                        <td class="centeralign"><?php echo $affiliate['leads'] ?></td>
-                                                         <td class="centeralign"><?php echo $affiliate['impressions'] ?></td>
-                                                          <td class="centeralign"><?php echo $affiliate['clics'] ?></td>
-                                                          <td class="centeralign" ><a  id="id_plus" value="<?php echo $affiliate['id_campaign_contract'] ?>"><img id="add_opener<?php echo $affiliate['id_campaign_contract'] ?>" src="img/icon/add.png"/></a></td>
+                                                        <td class="centeralign">
+                                                            <a href="#" id="date<?php echo $affiliate['id_campaign_contract']; ?>" data-type="date" data-title="Select Date">
+                                                             <?php echo $affiliate['date_contract'] ;?>
+                                                            </a>
+                                                        </td>
+                                                         <td class="centeralign">
+                                                             <a href="#" id="db_name<?php echo $affiliate['id_campaign_contract']; ?>" data-type="select" data-title="Select Database Name">
+                                                             <?php echo $affiliate['database_name'] ;?>  
+                                                             </a>
+                                                             </td>
+                                                         <td class="centeralign" >
+                                                             <a href="#" id="price<?php echo $affiliate['id_campaign_contract']; ?>" data-type="text" data-title="Enter Price">
+                                                             <?php echo $affiliate['price'] ;?>  
+                                                             </a>
+                                                         </td>
+                                                         <td class="centeralign">
+                                                             <a href="#" id="type_payout<?php echo $affiliate['id_campaign_contract']; ?>" data-type="select" data-title="Select Payaout Type">
+                                                             <?php echo $affiliate['type_payout']; ?>
+                                                             </a>
+                                                         </td>
+                                                        
+                                                        <td class="centeralign">
+                                                            <a href="#" id="affiliate_name<?php echo $affiliate['id_campaign_contract']; ?>" data-type="select" data-title="Select Database Name">
+                                                        <?php echo $affiliate['name'] ;?> 
+                                                            </a>
+                                                        </td> 
+                                                        <td class="centeralign"><?php echo $totlead ?></td>
+                                                         <td class="centeralign"><?php echo $totimpressions ?></td>
+                                                          <td class="centeralign"><?php echo $totclics ?></td>
+                                                           <td class="centeralign">Soon</td>
+                                                            <td class="centeralign"><img  src="img/icon/yes.png"/></td>
+                                                            <td class="centeralign" ><a  href="campaign-contract-information.php?id=<?php echo $affiliate['id_campaign_contract']; ?>"><img  title="viewshoot" src="img/icon/magnify.png"/></a><img title="update" src="img/icon/refresh.png"/></td>
                                                  
 						<?php }
 					?>

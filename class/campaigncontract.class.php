@@ -10,9 +10,7 @@ class CampaignContract{
    private $price;
    private $type_payout;
    private $id_campaign_management;
-   private $leads;
-   private $impressions;
-   private $clics;
+
    
    
    public $campaign_contracts_list;
@@ -46,17 +44,7 @@ class CampaignContract{
        return $this->id_campaign_management;
    }
 
-   public function getLeads() {
-       return $this->leads;
-   }
 
-   public function getImpressions() {
-       return $this->impressions;
-   }
-
-   public function getClics() {
-       return $this->clics;
-   }
 
 
     //=========================GET LIST==================================

@@ -34,7 +34,7 @@ public function insertCampaignContract($campaign_contract)
         
         
         
-{$req = $this->bdd->prepare('INSERT INTO campaign_contract(  date_contract, id_database, price, id_campaign_management, type_payout, leads, impressions, clics ) VALUES ( :date_contract, :id_database, :price, :id_campaign_management, :type_payout, :leads, :impressions, :clics)');
+{$req = $this->bdd->prepare('INSERT INTO campaign_contract(  date_contract, id_database, price, id_campaign_management, type_payout ) VALUES ( :date_contract, :id_database, :price, :id_campaign_management, :type_payout)');
         $req->execute(array(
             'date_contract' => $campaign_contract['date_contract'],
            'id_database' => $campaign_contract['id_database'],

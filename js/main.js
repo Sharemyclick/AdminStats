@@ -7,7 +7,7 @@
 	//var result[i] = new Array();
 	jQuery.ajax({
 					type: "GET",
-					url:"http://campaigns.sharemyclick.com/getCampaignsData.php",
+					url:"http://127.0.0.1/Arthur/campaigns/getCampaignsData.php",
 				    data: {value : id},                   
 					contentType: "application/json",
 					dataType: "json",
@@ -102,7 +102,7 @@ jQuery(document).ready(function() {
     jQuery('[id^=db_name]').each(function(){
 	var pkey = jQuery(this).attr('id').substring(7);
     jQuery(this).editable({
-	url: 'http://campaigns.sharemyclick.com/setCampaignsData.php',
+	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
     type: 'post',
     dataType: 'json',
 	pk : pkey,
@@ -115,11 +115,47 @@ jQuery(document).ready(function() {
 		});
 	});
 		
+     //make partner_name editable
+    jQuery('[id^=type_payout]').each(function(){
+	var pkey = jQuery(this).attr('id').substring(11);
+    jQuery(this).editable({
+	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
+    type: 'post',
+    dataType: 'json',
+	pk : pkey,
+	name : 'type_payout',
+	send: 'always',
+	type: 'select',
+        title: 'Select Payout Type',
+        placement: 'right',
+        source: select_data('type_payout')
+		});
+	});
+		
+                
+                //make partner_name editable
+    jQuery('[id^=affiliate_name]').each(function(){
+	var pkey = jQuery(this).attr('id').substring(14);
+    jQuery(this).editable({
+	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
+    type: 'post',
+    dataType: 'json',
+	pk : pkey,
+	name : 'affiliate_name',
+	send: 'always',
+	type: 'select',
+        title: 'Select Management name',
+        placement: 'right',
+        source: select_data('affiliate_name')
+		});
+	});
+        
+        
 	//make price editable
     jQuery('[id^=price]').each(function(){
 	var pkey = jQuery(this).attr('id').substring(5);
     jQuery(this).editable({
-	url: 'http://campaigns.sharemyclick.com/setCampaignsData.php',
+	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
     type: 'post',
     dataType: 'json',
 	pk : pkey,
@@ -129,46 +165,34 @@ jQuery(document).ready(function() {
         placement: 'right',
 		});
 	});
-	
-	//make time editable
-    jQuery('#time').editable();
-	
-	//make leads editable
-    jQuery('[id^=leads]').each(function(){
-	var pkey = jQuery(this).attr('id').substring(5);
+        
+        
+        //make price editable
+    jQuery('[id^=date]').each(function(){
+	var pkey = jQuery(this).attr('id').substring(4);
     jQuery(this).editable({
-	url: 'http://campaigns.sharemyclick.com/setCampaignsData.php',
+	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
     type: 'post',
     dataType: 'json',
 	pk : pkey,
-	name : 'leads',
+        format: 'yyyy-mm-dd',    
+        viewformat: 'yyyy-mm-dd',    
+        datepicker: {
+                weekStart: 1
+           },
+	name : 'date',
 	send: 'always',
-	type: 'input',
+	type: 'date',
         placement: 'right',
 		});
 	});
 	
-	//make approval_name editable
-    jQuery('#approval_name').editable({
-	url: 'http://campaigns.sharemyclick.com/setCampaignsData.php',
-	ajaxOptions: {
-    type: 'post',
-    dataType: 'json',
-	data: {approval_name: jQuery('[name=approval_name_edit]').val()}
-    },
-	send: 'always',
-	type: 'select',
-        title: 'Select Approval type',
-		name : 'approval_name_edit',
-        placement: 'right',
-        value: 1,
-        source: [
-			{value: '', text: '-------'},
-            {value: 'test1', text: 'test1'},
-            {value: 'test2', text: 'test2'},
-			{value: 'test3', text: 'test3'}
-        ]
-		});
+	//make time editable
+    jQuery('#time').editable();
+	
+	
+	
+	
 	
         /*
         //uncomment these lines to send data on server
