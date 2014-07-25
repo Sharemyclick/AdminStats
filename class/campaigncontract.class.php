@@ -15,6 +15,7 @@ class CampaignContract{
    
    public $campaign_contracts_list;
    public $campaign_contracts_info;
+   public $campaign_shoots_info;
    
  //====================GET==================================
    
@@ -63,7 +64,13 @@ class CampaignContract{
 	  // structure of $campaign_management_list : Array('id','name')
 	  return $this->setCampaignContractsInfo($campaign_contracts_info);
 	  }
-   
+    public function getCampaignshootsInfo($id_campaign_contract){
+	  $campaign_contractSql = new CampaignContractSql();
+	  $campaign_shoots_info= $campaign_contractSql->SelectCampaignShootsInfo($id_campaign_contract);
+	  //TODO setup $campaign_managements_list from query results
+	  // structure of $campaign_management_list : Array('id','name')
+	  return $this->setCampaignShootsInfo($campaign_shoots_info);
+	  }
    
    //==============================SET=====================================
    
@@ -102,7 +109,10 @@ class CampaignContract{
   {
    $this->campaign_contracts_info = $campaign_contracts_info;
   } 
-   
+   public function setCampaignShootsInfo($campaign_shoots_info)
+  {
+   $this->campaign_shoots_info = $campaign_shoots_info;
+  } 
    
    //===============================METHODS==================================
 public function createCampaignContract($campaign_contract)
@@ -116,5 +126,15 @@ public function createCampaignContract($campaign_contract)
          return 'A campaign contract has been created';
   } 
  }
+ public function createCampaignShoot($campaign_shoot)
+ { $campaign_contractSql = new CampaignContractSql();
  
+ //if($this->downloadLogo($advertiser['logo']))
+   $result = $campaign_contractSql->insertCampaignShoot($campaign_shoot);
+  if(!$result)
+  {return($campaign_contractSql->error);}
+  else{
+         return 'A campaign contract has been created';
+  } 
+ }
   }

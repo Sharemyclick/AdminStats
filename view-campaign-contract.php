@@ -119,9 +119,9 @@ $viewresultCampaignContract = $viewCampaignContract->getCampaignContractsList();
                                                 <?php                                                 
                                                 foreach($viewCampaignContract->campaign_contracts_list as $list => $affiliate){
                                                           					
-						$totlead="2"; 
-                                                $totimpressions="2";
-                                                $totclics="2";?>  
+						$totlead="Soon"; 
+                                                $totimpressions="Soon";
+                                                $totclics="Soon";?>  
                                                         <tr>
                                                         <td class="centeralign">
                                                             <a href="#" id="date<?php echo $affiliate['id_campaign_contract']; ?>" data-type="date" data-title="Select Date">
@@ -154,7 +154,7 @@ $viewresultCampaignContract = $viewCampaignContract->getCampaignContractsList();
                                                           <td class="centeralign"><?php echo $totclics ?></td>
                                                            <td class="centeralign">Soon</td>
                                                             <td class="centeralign"><img  src="img/icon/yes.png"/></td>
-                                                            <td class="centeralign" ><a  href="campaign-contract-information.php?id=<?php echo $affiliate['id_campaign_contract']; ?>"><img  title="viewshoot" src="img/icon/magnify.png"/></a></td>
+                                                            <td class="centeralign" ><a  href="view-campaign-contract-information.php?id=<?php echo $affiliate['id_campaign_contract']; ?>"><img  title="viewshoot" src="img/icon/magnify.png"/></a></td>
                                                  
 						<?php }
 					?>
