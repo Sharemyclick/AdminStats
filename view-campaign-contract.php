@@ -154,7 +154,7 @@ $viewresultCampaignContract = $viewCampaignContract->getCampaignContractsList();
                                                           <td class="centeralign"><?php echo $totclics ?></td>
                                                            <td class="centeralign">Soon</td>
                                                             <td class="centeralign"><img  src="img/icon/yes.png"/></td>
-                                                            <td class="centeralign" ><a  href="campaign-contract-information.php?id=<?php echo $affiliate['id_campaign_contract']; ?>"><img  title="viewshoot" src="img/icon/magnify.png"/></a><img title="update" src="img/icon/refresh.png"/></td>
+                                                            <td class="centeralign" ><a  href="campaign-contract-information.php?id=<?php echo $affiliate['id_campaign_contract']; ?>"><img  title="viewshoot" src="img/icon/magnify.png"/></a></td>
                                                  
 						<?php }
 					?>

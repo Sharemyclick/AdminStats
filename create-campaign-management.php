@@ -158,7 +158,7 @@ $result = $objCategoryProduct->getCategoriesList();
                              <p>
                             <label>Type of Payout *</label>
                             <span class="field">
-                                <select name="type_payout" id="type_payout" class="status">
+                                <select name="type_payout_management" id="type_payout" class="status">
                                         <option value="CPC"> CPC</option>
                                         <option value="CPM"> CPM</option>
                                         <option value="CPL">CPL</option>

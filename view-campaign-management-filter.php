@@ -124,14 +124,14 @@ if(!isset($_SESSION['login'])) {
 								
 									
 									
-									<select name="type_payout" id="selection2" class="select">
-									<option value=""<?php if($_POST['type_payout']==''){ echo 'selected';}  ?>>Select your type of payout </option>
-									<option value="CPC"<?php if($_POST['type_payout']=='CPC'){ echo 'selected';}  ?>> CPC</option>
-                                                                         <option value="CPM"<?php if($_POST['type_payout']=='CPM'){ echo 'selected';}  ?>> CPM</option>
-                                                                        <option value="CPL"<?php if($_POST['type_payout']=='CPL'){ echo 'selected';}  ?>>CPL</option>
-                                                                         <option value="CPA"<?php if($_POST['type_payout']=='CPA'){ echo 'selected';}  ?>>CPA</option>
-                                                                         <option value="C2L"<?php if($_POST['type_payout']=='C2L'){ echo 'selected';}  ?>>C2L</option>
-                                                                        <option value="CPV"<?php if($_POST['type_payout']=='CPV'){ echo 'selected';}  ?>>CPV</option>	
+									<select name="type_payout_management" id="selection2" class="select">
+									<option value=""<?php if($_POST['type_payout_management']==''){ echo 'selected';}  ?>>Select your type of payout </option>
+									<option value="CPC"<?php if($_POST['type_payout_management']=='CPC'){ echo 'selected';}  ?>> CPC</option>
+                                                                         <option value="CPM"<?php if($_POST['type_payout_management']=='CPM'){ echo 'selected';}  ?>> CPM</option>
+                                                                        <option value="CPL"<?php if($_POST['type_payout_management']=='CPL'){ echo 'selected';}  ?>>CPL</option>
+                                                                         <option value="CPA"<?php if($_POST['type_payout_management']=='CPA'){ echo 'selected';}  ?>>CPA</option>
+                                                                         <option value="C2L"<?php if($_POST['type_payout_management']=='C2L'){ echo 'selected';}  ?>>C2L</option>
+                                                                        <option value="CPV"<?php if($_POST['type_payout_management']=='CPV'){ echo 'selected';}  ?>>CPV</option>	
 									</select>
 								
 									
@@ -265,8 +265,8 @@ if(!isset($_SESSION['login'])) {
 						if(isset($_POST['payout_smc']) && $_POST['payout_smc'] != ''){
 							$cond3 .= " AND cm.payout_smc = '".$_POST['payout_smc']."'";
 						}
-						if(isset($_POST['type_payout']) && $_POST['type_payout'] != ''){
-							$cond4 .= " AND cm.type_payout = '".$_POST['type_payout']."'";
+						if(isset($_POST['type_payout_management']) && $_POST['type_payout_management'] != ''){
+							$cond4 .= " AND cm.type_payout_management = '".$_POST['type_payout_management']."'";
 						}
                                                 if(isset($_POST['country']) && $_POST['country'] != ''){
 							$cond5 .= " AND c.name_country = '".$_POST['country']."'";
@@ -293,7 +293,7 @@ if(!isset($_SESSION['login'])) {
                               echo '<td class="centeralign">'.$donnees['company_name'].'</td>';
                                 echo '<td class="centeralign">'.$donnees['payout_affiliate'].'</td>';
                                   echo '<td class="centeralign">'.$donnees['payout_smc'].'</td>';
-                                    echo '<td class="centeralign">'.$donnees['type_payout'].'</td>';
+                                    echo '<td class="centeralign">'.$donnees['type_payout_management'].'</td>';
                                       echo '<td class="centeralign">'.$donnees['name_country'].'</td>';
                                         echo '<td class="centeralign">'.$donnees['allowed'].'</td>';
                                           echo '<td class="centeralign">'.$donnees['conversion'].'</td>';

@@ -179,13 +179,13 @@ if(isset($_POST['submit_update']))
                          <p>
                             <label>Type of Payout *</label>
                              <span class="field">
-                            <select name="type_payout" id="conversion" class="status">
-                                        <option value="CPC" <?php if($viewCampaignManagement->campaign_managements_info['type_payout']==='CPC'){ echo 'selected';}  ?>> CPC</option>
-                                       <option value="CPM" <?php if($viewCampaignManagement->campaign_managements_info['type_payout']==='CPM'){ echo 'selected';}  ?>> CPM</option>
-                                       <option value="CPL" <?php if($viewCampaignManagement->campaign_managements_info['type_payout']==='CPL'){ echo 'selected';}  ?>> CPL</option>
-                                       <option value="CPA" <?php if($viewCampaignManagement->campaign_managements_info['type_payout']==='CPA'){ echo 'selected';}  ?>> CPA</option>
-                                       <option value="C2L" <?php if($viewCampaignManagement->campaign_managements_info['type_payout']==='C2L'){ echo 'selected';}  ?>> C2L</option>
-                                       <option value="CPV" <?php if($viewCampaignManagement->campaign_managements_info['type_payout']==='CPV'){ echo 'selected';}  ?>> CPV</option>
+                            <select name="type_payout_management" id="conversion" class="status">
+                                        <option value="CPC" <?php if($viewCampaignManagement->campaign_managements_info['type_payout_management']==='CPC'){ echo 'selected';}  ?>> CPC</option>
+                                       <option value="CPM" <?php if($viewCampaignManagement->campaign_managements_info['type_payout_management']==='CPM'){ echo 'selected';}  ?>> CPM</option>
+                                       <option value="CPL" <?php if($viewCampaignManagement->campaign_managements_info['type_payout_management']==='CPL'){ echo 'selected';}  ?>> CPL</option>
+                                       <option value="CPA" <?php if($viewCampaignManagement->campaign_managements_info['type_payout_management']==='CPA'){ echo 'selected';}  ?>> CPA</option>
+                                       <option value="C2L" <?php if($viewCampaignManagement->campaign_managements_info['type_payout_management']==='C2L'){ echo 'selected';}  ?>> C2L</option>
+                                       <option value="CPV" <?php if($viewCampaignManagement->campaign_managements_info['type_payout_management']==='CPV'){ echo 'selected';}  ?>> CPV</option>
 
                             </select>
                              </span>

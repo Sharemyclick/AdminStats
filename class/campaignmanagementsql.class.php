@@ -38,13 +38,13 @@ public function insertCampaignManagement($campaign_management)
         
         
         
-{$req = $this->bdd->prepare('INSERT INTO campaign_management(  name, id_advertiser, payout_affiliate, payout_smc, type_payout, allowed, conversion, device, id_country,  thumbnail ) VALUES ( :name,:id_advertiser, :payout_affiliate, :payout_smc, :type_payout, :allowed, :conversion, :device, :id_country, :thumbnail)');
+{$req = $this->bdd->prepare('INSERT INTO campaign_management(  name, id_advertiser, payout_affiliate, payout_smc, type_payout_management, allowed, conversion, device, id_country,  thumbnail ) VALUES ( :name,:id_advertiser, :payout_affiliate, :payout_smc, :type_payout_management, :allowed, :conversion, :device, :id_country, :thumbnail)');
         $req->execute(array(
             'name' => $campaign_management['name'],
            'id_advertiser' => $campaign_management['id_advertiser'],
             'payout_affiliate' => $campaign_management['payout_affiliate'],
              'payout_smc' => $campaign_management['payout_smc'],
-            'type_payout' => $campaign_management['type_payout'],
+            'type_payout_management' => $campaign_management['type_payout_management'],
             'allowed' => $campaign_management['allowed'],
             'conversion' => $campaign_management['conversion'],
             'device' => $campaign_management['device'],
@@ -95,13 +95,13 @@ else {
 
 public function updateCampaignManagement($id_campaign_management,$values)
 {
-   $req = $this->bdd->prepare('UPDATE campaign_management SET name=:name, id_advertiser=:id_advertiser, payout_affiliate=:payout_affiliate, payout_smc=:payout_smc, id_country=:id_country, type_payout=:type_payout, allowed=:allowed, conversion=:conversion, device=:device, thumbnail = :thumbnail WHERE id_campaign_management =' .$id_campaign_management);
+   $req = $this->bdd->prepare('UPDATE campaign_management SET name=:name, id_advertiser=:id_advertiser, payout_affiliate=:payout_affiliate, payout_smc=:payout_smc, id_country=:id_country, type_payout_management=:type_payout_management, allowed=:allowed, conversion=:conversion, device=:device, thumbnail = :thumbnail WHERE id_campaign_management =' .$id_campaign_management);
    $req->execute(array(    
             'name' => $values['name'],
             'id_advertiser' => $values['id_advertiser'],
             'payout_affiliate' => $values['payout_affiliate'],
             'payout_smc' => $values['payout_smc'],
-            'type_payout' => $values['type_payout'],
+            'type_payout_management' => $values['type_payout_management'],
           'id_country' => $values['id_country'],
             'allowed' => $values['allowed'],   
             'conversion' => $values['conversion']   ,

@@ -1,9 +1,10 @@
 <?php
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
-include('class/campaignmanagement.class.php');
+include('class/campaigncontract.class.php');
 include('class/country.class.php');
 include('class/categoryproduct.class.php');
+include('class/campaignshoot.class.php');
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection
 session_start();  
@@ -131,7 +132,7 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsI
                         
                         <p>
                             <label> Type Payout</label>
-                              <span class="field"> <input type="text" name="type_payout_management" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['type_payout_management']; ?>" readonly="readonly"/>     </span>
+                              <span class="field"> <input type="text" name="type_payout" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['type_payout']; ?>" readonly="readonly"/>     </span>
                             
                         </p>
                           

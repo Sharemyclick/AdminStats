@@ -116,7 +116,7 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsL
                                                         <td class="centeralign"><a href="view-campaign-management-information.php?id=<?php echo $affiliate['id_campaign_management']; ?>" ><?php echo $affiliate['name'] ?></a></td>
                                                          <td class="centeralign"><?php echo $affiliate['payout_affiliate'] ;?>  </td>
                                                          <td class="centeralign"><?php echo $affiliate['payout_smc'] ;?>  </td>
-                                                        <td class="centeralign"><?php echo $affiliate['type_payout'] ?></td>
+                                                        <td class="centeralign"><?php echo $affiliate['type_payout_management'] ?></td>
                                                         <td class="centeralign"><?php echo $affiliate['name_country'] ?></td> 
                                                         <td class="centeralign"><?php echo $affiliate['allowed'] ?></td>
                                                          <td class="centeralign"><?php echo $affiliate['conversion'] ?></td>
