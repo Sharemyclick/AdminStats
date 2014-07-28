@@ -6,7 +6,7 @@ private $bdd;
 
 public function affiliateCompanySql(){
 	// On se connecte à la base de données.
-	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
+	include 'connectbase.php';
 }
 
 public function selectAffiliateCompanyCategoryList(){

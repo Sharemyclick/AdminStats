@@ -8,13 +8,13 @@ public $errors;
 
 public function CampaignContractSql(){
 	// On se connecte à la base de données.
-	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
+	include 'connectbase.php';
 }
 
 public function SelectCampaignContractsList($campaign_contract = false){
 
 	$req = $this->bdd->query('SELECT * FROM campaign_contract cs LEFT JOIN campaign_management cm ON cs.id_campaign_management=cm.id_campaign_management LEFT JOIN dbase d ON cs.id_database=d.id_database ');
-        
+       // $res=$req->fetch();
 	return $req;
 	
 }

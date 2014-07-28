@@ -1,8 +1,7 @@
  <?php
 // On inclut la page de paramÃ¨tre de connection.
 include('conf.php');
-include('class/affiliatemanager.class.php');
-include('class/country.class.php');
+
 
 
 // On vÃ©rifie que le user est connectÃ© sinon on le renvoie Ã  la page de connection

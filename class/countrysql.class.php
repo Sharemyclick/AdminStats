@@ -5,7 +5,7 @@ private $bdd;
 
 public function CountrySql(){
 	// On se connecte à la base de données.
-	$this->bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
+	include 'connectbase.php';
 }
 
 

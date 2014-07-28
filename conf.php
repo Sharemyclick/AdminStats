@@ -1,12 +1,13 @@
 <?php
 try
 {
-	// On se connecte à la base de données.
+	// On se connecte ï¿½ la base de donnï¿½es.
 	$bdd = new PDO('mysql:host=localhost;dbname=basetest', 'root', '');
 }
 catch (Exception $e)
 {
-	/*En cas d'erreur, on affiche un message et on arrête tout*/
+	/*En cas d'erreur, on affiche un message et on arrï¿½te tout*/
 	die('Erreur : '.$e->getMessage());
 }
+
 ?>
