@@ -80,8 +80,9 @@ public function insertDatabase($database)
     
    $req = $this->bdd->prepare('INSERT INTO affiliate_manager_database(  id_affiliate_manager, id_database) VALUES ( :id_affiliate_manager, :id_database)');
         $req->execute(array(
-            'id_database' => $id_database,
-             'id_affiliate_manager' => $database['id_affiliate_manager']
+            
+             'id_affiliate_manager' => $database['id_affiliate_manager'],
+                'id_database' => $id_database
              )) or die(print_r($req->errorInfo())); // On traque l'erreur s'il y en a une
          
 

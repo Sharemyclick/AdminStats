@@ -19,8 +19,8 @@
 				/// Là le pass est correct, on peut faire le session_start();
 				session_start();
 				$_SESSION['login'] = $login;
-				$_SESSION['right'] = $data['right_id'];
-				echo 'pass correct';
+				//$_SESSION['right'] = $data['right_id'];
+				//echo 'pass correct';
 				echo '<script> document.location.href="dashboard.php" </script>';
 				}
 					// Si le login ne fonctionne pas on le renvoie à la page de login

@@ -150,7 +150,7 @@ if(isset($_POST['submit_database'])){
                                         <?php 
                                         foreach($objManager->affiliate_managers_list as $indManager => $valManager){?>
                                         
-                                    <option value="<?php echo $indManager['id_affiliate_manager']; ?>"  ><?php echo $valManager['name']; ?> </option>
+                                    <option value="<?php echo $valManager['id_affiliate_manager']; ?>"  ><?php echo $valManager['name']; ?> </option>
                                             </option>
                                 <?php } ?>
                                 </select>

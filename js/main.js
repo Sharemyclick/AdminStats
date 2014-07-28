@@ -7,7 +7,7 @@
 	//var result[i] = new Array();
 	jQuery.ajax({
 					type: "GET",
-					url:"http://127.0.0.1/Arthur/campaigns/getCampaignsData.php",
+					url:"http://data.sharemyclick.com/getCampaignsData.php",
 				    data: {value : id},                   
 					contentType: "application/json",
 					dataType: "json",
@@ -102,7 +102,7 @@ jQuery(document).ready(function() {
     jQuery('[id^=db_name]').each(function(){
 	var pkey = jQuery(this).attr('id').substring(7);
     jQuery(this).editable({
-	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
+	url: 'http://data.sharemyclick.com/setCampaignsData.php',
     type: 'post',
     dataType: 'json',
 	pk : pkey,
@@ -119,7 +119,7 @@ jQuery(document).ready(function() {
     jQuery('[id^=type_payout]').each(function(){
 	var pkey = jQuery(this).attr('id').substring(11);
     jQuery(this).editable({
-	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
+	url: 'http://data.sharemyclick.com/setCampaignsData.php',
     type: 'post',
     dataType: 'json',
 	pk : pkey,
@@ -137,7 +137,7 @@ jQuery(document).ready(function() {
     jQuery('[id^=affiliate_name]').each(function(){
 	var pkey = jQuery(this).attr('id').substring(14);
     jQuery(this).editable({
-	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
+	url: 'http://data.sharemyclick.com/setCampaignsData.php',
     type: 'post',
     dataType: 'json',
 	pk : pkey,
@@ -155,7 +155,7 @@ jQuery(document).ready(function() {
     jQuery('[id^=price]').each(function(){
 	var pkey = jQuery(this).attr('id').substring(5);
     jQuery(this).editable({
-	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
+	url: 'http://data.sharemyclick.com/setCampaignsData.php',
     type: 'post',
     dataType: 'json',
 	pk : pkey,
@@ -171,7 +171,7 @@ jQuery(document).ready(function() {
     jQuery('[id^=date]').each(function(){
 	var pkey = jQuery(this).attr('id').substring(4);
     jQuery(this).editable({
-	url: 'http://127.0.0.1/Arthur/campaigns/setCampaignsData.php',
+	url: 'http://data.sharemyclick.com/setCampaignsData.php',
     type: 'post',
     dataType: 'json',
 	pk : pkey,

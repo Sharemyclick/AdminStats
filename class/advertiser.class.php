@@ -183,8 +183,12 @@ class Advertiser
     public function setAdvertisersList($advertisers_list)
   {
   $this->advertisers_list = $advertisers_list;}
+  
+  
+  
   public function createAdvertiser($advertiser)
- { $advertiserSql = new AdvertiserSql();
+ {
+      $advertiserSql = new AdvertiserSql();
  
  if(is_array($advertiser['logo'])){ 
     if($this->downloadLogo($advertiser['logo']))
@@ -273,7 +277,7 @@ public function updateAdvertiser($advertiser)
   }*/
  public function downloadLogo($logo){
      
- $folder = 'C:/xampp/htdocs/campaigns/img/logo/';//TODO remove local part when upload to server !!
+ $folder = 'http://data.sharemyclick.com/img/logo/';//TODO remove local part when upload to server !!
  $file = utf8_decode(basename($logo['name']));
  $max_height = 1048576;
  $height = filesize($logo['tmp_name']);

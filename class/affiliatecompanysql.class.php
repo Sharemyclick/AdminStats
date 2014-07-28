@@ -18,7 +18,7 @@ public function selectAffiliateCompanyCategoryList(){
 
 public function selectAffiliateCompanyList($id_affiliate_company = false){
         
-	$req = $this->bdd->query('SELECT  a.id_affiliate_company, a.company_name, a.address, a.websites, c.name_country, t.traffic, ta.type_affiliate, a.status, hq.company_name AS hq_company_name FROM affiliate_company a '
+	$req = $this->bdd->query('SELECT  a.id_affiliate_company, a.company_name, a.address, a.websites, c.name_country, t.traffic, ta.type_affiliate AS type_affiliate, a.status, hq.company_name AS hq_company_name FROM affiliate_company a '
                 . ' LEFT JOIN country c ON a.id_country = c.id_country '
                 . ' LEFT JOIN affiliate_company_traffic act ON a.id_affiliate_company=act.id_affiliate_company '
                 . ' LEFT JOIN type_traffic t ON act.id_traffic=t.id_traffic   '

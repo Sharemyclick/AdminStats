@@ -131,7 +131,7 @@ $viewresultCampaignManagement = $viewCampaignManagement->getCampaignManagementsI
                         
                         <p>
                             <label> Type Payout</label>
-                              <span class="field"> <input type="text" name="type_payout" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['type_payout']; ?>" readonly="readonly"/>     </span>
+                              <span class="field"> <input type="text" name="type_payout" class="input-xxlarge" value="<?php echo $viewCampaignManagement->campaign_managements_info['type_payout_management']; ?>" readonly="readonly"/>     </span>
                             
                         </p>
                           
